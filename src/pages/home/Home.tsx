@@ -4,14 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { increment } from "@/redux/features/counter-slice";
 import { useGetProductsQuery } from "@/redux/api/product-api";
 import { IProduct } from "@/types";
+import Hero from "./Hero";
 
 const Home = () => {
   const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
-  const { data } = useGetProductsQuery({priceOrder:"desc"});
-  
+
   return (
     <div>
+      <Hero />
       <h2>Home {count}</h2>
       <button onClick={() => dispatch(increment())}>Click</button>
       <div>
