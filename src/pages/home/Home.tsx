@@ -8,22 +8,19 @@ import { IProduct } from "@/types";
 const Home = () => {
   const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
-  const { data } = useGetProductsQuery({order:"desc"});
-  console.log(data?.data?.products);
-
+  const { data } = useGetProductsQuery({priceOrder:"desc"});
+  
   return (
     <div>
       <h2>Home {count}</h2>
       <button onClick={() => dispatch(increment())}>Click</button>
       <div>
-       {
-        data?.data?.products?.map((product:IProduct)=>(
+        {data?.data?.products?.map((product: IProduct) => (
           <div key={product.id}>
-            <img src={product.image[0]} alt={product.title} />
-            <h3>{product.title}</h3>
+            <img src={import.meta.env.VITE_IMAGE_URL + product.images[0]} alt={product.name} />
+            <h3>{product.name}</h3>
           </div>
-        ))
-       }
+        ))}
       </div>
     </div>
   );

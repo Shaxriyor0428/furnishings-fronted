@@ -13,4 +13,4 @@ const extendedApi = mainApi.injectEndpoints({
   }),
 })
 
-export const { useGetProductsQuery } = extendedApi
+export const { useGetProductsQuery } = extendedApi;
