@@ -29,7 +29,6 @@ const SwiperInfinite: React.FC = () => {
         autoplay={{
           delay: 0,
           disableOnInteraction: false,
-          pauseOnMouseEnter: false,
         }}
         touchStartPreventDefault={false}
         breakpoints={{
