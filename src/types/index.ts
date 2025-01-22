@@ -14,6 +14,12 @@ export interface IProduct {
   name: string;
   stock: number;
   images: string[];
+  description: string;
+  averageRating: number;
+  price: number;
+  sku: string;
+  colors: string[];
+  tags: string[];
 }
 export interface IProductQuery {
   filter?: string;
