@@ -17,7 +17,7 @@ const SwiperInfinite: React.FC = () => {
           #FuniroFurniture
         </h2>
       </div>
-
+{/*  */}
       <Swiper
         modules={[FreeMode, Autoplay]}
         spaceBetween={0}
