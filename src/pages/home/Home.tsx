@@ -2,13 +2,15 @@ import React from "react";
 import { useGetProductsQuery } from "../../redux/api/product-api";
 import Hero from "./Hero";
 import Products from "../../components/products/Products";
+import Browse from "./Browse";
 
 const Home = () => {
   const { data } = useGetProductsQuery({});
-
+  console.log(data);
   return (
     <div>
       <Hero />
+      <Browse />
       {data && <Products data={data} />}
     </div>
   );
