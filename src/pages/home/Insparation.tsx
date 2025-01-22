@@ -17,17 +17,14 @@ const Insparation = () => {
     {
       src: ins1,
       title: 'Modern Living Room',
-      description: 'A cozy and modern living room with warm lighting.',
     },
     {
       src: ins2,
       title: 'Minimalist Bedroom',
-      description: 'A clean, minimalist bedroom designed for comfort.',
     },
     {
       src: ins3,
       title: 'Elegant Dining Area',
-      description: 'An elegant dining area with a stylish vibe.',
     },
   ];
 
