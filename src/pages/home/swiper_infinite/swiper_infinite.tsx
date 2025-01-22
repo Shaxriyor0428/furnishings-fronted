@@ -8,12 +8,19 @@ import image from "@/assets/images/Images.svg";
 
 const SwiperInfinite: React.FC = () => {
   const images = [image, image];
+  const images = [
+    image,
+    image,
+    image,
+    image
+  ];
 
   return (
     <div className="w-full overflow-hidden bg-gray-100 py-6">
       <Swiper
         modules={[FreeMode, Autoplay]}
         spaceBetween={10}
+        spaceBetween={0} 
         grabCursor={true}
         freeMode={true}
         speed={10000}
@@ -37,6 +44,7 @@ const SwiperInfinite: React.FC = () => {
               src={image}
               alt={`Slide ${index + 1}`}
               className="h-[721px] w-full object-contain"
+              className="h-[721px] w-full" 
             />
           </SwiperSlide>
         ))}
