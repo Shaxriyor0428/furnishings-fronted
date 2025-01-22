@@ -2,6 +2,23 @@ import diningImg from "../../assets/images/diningImage.png";
 import livingImg from "../../assets/images/livingImage.png";
 import bedroomImg from "../../assets/images/bedroomImage.png";
 
+const categories = [
+  {
+    imgSrc: diningImg,
+    altText: "Dining",
+    title: "Dining",
+  },
+  {
+    imgSrc: livingImg,
+    altText: "Living",
+    title: "Living",
+  },
+  {
+    imgSrc: bedroomImg,
+    altText: "Bedroom",
+    title: "Bedroom",
+  },
+];
 const Browse = () => {
   return (
     <section className="py-12">
@@ -17,38 +34,21 @@ const Browse = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className=" py-8 px-6 rounded-lg flex flex-col items-center gap-4 hover:shadow-lg transition-shadow duration-300">
-            <img
-              className="w-full max-w-[381px] h-[250px] md:h-[300px] lg:h-[350px] object-cover rounded-md"
-              src={diningImg}
-              alt="Dining"
-            />
-            <h3 className="text-[#333333] font-bold text-xl md:text-2xl">
-              Dining
-            </h3>
-          </div>
-
-          <div className=" py-8 px-6 rounded-lg flex flex-col items-center gap-4 hover:shadow-lg transition-shadow duration-300">
-            <img
-              className="w-full max-w-[381px] h-[250px] md:h-[300px] lg:h-[350px] object-cover rounded-md"
-              src={livingImg}
-              alt="Living"
-            />
-            <h3 className="text-[#333333] font-bold text-xl md:text-2xl">
-              Living
-            </h3>
-          </div>
-
-          <div className="py-8 px-6 rounded-lg flex flex-col items-center gap-4  hover:shadow-lg transition-shadow duration-300">
-            <img
-              className="w-full max-w-[381px] h-[250px] md:h-[300px] lg:h-[350px] object-cover rounded-md"
-              src={bedroomImg}
-              alt="Bedroom"
-            />
-            <h3 className="text-[#333333] font-bold text-xl md:text-2xl">
-              Bedroom
-            </h3>
-          </div>
+          {categories.map((category, index) => (
+            <div
+              key={index}
+              className="py-8 px-6 rounded-lg flex flex-col items-center gap-4 hover:shadow-lg transition-shadow duration-300"
+            >
+              <img
+                className="w-full max-w-[381px] h-[250px] md:h-[300px] lg:h-[350px] object-cover rounded-md"
+                src={category.imgSrc}
+                alt={category.altText}
+              />
+              <h3 className="text-[#333333] font-bold text-xl md:text-2xl">
+                {category.title}
+              </h3>
+            </div>
+          ))}
         </div>
       </div>
     </section>
