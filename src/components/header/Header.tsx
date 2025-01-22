@@ -5,7 +5,7 @@ import logo from "/logo.svg";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 import { LuUser } from "react-icons/lu";
-
+import "./Header.scss"
 const Header = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
     <div className="bg-white w-full shadow-sm fixed top-0 left-0 z-50">
-      <div className="container mx-auto h-20 flex justify-between items-center font-poppins max-[520px]:justify-center">
+      <header id="header" className="container mx-auto h-20 flex justify-between items-center font-poppins max-[520px]:justify-center">
         <div
           onClick={() => navigate("/")}
           className="flex items-center hover:opacity-70 duration-300"
@@ -27,7 +27,7 @@ const Header = () => {
             Furnishings
           </h2>
         </div>
-        <div className="flex items-center gap-12 max-[986px]:hidden">
+        <div  className="flex items-center gap-12 max-[986px]:hidden">
           {links?.map((link) => (
             <NavLink
               to={link.href}
@@ -53,7 +53,7 @@ const Header = () => {
             <AiOutlineShoppingCart className="h-6 w-6 hover:text-bg-primary duration-300" />
           </NavLink>
         </div>
-      </div>
+      </header>
 
       <div
         className={`absolute inset-0 bg-white p-6 flex flex-col items-center gap-4 shadow-lg h-[250px] rounded-b-3xl w-full transition-all duration-500 ${
