@@ -54,4 +54,5 @@ const Browse = () => {
     </section>
   );
 };
+
 export default Browse;
