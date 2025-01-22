@@ -4,9 +4,10 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/autoplay";
 import { FreeMode, Autoplay } from "swiper/modules";
-import image from '@/assets/images/Images.svg';
+import image from "@/assets/images/Images.svg";
 
 const SwiperInfinite: React.FC = () => {
+  const images = [image, image];
   const images = [
     image,
     image,
@@ -18,15 +19,16 @@ const SwiperInfinite: React.FC = () => {
     <div className="w-full overflow-hidden bg-gray-100 py-6">
       <Swiper
         modules={[FreeMode, Autoplay]}
+        spaceBetween={10}
         spaceBetween={0} 
         grabCursor={true}
         freeMode={true}
         speed={10000}
         loop={true}
-        slidesPerView="auto" 
+        slidesPerView="auto"
         autoplay={{
           delay: 0,
-          disableOnInteraction: false, 
+          disableOnInteraction: false,
         }}
         breakpoints={{
           0: { spaceBetween: 5 },
@@ -36,12 +38,12 @@ const SwiperInfinite: React.FC = () => {
         }}
         className="trusted-by-swiper"
       >
-        
         {images.map((image, index) => (
           <SwiperSlide key={index} className="flex justify-center items-center">
             <img
               src={image}
               alt={`Slide ${index + 1}`}
+              className="h-[721px] w-full object-contain"
               className="h-[721px] w-full" 
             />
           </SwiperSlide>

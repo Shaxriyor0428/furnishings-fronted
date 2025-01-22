@@ -12,7 +12,7 @@ const Home = () => {
       <Hero />
       <Browse />
       {data && <Products data={data} />}
-      <SwiperInfinite/>
+      <SwiperInfinite />
     </div>
   );
 };
