@@ -6,7 +6,6 @@ import Browse from "./Browse";
 
 const Home = () => {
   const { data } = useGetProductsQuery({});
-  console.log(data);
   return (
     <div>
       <Hero />
