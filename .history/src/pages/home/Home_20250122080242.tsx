@@ -1,3 +1,4 @@
+import { RootState } from "@/redux";
 import React from "react";
 
 import { useGetProductsQuery } from "@/redux/api/product-api";
