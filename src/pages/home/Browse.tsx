@@ -19,7 +19,6 @@ const categories = [
     title: "Bedroom",
   },
 ];
-
 const Browse = () => {
   return (
     <section className="py-12">
@@ -55,5 +54,4 @@ const Browse = () => {
     </section>
   );
 };
-
 export default Browse;
