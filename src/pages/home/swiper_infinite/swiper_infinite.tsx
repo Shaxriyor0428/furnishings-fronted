@@ -10,6 +10,7 @@ const SwiperInfinite: React.FC = () => {
   const images = [image, image, image, image];
 
   return (
+    <div className="w-full overflow-hidden py-6">
     <div className="w-full overflow-hidden  py-4">
       <div className="items-center text-center my-7">
         <p className="text-[#3A3A3A] mb-2 text-[20px]">Share your setup with</p>
@@ -17,7 +18,6 @@ const SwiperInfinite: React.FC = () => {
           #FuniroFurniture
         </h2>
       </div>
-{/*  */}
       <Swiper
         modules={[FreeMode, Autoplay]}
         spaceBetween={0}
@@ -44,6 +44,7 @@ const SwiperInfinite: React.FC = () => {
             <img
               src={image}
               alt={`Slide ${index + 1}`}
+              className="h-[721px] w-full max-[1050px]:h-[500px] max-[700px]:h-[400px] max-[600px]:h-[300px]"
               className="h-[721px] w-full"
             />
           </SwiperSlide>
