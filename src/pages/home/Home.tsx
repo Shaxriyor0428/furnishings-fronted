@@ -3,6 +3,7 @@ import { useGetProductsQuery } from "../../redux/api/product-api";
 import Hero from "./Hero";
 import Products from "../../components/products/Products";
 import Browse from "./Browse";
+import SwiperInfinite from "./swiper_infinite/swiper_infinite";
 
 const Home = () => {
   const { data } = useGetProductsQuery({});
@@ -11,6 +12,7 @@ const Home = () => {
       <Hero />
       <Browse />
       {data && <Products data={data} />}
+      <SwiperInfinite/>
     </div>
   );
 };
