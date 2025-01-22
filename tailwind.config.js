@@ -12,7 +12,7 @@ export default {
         "bg-primary": "#B88E2F",
       },
       backgroundImage: {
-        "hero-image": 'url("./src/assets/hero_home.png")',
+        "hero-image": 'url("/assets/hero_home.png")',
       },
     },
     container: {
