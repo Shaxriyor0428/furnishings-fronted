@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <div className="bg-hero-image bg-cover bg-center  font-poppins">
+    <div className="bg-hero-image bg-cover bg-center font-poppins">
       <div className="flex items-center container justify-end h-[716px]">
         <div className="text-start bg-white bg-opacity-70 p-8 rounded-lg max-w-lg max-[640px]:max-w-xs sm:max-w-xs md:max-w-sm lg:max-w-xl">
           <h4 className="text-sm text-gray-500 uppercase mb-4">New Arrival</h4>
@@ -11,9 +11,12 @@ const Hero = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
             tellus, luctus nec ullamcorper mattis.
           </p>
-          <button className="w-[210px] h-[60px] bg-bg-primary text-white px-6 py-3 font-bold rounded-sm hover:bg-yellow-700 duration-300">
-            BUY NOW
-          </button>
+          <div className="flex justify-start items-center">
+            <button className="py-4 px-12 bg-bg-primary text-white font-bold rounded-sm hover:bg-yellow-700 duration-300">
+              BUY NOW
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
