@@ -12,12 +12,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
 
 const Header = () => {
-  const token = useSelector((state: RootState) => state.token.access_token)
-  const {online, firstEnter} = useOnlineonline();
+  const token = useSelector((state: RootState) => state.token.access_token);
+  const { online, firstEnter } = useOnlineonline();
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const navigate = useNavigate();
-
-  
 
   return (
     <div
@@ -25,7 +23,10 @@ const Header = () => {
         !online && firstEnter ? "top-6" : "top-0"
       } ${online && firstEnter ? "header-animete" : ""}`}
     >
-      <div className="container mx-auto h-20 flex justify-between items-center font-poppins max-[520px]:justify-center">
+      <div
+        id="header"
+        className="container mx-auto h-20 flex justify-between items-center font-poppins max-[520px]:justify-center"
+      >
         <div
           onClick={() => navigate("/")}
           className="flex items-center hover:opacity-70 duration-300"
