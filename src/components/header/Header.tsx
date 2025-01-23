@@ -23,7 +23,7 @@ const Header = () => {
     <div
       className={`bg-white w-full shadow-sm sticky left-0 z-50 ${
         !status ? "top-6" : "top-0"
-      } ${status && hasBeenOffline ? "header-animete" : ""}`}
+      } ${status && hasBeenOffline ? "header-animate" : ""}`}
     >
       <div
         id="header"
