@@ -1,15 +1,13 @@
-import { clearOtp } from '@/redux/features/otp-slice'
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { clearOtp } from "@/redux/features/otp-slice";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const Profile = () => {
-    const dispatch = useDispatch()
-    useEffect(()=> {
-        dispatch(clearOtp())
-    }, [])
-  return (
-    <div>Profile</div>
-  )
-}
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(clearOtp());
+  }, []);
+  return <div>Profile</div>;
+};
 
-export default Profile
+export default Profile;

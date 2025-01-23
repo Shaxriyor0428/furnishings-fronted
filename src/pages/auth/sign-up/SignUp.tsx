@@ -30,17 +30,18 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {  },
   } = useForm({
     resolver: yupResolver(schema),
   })
   const onSubmit = (data: ICustomer) => {
     createCustomer(data)
     .unwrap()
-    .then((res) => {
+    .then(() => {
       toast.success("Welcome", {position: "bottom-right"})
       dispatch(saveEmail({
         email:data.email, 
+        
         // verification_key: res.data.verification_key // mana shu yerni tekshiring
       }))
       createOtp({email: data.email})
