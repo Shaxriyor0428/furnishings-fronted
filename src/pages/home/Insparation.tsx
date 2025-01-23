@@ -23,7 +23,7 @@ const Insparation = () => {
       title: 'Minimalist Bedroom',
     },
     {
-      src: ins3,
+      src: ins3, 
       title: 'Elegant Dining Area',
     },
   ];
