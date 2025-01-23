@@ -5,20 +5,16 @@ const Products = ({ data }: { data: IGetResponseProducts }) => {
   const productItems = data?.data?.products.map((product: IProduct) => (
     <div
       key={product.id}
-      className="relative group overflow-hidden rounded-lg shadow-md"
+      className="relative overflow-hidden rounded-lg shadow-md"
     >
-      <div className="relative w-full h-[301px] max-[620px]:h-[240px]  max-[430px]:h-[200px]">
+      <div className="relative w-full h-[301px] max-[620px]:h-[240px]  max-[450px]:h-[200px]">
         <img
-          className="w-full h-full bg-no-repeat bg-center bg-cover"
+          className="w-full h-full bg-no-repeat bg-center bg-cover hover:scale-[1.03] duration-300"
           src={`${import.meta.env.VITE_BASE_IMAGE_URL}${product.images[0]}`}
           alt={product.name}
         />
       </div>
-      <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-        <button className="bg-white text-black px-4 py-2 rounded-md">
-          Add to cart
-        </button>
-      </div>
+
       <div className="py-4 px-4 bg-[#F4F5F7] transition-colors duration-300">
         <h2
           title={product.name}
