@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { IGetResponseProducts, IProduct } from "../../types";
 
-const Products = ({ data,isLoading }: { data: IGetResponseProducts }) => {
+const Products = ({ data }: { data: IGetResponseProducts }) => {
   const productItems = data?.data?.products.map((product: IProduct) => (
     <div
       key={product.id}
