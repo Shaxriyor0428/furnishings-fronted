@@ -8,7 +8,7 @@ import 'swiper/css/effect-coverflow';
 import ins1 from '@/assets/images/ins1.png';
 import ins2 from '@/assets/images/inst2.png';
 import ins3 from '@/assets/images/inst3.png';
-import './Insparation.scss'
+import './Insparation.css'
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
@@ -71,7 +71,7 @@ const Insparation = () => {
                   <img
                     src={image.src}
                     alt={image.title}
-                    className="rounded-lg shadow-lg w-full transition-transform duration-300 group-hover:scale-105"
+                    className="rounded-lg shadow-lg w-[500px] max-[400px]:w-[200px] transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute bottom-10 left-5 w-[90%] bg-white bg-opacity-50 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center px-6 py-4 rounded-lg">
                     <div className="text-black">

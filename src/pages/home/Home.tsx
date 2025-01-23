@@ -6,6 +6,7 @@ import Browse from "./Browse";
 import SwiperInfinite from "./swiper_infinite/swiper_infinite";
 import Insparation from "./Insparation";
 
+
 const Home = () => {
   const { data } = useGetProductsQuery({});
   return (
