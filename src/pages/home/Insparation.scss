@@ -1,78 +1,137 @@
-.swiper-pagination-bullet {
-  background-color: #b88e2f;
-  opacity: 0.7;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.swiper-pagination-bullet-active {
-  background-color: #9c792a;
-  opacity: 1;
-  transform: scale(1.2);
-}
+$primary-color: #b88e2f;
+$secondary-color: #9c792a;
+$background-color: #fcf8f3;
+$text-color: #333;
+$white: #fff;
 
-.swiper-button-next,
-.swiper-button-prev {
-  color: #b88e2f;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 50%;
-  padding: 10px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
+#inspiration {
+  .swiper-pagination-bullet {
+    background-color: $primary-color;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
 
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-  background: rgba(0, 0, 0, 0.5);
-  transform: scale(1.1);
-}
+  .swiper-pagination-bullet-active {
+    background-color: $secondary-color;
+    opacity: 1;
+    transform: scale(1.2);
+  }
 
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  font-size: 18px;
-}
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: $primary-color;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.3s ease;
 
-.group:hover .absolute {
-  opacity: 1;
-}
+    &:hover {
+      background: rgba(0, 0, 0, 0.5);
+      transform: scale(1.1);
+    }
 
-.absolute {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: auto;
-  backdrop-filter: blur(10px);
-}
+    &::after {
+      font-size: 18px;
+    }
+  }
 
-.group {
-  position: relative;
-}
+  // Group and text styles
+  .group {
+    position: relative;
+    display: flex;
+    align-items: center;
 
-button {
-  margin-left: 10px;
-}
+    &:hover .absolute {
+      opacity: 1;
+    }
 
-.group {
-  display: flex;
-  align-items: center;
-}
+    &:hover .text-white p {
+      font-size: 14px;
+    }
 
-.text-white {
-  display: flex;
-  flex-direction: column;
-}
+    &:hover .text-white h3 {
+      font-size: 18px;
+    }
+  }
 
-.text-white p,
-.text-white h3 {
-  margin: 0;
-}
+  .absolute {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: auto;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
-.group:hover .text-white p {
-  font-size: 14px;
-}
+  .text-white {
+    display: flex;
+    flex-direction: column;
+    color: $white;
 
-.group:hover .text-white h3 {
-  font-size: 18px;
+    p,
+    h3 {
+      margin: 0;
+    }
+  }
+
+  // Button styles
+  button {
+    margin-left: 10px;
+    background-color: $primary-color;
+    color: $white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
+
+  // Responsiveness
+  @media (max-width: 1024px) {
+    .group {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .absolute {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    button {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 30px;
+      height: 30px;
+      padding: 5px;
+
+      &::after {
+        font-size: 16px;
+      }
+    }
+
+    .text-white h3 {
+      font-size: 16px;
+    }
+
+    .text-white p {
+      font-size: 12px;
+    }
+  }
 }
