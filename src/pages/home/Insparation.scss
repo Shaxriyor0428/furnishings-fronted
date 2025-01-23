@@ -5,16 +5,88 @@ $text-color: #333;
 $white: #fff;
 
 #inspiration {
+  background-color: $background-color;
+  padding: 4rem 0;
+
+  .swiper-container {
+    width: 100%;
+  }
+
+  .swiper-slide {
+    position: relative;
+
+    img {
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    .absolute {
+      position: absolute;
+      bottom: 10%;
+      left: 5%;
+      width: calc(100% - 10%);
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      .text-white {
+        color: $text-color;
+
+        p {
+          font-size: 1rem;
+          margin-bottom: 0.5rem;
+        }
+
+        h3 {
+          font-size: 1.5rem;
+          font-weight: bold;
+        }
+      }
+
+      button {
+        position: absolute;
+        bottom: 0;
+        left: calc(5% + 196px);
+        background-color: $primary-color;
+        color: $white;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: $secondary-color;
+        }
+      }
+    }
+  }
+
   .swiper-pagination-bullet {
     background-color: $primary-color;
     opacity: 0.7;
     transition: opacity 0.3s ease, transform 0.3s ease;
-  }
 
-  .swiper-pagination-bullet-active {
-    background-color: $secondary-color;
-    opacity: 1;
-    transform: scale(1.2);
+    &-active {
+      background-color: $secondary-color;
+      opacity: 1;
+      transform: scale(1.2);
+    }
   }
 
   .swiper-button-next,
@@ -40,98 +112,72 @@ $white: #fff;
     }
   }
 
-  // Group and text styles
-  .group {
-    position: relative;
-    display: flex;
-    align-items: center;
-
-    &:hover .absolute {
-      opacity: 1;
-    }
-
-    &:hover .text-white p {
-      font-size: 14px;
-    }
-
-    &:hover .text-white h3 {
-      font-size: 18px;
-    }
-  }
-
-  .absolute {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: auto;
-    backdrop-filter: blur(10px);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .text-white {
-    display: flex;
-    flex-direction: column;
-    color: $white;
-
-    p,
-    h3 {
-      margin: 0;
-    }
-  }
-
-  // Button styles
-  button {
-    margin-left: 10px;
-    background-color: $primary-color;
-    color: $white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: $secondary-color;
-    }
-  }
-
-  // Responsiveness
   @media (max-width: 1024px) {
-    .group {
-      flex-direction: column;
-      align-items: center;
+    padding: 3rem 1rem;
+
+    .swiper-slide {
+      .absolute {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.8rem;
+
+        h3 {
+          font-size: 1.25rem;
+        }
+
+        p {
+          font-size: 0.875rem;
+        }
+      }
+
+      button {
+        bottom: 0;
+        left: calc(5% + 196px);
+        font-size: 0.875rem;
+      }
     }
 
-    .absolute {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    button {
-      width: 100%;
-      margin-left: 0;
-    }
-  }
-
-  @media (max-width: 768px) {
     .swiper-button-next,
     .swiper-button-prev {
-      width: 30px;
-      height: 30px;
-      padding: 5px;
+      width: 35px;
+      height: 35px;
+      padding: 8px;
 
       &::after {
         font-size: 16px;
       }
     }
+  }
 
-    .text-white h3 {
-      font-size: 16px;
+  @media (max-width: 768px) {
+    .swiper-slide {
+      .absolute {
+        flex-direction: column;
+        align-items: center;
+
+        h3 {
+          font-size: 1rem;
+        }
+
+        p {
+          font-size: 0.75rem;
+        }
+      }
+
+      button {
+        font-size: 0.75rem;
+        left: calc(5% + 150px);
+      }
     }
 
-    .text-white p {
-      font-size: 12px;
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 30px;
+      height: 30px;
+
+      &::after {
+        font-size: 14px;
+      }
     }
   }
 }
