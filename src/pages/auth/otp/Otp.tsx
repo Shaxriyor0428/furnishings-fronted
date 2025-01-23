@@ -179,7 +179,7 @@ function OTP({
                 },
                 onKeyDown: (event) => handleKeyDown(event, index),
                 onChange: (event) => handleChange(event, index),
-                onClick: (event) => handleClick(event, index),
+                onClick: () => handleClick(index),
                 onPaste: (event) => handlePaste(event, index),
                 value: value[index] ?? "",
               },
