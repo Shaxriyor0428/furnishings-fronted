@@ -13,8 +13,8 @@ const Home = () => {
       <Hero />
       <Browse />
       {data && <Products data={data} />}
-      <Insparation/>
-      <SwiperInfinite/>
+      <Insparation />
+      <SwiperInfinite />
     </div>
   );
 };

@@ -1,14 +1,14 @@
-import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
-import SwiperCore from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
-import ins1 from '@/assets/images/ins1.png';
-import ins2 from '@/assets/images/inst2.png';
-import ins3 from '@/assets/images/inst3.png';
-import './Insparation.scss'
+import { Navigation, Pagination, EffectCoverflow } from "swiper/modules";
+import SwiperCore from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-coverflow";
+import ins1 from "@/assets/images/ins1.png";
+import ins2 from "@/assets/images/inst2.png";
+import ins3 from "@/assets/images/inst3.png";
+import "./Insparation.scss";
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
@@ -16,28 +16,28 @@ const Insparation = () => {
   const images = [
     {
       src: ins1,
-      title: 'Modern Living Room',
+      title: "Modern Living Room",
     },
     {
       src: ins2,
-      title: 'Minimalist Bedroom',
+      title: "Minimalist Bedroom",
     },
     {
-      src: ins3, 
-      title: 'Elegant Dining Area',
+      src: ins3,
+      title: "Elegant Dining Area",
     },
   ];
 
   return (
-    <div className="bg-[#FCF8F3] py-16">
+    <div id="inspiration" className="bg-[#FCF8F3] py-16">
       <div className="container mx-auto flex flex-col items-center lg:flex-row lg:items-center lg:justify-between gap-8 px-6 lg:px-0">
         <div className="text-center lg:text-left lg:w-1/2">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
             50+ Beautiful Rooms Inspiration
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed mb-6">
-            Our designers have crafted a variety of beautiful room prototypes 
-            to inspire your next space transformation.
+            Our designers have crafted a variety of beautiful room prototypes to
+            inspire your next space transformation.
           </p>
           <button className="bg-[#B88E2F] hover:bg-[#9C792A] text-white py-3 px-6 rounded-md shadow-md font-medium transition-all">
             Explore More
@@ -75,8 +75,8 @@ const Insparation = () => {
                       <h3 className="text-[28px] font-bold">Inner Peace</h3>
                     </div>
                     <button className="absolute bottom-0 left-[calc(5%+196px)] bg-[#B88E2F] hover:bg-[#9C792A] text-white py-2 px-4  shadow-md transition-all">
-                    →
-                  </button>
+                      →
+                    </button>
                   </div>
                 </div>
               </SwiperSlide>
