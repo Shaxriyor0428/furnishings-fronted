@@ -60,14 +60,6 @@ const Routers = () => {
             },
 
             {
-              path: "/auth/sign-up",
-              element: (
-                <SuspenseContainer>
-                  <SignUp />
-                </SuspenseContainer>
-              ),
-            },
-            {
               path: "/auth/otp",
               element: (
                 <SuspenseContainer>
@@ -75,14 +67,7 @@ const Routers = () => {
                 </SuspenseContainer>
               ),
             },
-            {
-              path: "/auth/sign-in",
-              element: (
-                <SuspenseContainer>
-                  <SignIn />
-                </SuspenseContainer>
-              ),
-            },
+
             {
               path: "*",
               element: (
@@ -92,6 +77,22 @@ const Routers = () => {
               ),
             },
           ],
+        },
+        {
+          path: "/auth/sign-in",
+          element: (
+            <SuspenseContainer>
+              <SignIn />
+            </SuspenseContainer>
+          ),
+        },
+        {
+          path: "/auth/sign-up",
+          element: (
+            <SuspenseContainer>
+              <SignUp />
+            </SuspenseContainer>
+          ),
         },
       ])}
     </>

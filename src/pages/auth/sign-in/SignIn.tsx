@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -69,6 +69,9 @@ const SignIn = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center p-4">
+      <Link to={"/"} className="absolute top-6 left-6 text-xl container">
+        <FaArrowLeft />
+      </Link>
       <div className="max-w-md w-full bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-xl shadow-lg p-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
           Sign In
