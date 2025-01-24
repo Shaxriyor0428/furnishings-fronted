@@ -1,15 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useSignInMutation } from "../../../redux/api/customer-api";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { saveToken } from "../../../redux/features/token-slice";
 import { saveStorage } from "../../../utils";
-import { RootState } from "../../../redux";
+// import { RootState } from "../../../redux";
 
 const schema = yup.object({
   email: yup
