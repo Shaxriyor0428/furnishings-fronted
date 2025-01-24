@@ -29,13 +29,13 @@ interface ISignIn {
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const token = useSelector((state: RootState) => state.token.access_token);
+  // const token = useSelector((state: RootState) => state.token.access_token);
 
-  useEffect(() => {
-    if (token) {
-      navigate("/auth/profile", { replace: true });
-    }
-  }, [token, navigate]);
+  // useEffect(() => {
+  //   if (token) {
+  //     navigate("/auth/profile", { replace: true });
+  //   }
+  // }, [token, navigate]);
 
   const [showPassword, setShowPassword] = useState(false);
   const [signIn] = useSignInMutation();
