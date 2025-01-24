@@ -33,14 +33,14 @@ const Browse = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-[20px]">
           {categories.map((category, index) => (
             <div
               key={index}
               className="py-8 px-6 rounded-lg flex flex-col items-center gap-4 hover:shadow-lg transition-shadow duration-300"
             >
               <img
-                className="w-full max-w-[381px] h-[250px] md:h-[300px] lg:h-[350px] object-cover rounded-md"
+                className="w-full max-w-[381px] h-[480px] md:h-[300px] lg:h-[350px] object-cover rounded-md"
                 src={category.imgSrc}
                 alt={category.altText}
               />
