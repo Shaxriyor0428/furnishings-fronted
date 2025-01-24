@@ -3,6 +3,7 @@ import Otp from "@/pages/auth/otp/Otp";
 import Profile from "@/pages/auth/profile/Profile";
 import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
+import SignIn from "../pages/auth/sign-in/SignIn";
 const Home = lazy(() => import("@/pages/home/Home"));
 const Shop = lazy(() => import("@/pages/shop/Shop"));
 const Layout = lazy(() => import("@/pages/layout/Layout"));
@@ -58,6 +59,14 @@ const Routers = () => {
               element: (
                 <SuspenseContainer>
                   <Profile />
+                </SuspenseContainer>
+              ),
+            },
+            {
+              path: "/auth/sign-in",
+              element: (
+                <SuspenseContainer>
+                  <SignIn />
                 </SuspenseContainer>
               ),
             },
