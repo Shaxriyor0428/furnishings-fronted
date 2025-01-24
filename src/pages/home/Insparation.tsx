@@ -29,13 +29,13 @@ const Insparation = () => {
   ];
 
   return (
-    <div className="bg-[#FCF8F3] py-16">
+    <div className="bg-[#FCF8F3] dark:bg-zinc-900 py-16">
       <div className="container mx-auto flex flex-col items-center lg:flex-row lg:items-center lg:justify-between gap-12 px-4 sm:px-6 lg:px-8">
         <div className="text-center lg:text-left lg:w-1/2">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white mb-4">
             50+ Beautiful Rooms Inspiration
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6">
+          <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg leading-relaxed mb-6">
             Our designers have crafted a variety of beautiful room prototypes 
             to inspire your next space transformation.
           </p>
