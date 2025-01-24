@@ -43,7 +43,7 @@ const Products = ({ data }: { data: IGetResponseProducts }) => {
   ));
 
   return (
-    <div className="container my-14 max-[620px]:my-4">
+    <div className="container my-10 max-[620px]:my-4">
       <h2 className="font-poppins-bold text-[40px] mb-8 text-center max-[620px]:text-2xl">
         Our products
       </h2>
