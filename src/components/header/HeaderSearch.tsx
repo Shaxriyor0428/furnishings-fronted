@@ -61,7 +61,7 @@ const HeaderSearch: FC<{ searchOpen: boolean; setSearchOpen: any }> = ({
         </button>
         <button
           onClick={() => setSearchOpen(false)}
-          className="p-3 text-[14.5px] bg-red-500 text-white rounded-r-lg hover:bg-red-600 transition duration-300"
+          className="p-3 text-[14.5px] bg-bg-primary text-white rounded-r-lg hover:bg-amber-600 transition duration-300"
         >
           Cancel
         </button>
