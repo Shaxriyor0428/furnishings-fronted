@@ -7,7 +7,7 @@ import SwiperInfinite from "./swiper_infinite/swiper_infinite";
 import Insparation from "./Insparation";
 
 const Home = () => {
-  const { data } = useGetProductsQuery({});
+  const { data } = useGetProductsQuery({ limit: 8 });
   return (
     <div>
       <Hero />

@@ -9,7 +9,7 @@ const Products = ({ data }: { data: IGetResponseProducts }) => {
     >
       <div className="relative w-full h-[301px] max-[620px]:h-[240px]  max-[450px]:h-[200px]">
         <img
-          className="w-full h-full bg-no-repeat bg-center bg-cover hover:scale-[1.03] duration-300"
+          className="w-full h-full bg-no-repeat bg-center bg-cover hover:scale-[1.02] duration-300"
           src={`${import.meta.env.VITE_BASE_IMAGE_URL}${product.images[0]}`}
           alt={product.name}
         />
