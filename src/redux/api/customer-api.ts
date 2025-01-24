@@ -10,6 +10,12 @@ const extendedApi = mainApi.injectEndpoints({
         body,
       }),
     }),
+    checkToken: build.query<any, any>({
+      query: () => ({
+        url: "customer/auth/check-token",
+        method: "GET",
+      }),
+    }),
     createOtp: build.mutation<OtpResponse, { email: string }>({
       query: (body) => ({
         url: "otp",
@@ -46,4 +52,5 @@ export const {
   useVerifyOtpMutation,
   useSignInMutation,
   useGetCustomerByIdQuery,
+  useCheckTokenQuery,
 } = extendedApi;
