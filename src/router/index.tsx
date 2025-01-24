@@ -1,14 +1,16 @@
 import { SuspenseContainer } from "@/config";
-import Otp from "@/pages/auth/otp/Otp";
 import Profile from "@/pages/auth/profile/Profile";
 import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
-import SignIn from "../pages/auth/sign-in/SignIn";
+
+const Auth = lazy(() => import("@/pages/auth/Auth"));
 const Home = lazy(() => import("@/pages/home/Home"));
 const Shop = lazy(() => import("@/pages/shop/Shop"));
 const Layout = lazy(() => import("@/pages/layout/Layout"));
 const NotFound = lazy(() => import("@/pages/not-found/NotFound"));
 const SignUp = lazy(() => import("@/pages/auth/sign-up/SignUp"));
+const SignIn = lazy(() => import("@/pages/auth/sign-in/SignIn"));
+const Otp = lazy(() => import("@/pages/auth/otp/Otp"));
 
 const Routers = () => {
   return (
@@ -39,6 +41,25 @@ const Routers = () => {
               ),
             },
             {
+              path: "/auth",
+              element: (
+                <SuspenseContainer>
+                  <Auth />
+                </SuspenseContainer>
+              ),
+              children: [
+                {
+                  path: "profile",
+                  element: (
+                    <SuspenseContainer>
+                      <Profile />
+                    </SuspenseContainer>
+                  ),
+                },
+              ],
+            },
+
+            {
               path: "/auth/sign-up",
               element: (
                 <SuspenseContainer>
@@ -51,14 +72,6 @@ const Routers = () => {
               element: (
                 <SuspenseContainer>
                   <Otp />
-                </SuspenseContainer>
-              ),
-            },
-            {
-              path: "/auth/profile",
-              element: (
-                <SuspenseContainer>
-                  <Profile />
                 </SuspenseContainer>
               ),
             },

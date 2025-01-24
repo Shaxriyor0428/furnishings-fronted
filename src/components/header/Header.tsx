@@ -50,7 +50,7 @@ const Header: FC = () => {
         </div>
         <div className="flex items-center gap-6 max-[520px]:hidden">
           <Switch />
-          <NavLink to={token ? "/auth/profile" : "/auth/sign-up"}>
+          <NavLink to={token ? "/auth/profile" : "/auth/sign-in"}>
             <LuUser className="h-6 w-6 hover:text-bg-primary duration-200" />
           </NavLink>
           <FiSearch
