@@ -57,11 +57,12 @@ const HeaderSearch: FC<{ searchOpen: boolean; setSearchOpen: any }> = ({
           className="w-full p-3 border rounded-l-lg outline-none text-gray-700 dark:bg-zinc-800 dark:border-zinc-500 dark:text-zinc-200 text-sm duration-200 border-r-0"
         />
         <button className="p-3 border border-x-0 round bg-white dark:bg-zinc-400 dark:hover:bg-zinc-600 dark:hover:border-zinc-600 dark:border-zinc-400 dark:text-black hover:bg-amber-600 hover:border-amber-600 hover:text-white transition duration-300">
+
           <FiSearch className="h-5 w-5" />
         </button>
         <button
           onClick={() => setSearchOpen(false)}
-          className="p-3 text-[14.5px] bg-red-500 text-white rounded-r-lg hover:bg-red-600 transition duration-300"
+          className="p-3 text-[14.5px] bg-bg-primary text-white rounded-r-lg hover:bg-amber-600 transition duration-300"
         >
           Cancel
         </button>
