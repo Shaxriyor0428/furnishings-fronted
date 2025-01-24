@@ -30,7 +30,7 @@ const Header: FC = () => {
       >
         <div
           onClick={() => navigate("/")}
-          className="flex items-center hover:opacity-70"
+          className="flex items-center hover:opacity-70 duration-200"
         >
           <img src={logo} alt="logo.svg" className="h-14 w-14 cursor-pointer" />
           <h2 className="ml-1 text-[30px] font-montserrat font-semibold cursor-pointer">
@@ -42,7 +42,7 @@ const Header: FC = () => {
             <NavLink
               to={link.href}
               key={link.href}
-              className="text-center font-medium text-lg hover:text-bg-primary"
+              className="text-center font-medium text-lg hover:text-bg-primary duration-200"
             >
               {link.title}
             </NavLink>
@@ -51,17 +51,17 @@ const Header: FC = () => {
         <div className="flex items-center gap-6 max-[520px]:hidden">
           <Switch />
           <NavLink to={token ? "/auth/profile" : "/auth/sign-up"}>
-            <LuUser className="h-6 w-6 hover:text-bg-primary" />
+            <LuUser className="h-6 w-6 hover:text-bg-primary duration-200" />
           </NavLink>
           <FiSearch
-            className="h-6 w-6 cursor-pointer hover:text-bg-primary"
+            className="h-6 w-6 cursor-pointer hover:text-bg-primary duration-200"
             onClick={() => setSearchOpen(true)}
           />
           <NavLink to={"/wishlist"}>
-            <AiOutlineHeart className="h-6 w-6 hover:text-bg-primary" />
+            <AiOutlineHeart className="h-6 w-6 hover:text-bg-primary duration-200" />
           </NavLink>
           <NavLink to={"/cart"}>
-            <AiOutlineShoppingCart className="h-6 w-6 hover:text-bg-primary" />
+            <AiOutlineShoppingCart className="h-6 w-6 hover:text-bg-primary duration-200" />
           </NavLink>
         </div>
       </div>
