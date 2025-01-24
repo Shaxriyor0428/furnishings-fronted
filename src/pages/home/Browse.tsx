@@ -10,7 +10,7 @@ const Browse = () => {
           <h2 className="text-3xl md:text-4xl font-semibold">
             Browse The Range
           </h2>
-          <p className="text-[#666666] text-lg md:text-xl max-w-2xl mx-auto mt-2">
+          <p className="text-[#666666] dark:text-stone-400 text-lg md:text-xl max-w-2xl mx-auto mt-2">
             Discover our collection of beautifully designed furniture to suit
             any space.
           </p>
@@ -23,7 +23,7 @@ const Browse = () => {
               src={diningImg}
               alt="Dining"
             />
-            <h3 className="text-[#333333] font-bold text-xl md:text-2xl">
+            <h3 className="text-[#333333] dark:text-zinc-500 font-bold text-xl md:text-2xl">
               Dining
             </h3>
           </div>
@@ -34,7 +34,7 @@ const Browse = () => {
               src={livingImg}
               alt="Living"
             />
-            <h3 className="text-[#333333] font-bold text-xl md:text-2xl">
+            <h3 className="text-[#333333] dark:text-zinc-500 font-bold text-xl md:text-2xl">
               Living
             </h3>
           </div>
@@ -45,7 +45,7 @@ const Browse = () => {
               src={bedroomImg}
               alt="Bedroom"
             />
-            <h3 className="text-[#333333] font-bold text-xl md:text-2xl">
+            <h3 className="text-[#333333] dark:text-zinc-500 font-bold text-xl md:text-2xl">
               Bedroom
             </h3>
           </div>
