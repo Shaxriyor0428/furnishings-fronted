@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { links } from "../../static";
 import logo from "/logo.svg";
@@ -10,8 +10,9 @@ import "./Header.scss";
 import HeaderSearch from "./HeaderSearch";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
+import Switch from "./Switcher";
 
-const Header = () => {
+const Header: FC = () => {
   const token = useSelector((state: RootState) => state.token.access_token);
   const { online, firstEnter } = useOnlineonline();
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
@@ -19,7 +20,7 @@ const Header = () => {
 
   return (
     <div
-      className={`bg-white w-full shadow-sm sticky  left-0 z-50 ${
+      className={`bg-white dark:bg-black w-full shadow-sm sticky left-0 z-50 transition-colors duration-300 ${
         !online && firstEnter ? "top-6" : "top-0"
       } ${online && firstEnter ? "header-animete" : ""}`}
     >
@@ -29,7 +30,7 @@ const Header = () => {
       >
         <div
           onClick={() => navigate("/")}
-          className="flex items-center hover:opacity-70 duration-300"
+          className="flex items-center hover:opacity-70"
         >
           <img src={logo} alt="logo.svg" className="h-14 w-14 cursor-pointer" />
           <h2 className="ml-1 text-[30px] font-montserrat font-semibold cursor-pointer">
@@ -41,25 +42,26 @@ const Header = () => {
             <NavLink
               to={link.href}
               key={link.href}
-              className="text-center font-medium text-lg hover:text-bg-primary duration-300"
+              className="text-center font-medium text-lg hover:text-bg-primary"
             >
               {link.title}
             </NavLink>
           ))}
         </div>
         <div className="flex items-center gap-6 max-[520px]:hidden">
+          <Switch />
           <NavLink to={token ? "/auth/profile" : "/auth/sign-up"}>
-            <LuUser className="h-6 w-6 hover:text-bg-primary duration-300" />
+            <LuUser className="h-6 w-6 hover:text-bg-primary" />
           </NavLink>
           <FiSearch
-            className="h-6 w-6 cursor-pointer hover:text-bg-primary duration-300"
+            className="h-6 w-6 cursor-pointer hover:text-bg-primary"
             onClick={() => setSearchOpen(true)}
           />
           <NavLink to={"/wishlist"}>
-            <AiOutlineHeart className="h-6 w-6 hover:text-bg-primary duration-300" />
+            <AiOutlineHeart className="h-6 w-6 hover:text-bg-primary" />
           </NavLink>
           <NavLink to={"/cart"}>
-            <AiOutlineShoppingCart className="h-6 w-6 hover:text-bg-primary duration-300" />
+            <AiOutlineShoppingCart className="h-6 w-6 hover:text-bg-primary" />
           </NavLink>
         </div>
       </div>

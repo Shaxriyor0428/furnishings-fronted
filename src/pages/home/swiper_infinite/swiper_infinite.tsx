@@ -12,8 +12,10 @@ const SwiperInfinite: React.FC = () => {
   return (
     <div className="w-full overflow-hidden  py-4">
       <div className="items-center text-center my-7">
-        <p className="text-[#3A3A3A] mb-2 text-[20px]">Share your setup with</p>
-        <h2 className="text-[#3A3A3A] text-[40px] font-semibold">
+        <p className="text-[#3A3A3A] dark:text-slate-200 mb-2 text-[20px]">
+          Share your setup with
+        </p>
+        <h2 className="text-[#3A3A3A] dark:text-slate-200 text-[40px] font-semibold">
           #FuniroFurniture
         </h2>
       </div>

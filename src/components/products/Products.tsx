@@ -15,7 +15,7 @@ const Products = ({ data }: { data: IGetResponseProducts }) => {
         />
       </div>
 
-      <div className="py-4 px-4 bg-[#F4F5F7] transition-colors duration-300">
+      <div className="py-4 px-4 bg-[#F4F5F7] dark:bg-zinc-800 transition-colors duration-300">
         <h2
           title={product.name}
           className="line-clamp-1 text-[24px] font-semibold leading-8 max-[620px]:text-lg"
@@ -28,7 +28,7 @@ const Products = ({ data }: { data: IGetResponseProducts }) => {
         >
           {product.description}
         </p>
-        <strong className="text-[#3A3A3A] text-[20px] leading-8 font-semibold max-[620px]:text-[15px]">
+        <strong className="text-[#3A3A3A] dark:text-slate-200 text-[20px] leading-8 font-semibold max-[620px]:text-[15px]">
           {product.price.toLocaleString()} USD
         </strong>
       </div>

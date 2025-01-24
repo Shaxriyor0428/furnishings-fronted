@@ -20,3 +20,15 @@
 html {
   scroll-behavior: smooth;
 }
+
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+  transition: background-color 300ms, color 300ms;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #ffffff;
+  transition: background-color 300ms, color 300ms;
+}
