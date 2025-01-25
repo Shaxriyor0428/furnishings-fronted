@@ -195,8 +195,8 @@ const ProductDetail = () => {
             </p>
           </div>
         </div>
-        <div className="mt-32 mx-auto max-w-4xl">
-          <div className="flex justify-center space-x-14 mb-6">
+        <div className="mt-32 max-w-4xl">
+          <div className="flex justify-between space-x-14 mb-6">
             <button
               onClick={() => setActiveTab("description")}
               className={`px-4 py-2 text-lg font-semibold ${
