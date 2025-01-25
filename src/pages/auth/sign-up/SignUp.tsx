@@ -3,11 +3,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ICustomer } from "@/types";
 import { useCreateCustomerMutation } from "@/redux/api/customer-api";
-import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { saveEmail } from "@/redux/features/otp-slice";
 import { FaArrowLeft } from "react-icons/fa";
+import { RootState } from "../../../redux";
+import { useState } from "react";
 
 const schema = yup
   .object({
@@ -21,11 +22,16 @@ const schema = yup
   .required();
 
 const SignUp = () => {
+  let token = useSelector((state: RootState) => state.token.access_token);
+
   const navigate = useNavigate();
+  if (token) {
+    return <Navigate replace to={"/auth/profile"} />;
+  }
   const dispatch = useDispatch();
 
   const [createCustomer, { isLoading }] = useCreateCustomerMutation();
-
+  const [rgError, setrgError] = useState<string>("");
   const {
     register,
     handleSubmit,
@@ -37,19 +43,23 @@ const SignUp = () => {
     createCustomer(data)
       .unwrap()
       .then(() => {
-        toast.success("Welcome", { position: "top-right" });
         dispatch(
           saveEmail({
             email: data.email,
           })
         );
+        setrgError("");
         navigate("/auth/otp");
       })
       .catch((err) => {
-        let msg = err.data.message;
-        toast.error(Array.isArray(msg) ? msg[0] : msg, {
-          position: "bottom-right",
-        });
+        const errorMessage = err?.data?.message;
+        if (typeof errorMessage === "string") {
+          setrgError(errorMessage);
+        } else if (Array.isArray(errorMessage)) {
+          setrgError(errorMessage[0]);
+        } else {
+          setrgError("An unknown error occurred.");
+        }
       });
   };
 
@@ -61,9 +71,14 @@ const SignUp = () => {
         </Link>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-[800px] xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Sign up
             </h1>
+            {rgError && (
+              <div className="text-red-500 text-sm mb-4 text-center">
+                {rgError}
+              </div>
+            )}
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="space-y-1 md:space-y-2"

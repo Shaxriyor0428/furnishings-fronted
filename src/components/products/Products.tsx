@@ -16,10 +16,10 @@ const Products = ({ data }: { data: IGetResponseProducts }) => {
         />
       </div>
 
-      <button className="hover:bg-slate-200  dark:text-black absolute top-1 md:top-2 right-1 md:right-[-30px] duration-300 group-hover:right-2 w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center text-[20px]">
+      <button className="hover:bg-slate-200  dark:text-black absolute top-2 md:top-2 right-2 md:right-[-35px] duration-300 group-hover:right-2 w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[20px]">
         <IoMdHeartEmpty className="text-xl" />
       </button>
-      <button className="hover:bg-slate-200 dark:text-black absolute top-10 md:top-11 right-1 md:right-[-30px] delay-100 duration-300 group-hover:right-2 w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center text-[20px]">
+      <button className="hover:bg-slate-200 dark:text-black absolute top-12 sm:top-8 md:top-12  right-2 md:right-[-35px] delay-100 duration-300 group-hover:right-2 w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[20px]">
         <IoCartOutline className=" text-xl" />
       </button>
       <div className="py-4 px-4 bg-[#F4F5F7] dark:bg-zinc-800 transition-colors duration-300">

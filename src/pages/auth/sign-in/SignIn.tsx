@@ -1,15 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useSignInMutation } from "../../../redux/api/customer-api";
-import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveToken } from "../../../redux/features/token-slice";
 import { saveStorage } from "../../../utils";
 import { saveEmail } from "../../../redux/features/otp-slice";
+import { RootState } from "../../../redux";
 
 const schema = yup.object({
   email: yup
@@ -29,9 +29,14 @@ interface ISignIn {
 
 const SignIn = () => {
   const navigate = useNavigate();
+  let token = useSelector((state: RootState) => state.token.access_token);
 
+  if (token) {
+    return <Navigate replace to={"/auth/profile"} />;
+  }
   const [showPassword, setShowPassword] = useState(false);
   const [signIn] = useSignInMutation();
+  const [lgError, setlgError] = useState("");
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
@@ -57,13 +62,18 @@ const SignIn = () => {
         dispatch(saveToken(res?.data?.access_token));
         saveStorage("access_token", res?.data?.access_token);
         saveEmail({ email: res?.data?.email });
+        setlgError("");
         navigate("/auth/profile");
       })
       .catch((err) => {
-        let msg = err.data.message;
-        toast.error(Array.isArray(msg) ? msg[0] : msg, {
-          position: "bottom-right",
-        });
+        const errorMessage = err?.data?.message;
+        if (typeof errorMessage === "string") {
+          setlgError(errorMessage);
+        } else if (Array.isArray(errorMessage)) {
+          setlgError(errorMessage[0]);
+        } else {
+          setlgError("An unknown error occurred.");
+        }
       });
   };
 
@@ -76,6 +86,10 @@ const SignIn = () => {
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
           Sign In
         </h2>
+
+        {lgError && (
+          <div className="text-red-500 text-sm mb-4 text-center">{lgError}</div>
+        )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>

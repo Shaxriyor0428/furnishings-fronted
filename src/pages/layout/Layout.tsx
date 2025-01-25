@@ -3,7 +3,6 @@ import Header from "@/components/header/Header";
 import NetworkStatus from "@/components/network-status/NetworkStatus";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
 
 const Layout = () => {
   return (
@@ -14,7 +13,6 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
-      <Toaster />
     </>
   );
 };
