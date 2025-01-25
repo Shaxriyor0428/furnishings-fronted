@@ -106,7 +106,7 @@ const ProductDetail = () => {
               {product.colors.map((color, index) => (
                 <div
                   key={index}
-                  className="w-8 h-8 rounded-full border border-gray-200"
+                  className="w-8 h-8 rounded-full border-0 border-gray-200"
                   style={{ backgroundColor: color }}
                 ></div>
               ))}
