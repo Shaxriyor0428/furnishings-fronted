@@ -10,6 +10,7 @@ const Products = ({ data }: { data: IGetResponseProducts }) => {
       key={product.id}
       className="relative overflow-hidden group rounded-lg shadow-md"
     >
+
       <Link to={`/product/${product.id}`}>
         <div className="relative w-full overflow-hidden h-[301px] max-[620px]:h-[240px] max-[450px]:h-[200px]">
           <img
@@ -24,6 +25,7 @@ const Products = ({ data }: { data: IGetResponseProducts }) => {
       </button>
       <button className="hover:bg-slate-200 dark:text-black absolute top-10 md:top-11 right-1 md:right-[-30px] delay-100 duration-300 group-hover:right-2 w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center text-[20px]">
         <IoCartOutline className="text-xl" />
+
       </button>
       <div className="py-4 px-4 bg-[#F4F5F7] dark:bg-zinc-800 transition-colors duration-300">
         <h2
