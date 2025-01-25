@@ -99,7 +99,7 @@ const ProductDetail = () => {
           <div className="mt-4 flex items-center space-x-2">
             {renderRating(product.averageRating)}
           </div>
-          <p className="text-lg text-gray-700 mt-4">{product.description}</p>
+          <p className="text-lg text-gray-700 dark:text-gray-200 mt-4">{product.description}</p>
           <div className="mt-4">
             <span className="font-thin">Color </span>
             <div className="flex items-center space-x-2 mt-2">
@@ -113,7 +113,7 @@ const ProductDetail = () => {
             </div>
           </div>
           <div className="flex items-center space-x-5 mt-6">
-            <div className="flex items-center space-x-5 border border-gray-800  rounded-lg">
+            <div className="flex items-center space-x-5 border border-gray-800 dark:border-gray-200 rounded-lg">
               <button
                 className="px-4 py-2 rounded  "
                 onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
@@ -129,23 +129,23 @@ const ProductDetail = () => {
               </button>
             </div>
 
-            <button className=" py-30 border-[1px] px-7 py-2 border-black text-black rounded-lg">
+            <button className=" py-30 border-[1px] px-7 py-2 border-black dark:border-gray-200 text-black dark:text-gray-200 rounded-lg">
               Add to Cart
             </button>
-            <button className="py-30 border-[1px] px-7 py-2 border-black text-black rounded-lg">
+            <button className="py-30 border-[1px] px-7 py-2 border-black dark:border-gray-200 text-black dark:text-gray-200 rounded-lg">
               + Compare
             </button>
           </div>
           <div className="flex items-center space-x-4 mt-8"></div>
           <hr className="font-bold" />
           <div className="mt-8">
-            <p className="text-sm text-gray-800 mt-2">SKU: {product.sku}</p>
-            <p className="text-sm text-gray-800 mt-1">
+            <p className="text-sm text-gray-800 dark:text-gray-200 mt-2">SKU: {product.sku}</p>
+            <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">
               Tags: {product.tags.join(", ")}
             </p>
-            <p className="text-sm text-gray-800 mt-1">Stock: {product.stock}</p>
+            <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">Stock: {product.stock}</p>
 
-            <p className="flex items-center text-sm text-gray-800 mt-4 space-x-3">
+            <p className="flex items-center text-sm dark:text-gray-200 text-gray-800 mt-4 space-x-3">
               <span>Share:</span>
               <img
                 src={face}
