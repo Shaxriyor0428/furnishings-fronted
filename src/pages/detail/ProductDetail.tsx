@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IProduct } from "@/types";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-
+import "./Detail.scss"
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
@@ -14,7 +14,9 @@ const ProductDetail = () => {
   const [selectedImage, setSelectedImage] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -65,7 +67,7 @@ const ProductDetail = () => {
     <div className="container mx-auto my-10">
       <div className="grid grid-cols-2 gap-8 max-[990px]:grid-cols-1">
         <div className="flex">
-          <div className="flex flex-col space-y-4 mr-4 overflow-y-auto h-60 no-scrollbar">
+          <div className="product__detail flex flex-col space-y-4 mr-4 overflow-y-auto h-80 no-scrollbar">
             {product.images.map((img, index) => (
               <img
                 key={index}
@@ -75,9 +77,7 @@ const ProductDetail = () => {
                 onClick={() =>
                   setSelectedImage(
                     `${import.meta.env.VITE_BASE_IMAGE_URL}${img}`
-                    
                   )
-                  
                 }
               />
             ))}
