@@ -2,9 +2,10 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IProduct } from "@/types";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import face from "@/assets/images/face.svg";
-import linki from "@/assets/images/linki.svg";
-import twit from "@/assets/images/twit.svg";
+
+import { FaFacebook } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -74,7 +75,9 @@ const ProductDetail = () => {
                 onClick={() =>
                   setSelectedImage(
                     `${import.meta.env.VITE_BASE_IMAGE_URL}${img}`
+                    
                   )
+                  
                 }
               />
             ))}
@@ -151,12 +154,10 @@ const ProductDetail = () => {
               Stock: {product.stock}
             </p>
 
-            <p className="flex items-center text-sm text-gray-800 mt-4 space-x-3">
+            <p className="flex items-center text-sm text-gray-800 dark:text-gray-200 mt-4 space-x-3">
               <span>Share:</span>
-              <img
-                src={face}
-                alt="facebook"
-                className="w-4 h-4 cursor-pointer"
+              <FaFacebook
+                className="w-4 h-4 cursor-pointer dark:text-gray-200"
                 onClick={() =>
                   window.open(
                     `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
@@ -166,10 +167,8 @@ const ProductDetail = () => {
                   )
                 }
               />
-              <img
-                src={linki}
-                alt="linkedin"
-                className="w-4 h-4 cursor-pointer"
+              <FaLinkedin
+                className="w-4 h-4 cursor-pointer dark:text-gray-200"
                 onClick={() =>
                   window.open(
                     `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
@@ -179,10 +178,8 @@ const ProductDetail = () => {
                   )
                 }
               />
-              <img
-                src={twit}
-                alt="twitter"
-                className="w-4 h-4 cursor-pointer"
+              <FaTwitter
+                className="w-4 h-4 cursor-pointer dark:text-gray-200"
                 onClick={() =>
                   window.open(
                     `https://twitter.com/intent/tweet?url=${encodeURIComponent(
