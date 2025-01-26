@@ -10,6 +10,7 @@ export interface IGetProducts {
   total: number;
 }
 export interface IProduct {
+  categoryId?:number;
   id: number;
   name: string;
   stock: number;

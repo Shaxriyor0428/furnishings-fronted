@@ -1,9 +1,8 @@
 import { SuspenseContainer } from "@/config";
-import Profile from "@/pages/auth/profile/Profile";
-
 import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
 
+const Profile = lazy(() => import("@/pages/auth/profile/Profile"));
 const Auth = lazy(() => import("@/pages/auth/Auth"));
 const MainDetail = lazy(() => import("@/pages/detail/MainDetail"));
 const Home = lazy(() => import("@/pages/home/Home"));
