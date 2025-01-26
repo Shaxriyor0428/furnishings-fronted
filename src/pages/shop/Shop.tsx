@@ -37,6 +37,11 @@ const Shop = () => {
               "& .MuiPagination-ul": {
                 display: "flex",
                 gap: "30px",
+                "& .Mui-selected": {
+                  backgroundColor: "#B88E2F",
+                  color: "#fff",
+                  fontWeight: "500",
+                },
               },
               "& .MuiPaginationItem-root": {
                 backgroundColor: "#F9F1E7",
@@ -45,11 +50,6 @@ const Shop = () => {
                 fontSize: "20px",
                 height: "60px",
                 width: "60px",
-              },
-              "& .Mui-selected": {
-                backgroundColor: "#B88E2F",
-                color: "#fff",
-                fontWeight: "500",
               },
               "@media (max-width: 600px)": {
                 "& .MuiPaginationItem-root": {
