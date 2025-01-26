@@ -1,18 +1,22 @@
-import { memo } from "react";
+import { FC, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { IGetResponseProducts, IProduct } from "../../types";
 import { IoCartOutline } from "react-icons/io5";
 import { IoMdHeartEmpty } from "react-icons/io";
-
-const Products = ({ data }: { data: IGetResponseProducts }) => {
+interface IProductProps {
+  data: IGetResponseProducts;
+  title?: string;
+}
+const Products: FC<IProductProps> = ({ data, title }) => {
   const navigate = useNavigate();
+  
   const productItems = data?.data?.products.map((product: IProduct) => (
     <div
       key={product.id}
       className="relative overflow-hidden group rounded-lg shadow-md"
     >
       <div
-        onClick={() => navigate(`product/${product.id}`)}
+        onClick={() => navigate(`/product/${product.id}`)}
         className="relative w-full overflow-hidden h-[301px] max-[620px]:h-[240px] max-[450px]:h-[200px]"
       >
         <img
@@ -50,7 +54,7 @@ const Products = ({ data }: { data: IGetResponseProducts }) => {
   return (
     <div className="container my-10 max-[620px]:my-4">
       <h2 className="font-poppins-bold text-[40px] mb-8 text-center max-[620px]:text-2xl">
-        Our Products
+        {title ? title : ""}
       </h2>
       <div className="grid grid-cols-4 gap-8 max-[1240px]:grid-cols-3 max-[990px]:grid-cols-2 max-[620px]:gap-2">
         {productItems}

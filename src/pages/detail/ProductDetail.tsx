@@ -1,44 +1,23 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { IProduct } from "@/types";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import "./Detail.scss"
+import "./Detail.scss";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import { useGetSingleProductQuery } from "../../redux/api/product-api";
 
 const ProductDetail = () => {
   const { id } = useParams();
 
-  const [product, setProduct] = useState<IProduct | null>(null);
-  const [selectedImage, setSelectedImage] = useState("");
+  const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
+  const { data: product } = useGetSingleProductQuery(Number(id));
+
   useEffect(() => {
+    setSelectedImage(0);
     window.scrollTo(0, 0);
-  }, []);
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BASE_URL}products/${id}`
-        );
-        const productData = await response.json();
-
-        if (productData && productData.id) {
-          setProduct(productData);
-          setSelectedImage(
-            `${import.meta.env.VITE_BASE_IMAGE_URL}${productData.images[0]}`
-          );
-        } else {
-          throw new Error("No product data found in response");
-        }
-      } catch (error) {
-        console.error("Failed to fetch product details:", error);
-      }
-    };
-
-    fetchProduct();
   }, [id]);
 
   const renderRating = (rating: number): JSX.Element => {
@@ -60,7 +39,11 @@ const ProductDetail = () => {
   };
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <p className="my-8 text-center text-xl font-semibold text-gray-700 dark:text-white">
+        Loading ...
+      </p>
+    );
   }
 
   return (
@@ -68,17 +51,13 @@ const ProductDetail = () => {
       <div className="grid grid-cols-2 gap-8 max-[990px]:grid-cols-1">
         <div className="flex">
           <div className="product__detail flex flex-col space-y-4 mr-4 overflow-y-auto h-80 no-scrollbar">
-            {product.images.map((img, index) => (
+            {product?.images.map((img, index) => (
               <img
                 key={index}
                 src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
                 alt={`Thumbnail ${index + 1}`}
                 className="w-40 h-20 object-cover rounded cursor-pointer border-2 border-gray-200 hover:border-blue-500"
-                onClick={() =>
-                  setSelectedImage(
-                    `${import.meta.env.VITE_BASE_IMAGE_URL}${img}`
-                  )
-                }
+                onClick={() => setSelectedImage(index)}
               />
             ))}
           </div>
@@ -86,7 +65,9 @@ const ProductDetail = () => {
           <div>
             <div className="w-full max-w-lg h-80 overflow-hidden">
               <img
-                src={selectedImage}
+                src={`${import.meta.env.VITE_BASE_IMAGE_URL}${
+                  product.images[selectedImage]
+                }`}
                 alt={product.name}
                 className="w-full h-full object-cover rounded-lg"
               />
