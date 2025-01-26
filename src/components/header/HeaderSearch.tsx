@@ -6,7 +6,6 @@ import { FiSearch } from "react-icons/fi";
 import { useGetProductsQuery } from "@/redux/api/product-api";
 import { IProduct } from "@/types";
 import useDebounce from "@/hooks/useDebounce";
-import { CircularProgress } from "@mui/material";
 import Switcher from "./Switcher";
 
 const HeaderSearch: FC<{ searchOpen: boolean; setSearchOpen: any }> = ({

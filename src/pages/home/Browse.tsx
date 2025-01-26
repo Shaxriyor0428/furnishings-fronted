@@ -2,6 +2,23 @@ import diningImg from "../../assets/images/diningImage.png";
 import livingImg from "../../assets/images/livingImage.png";
 import bedroomImg from "../../assets/images/bedroomImage.png";
 
+const categories = [
+  {
+    id: 1,
+    title: "Dining",
+    img: diningImg,
+  },
+  {
+    id: 2,
+    title: "Living",
+    img: livingImg,
+  },
+  {
+    id: 3,
+    title: "Bedroom",
+    img: bedroomImg,
+  },
+];
 const Browse = () => {
   return (
     <section className="pt-6">
@@ -24,10 +41,10 @@ const Browse = () => {
             >
               <img
                 className="w-full max-w-[381px] h-[480px] md:h-[300px] lg:h-[350px] object-cover rounded-md"
-                src={category.imgSrc}
-                alt={category.altText}
+                src={category.img}
+                alt={category.title}
               />
-              <h3 className="text-[#333333] font-bold text-xl md:text-2xl">
+              <h3 className="text-[#333333] font-bold text-xl md:text-2xl dark:text-white">
                 {category.title}
               </h3>
             </div>
