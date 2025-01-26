@@ -4,14 +4,16 @@ import Hero from "./Hero";
 import Products from "../../components/products/Products";
 import Browse from "./Browse";
 import SwiperInfinite from "./swiper_infinite/swiper_infinite";
+import Insparation from "./Insparation";
 
 const Home = () => {
-  const { data } = useGetProductsQuery({});
+  const { data } = useGetProductsQuery({ limit: 8 });
   return (
     <div>
       <Hero />
       <Browse />
-      {data && <Products data={data} />}
+      {data && <Products data={data} title="Our products" />}
+      <Insparation />
       <SwiperInfinite />
     </div>
   );

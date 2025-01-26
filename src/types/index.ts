@@ -10,6 +10,7 @@ export interface IGetProducts {
   total: number;
 }
 export interface IProduct {
+  categoryId?:number;
   id: number;
   name: string;
   stock: number;
@@ -27,4 +28,27 @@ export interface IProductQuery {
   page?: number;
   limit?: number;
   priceOrder?: "asc" | "desc";
+}
+export interface ICustomer {
+  id?: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  password?: string;
+  confirm_password?: string;
+  phone_number: string;
+}
+
+export interface ICustomerDataResponse {
+  statusCode: number;
+  message: string;
+  data: {
+    customer: ICustomer;
+  };
+}
+export interface OtpResponse {
+  id?: number;
+  access_token: string;
+  statusCode: number;
+  message: string;
 }
