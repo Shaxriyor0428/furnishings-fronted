@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useGetProductsQuery } from "../../redux/api/product-api";
 import Products from "../../components/products/Products";
 import { Pagination } from "@mui/material";
+import Hero from "./Hero";
 
 const Shop = () => {
   const [page, setPage] = useState<number>(1);
@@ -22,6 +23,7 @@ const Shop = () => {
 
   return (
     <>
+      <Hero />
       <section className="container">
         {isLoading && (
           <p className="my-8 text-center text-xl font-semibold text-gray-700 dark:text-white">
