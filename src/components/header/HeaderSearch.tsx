@@ -2,7 +2,6 @@ import { useOutsideClick } from "@/hooks/useOutsideClick";
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "/logo.svg";
-import { FiSearch } from "react-icons/fi";
 import { useGetProductsQuery } from "@/redux/api/product-api";
 import { IProduct } from "@/types";
 import useDebounce from "@/hooks/useDebounce";
@@ -32,7 +31,7 @@ const HeaderSearch: FC<{ searchOpen: boolean; setSearchOpen: any }> = ({
   return (
     <div
       ref={ref}
-      className={`absolute  top-0 bg-white dark:bg-zinc-900 p-6 flex flex-col items-center gap-4 shadow-lg min-h-[250px] rounded-b-3xl w-full transition-all duration-500 ${
+      className={`absolute  top-0 bg-white dark:bg-zinc-950 p-6 flex flex-col items-center gap-4 shadow-lg min-h-[250px] rounded-b-3xl w-full transition-all duration-500 ${
         searchOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
@@ -55,10 +54,6 @@ const HeaderSearch: FC<{ searchOpen: boolean; setSearchOpen: any }> = ({
           onChange={(e) => setValue(e.target.value)}
           className="w-full p-3 border rounded-l-lg outline-none text-gray-700 dark:bg-zinc-800 dark:border-zinc-500 dark:text-zinc-200 text-sm duration-200 border-r-0"
         />
-        <button className="p-3 border border-x-0 round bg-white dark:bg-zinc-400 dark:hover:bg-zinc-600 dark:hover:border-zinc-600 dark:border-zinc-400 dark:text-black hover:bg-amber-600 hover:border-amber-600 hover:text-white transition duration-300">
-
-          <FiSearch className="h-5 w-5" />
-        </button>
         <button
           onClick={() => setSearchOpen(false)}
           className="p-3 text-[14.5px] bg-bg-primary text-white rounded-r-lg hover:bg-amber-600 transition duration-300"

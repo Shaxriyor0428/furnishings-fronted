@@ -9,7 +9,7 @@ const RelatedProducts = ({ relatedProducts }: { relatedProducts: any }) => {
   const [visibleProducts, setVisibleProducts] = useState(4);
 
   const showMoreProducts = () => {
-    setVisibleProducts((prev) => prev + 4); 
+    setVisibleProducts((prev) => prev + 4);
   };
 
   const productItems = relatedProducts?.data
@@ -67,7 +67,7 @@ const RelatedProducts = ({ relatedProducts }: { relatedProducts: any }) => {
         <div className="text-center mt-6">
           <button
             onClick={showMoreProducts}
-            className="px-14 py-2 border border-[#B88E2F] text-[#B88E2F] text-lg"
+            className="px-14 py-2 rounded-sm border border-bg-primary text-bg-primary text-lg hover:bg-bg-primary hover:text-white duration-300"
           >
             Show More
           </button>
