@@ -7,9 +7,11 @@ const Shop = () => {
   const [page, setPage] = useState<number>(1);
   const { data, isLoading } = useGetProductsQuery({ limit: 12, page });
 
+  const totalPages = data ? Math.ceil(data?.data?.total / 12) : 0;
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [page]);
+
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number
@@ -20,7 +22,7 @@ const Shop = () => {
 
   return (
     <>
-      <section className=" container">
+      <section className="container">
         {isLoading && (
           <p className="my-8 text-center text-xl font-semibold text-gray-700 dark:text-white">
             Loading ...
@@ -29,7 +31,7 @@ const Shop = () => {
         {data ? <Products data={data} /> : <></>}
         <div className="flex justify-center">
           <Pagination
-            count={3}
+            count={totalPages}
             shape="rounded"
             page={page}
             onChange={handlePageChange}
