@@ -119,7 +119,11 @@ const HeaderSearch: FC<{ searchOpen: boolean; setSearchOpen: any }> = ({
       }
       {
         // loading
-        isFetching && <CircularProgress />
+        isFetching && (
+          <div className="flex justify-center items-center min-h-[250px] w-full">
+            <div className="loader"></div>
+          </div>
+        )
       }
       {
         // not found

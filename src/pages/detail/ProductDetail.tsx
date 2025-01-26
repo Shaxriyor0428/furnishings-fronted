@@ -51,9 +51,9 @@ const ProductDetail = () => {
 
   if (!product || !category) {
     return (
-      <p className="my-8 text-center text-xl font-semibold text-gray-700 dark:text-white">
-        Loading ...
-      </p>
+      <div className="flex justify-center items-center min-h-[50vh]">
+        <div className="loader"></div>
+      </div>
     );
   }
 
