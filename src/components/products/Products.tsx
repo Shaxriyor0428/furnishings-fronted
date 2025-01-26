@@ -6,16 +6,13 @@ import { IoMdHeartEmpty } from "react-icons/io";
 
 const Products = ({ data }: { data: IGetResponseProducts }) => {
   const navigate = useNavigate();
-  const handleProduct = (id: number) => {
-    return navigate(`product/${id}`);
-  };
   const productItems = data?.data?.products.map((product: IProduct) => (
     <div
       key={product.id}
       className="relative overflow-hidden group rounded-lg shadow-md"
     >
       <div
-        onClick={() => handleProduct(product.id)}
+        onClick={() => navigate(`product/${product.id}`)}
         className="relative w-full overflow-hidden h-[301px] max-[620px]:h-[240px] max-[450px]:h-[200px]"
       >
         <img
