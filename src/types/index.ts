@@ -22,6 +22,9 @@ export interface IProduct {
   colors: string[];
   tags: string[];
   is_liked?: boolean;
+  discount?: {
+    percent?: number;
+  };
 }
 export interface IProductQuery {
   filter?: string;
