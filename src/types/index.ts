@@ -21,6 +21,7 @@ export interface IProduct {
   sku: string;
   colors: string[];
   tags: string[];
+  is_liked?: boolean;
 }
 export interface IProductQuery {
   filter?: string;
