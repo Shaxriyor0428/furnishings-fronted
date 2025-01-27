@@ -1,10 +1,9 @@
-import { useGetSingleProductQuery } from "@/redux/api/product-api";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
+import { IProduct } from "../../types";
 
-const Hero = () => {
+const Hero = ({data:product}:{data:IProduct}) => {
   const { id } = useParams();
-  const { data: product } = useGetSingleProductQuery(Number(id));
   const navigate = useNavigate();
   return (
     <div className="bg-[#F9F1E7] dark:bg-zinc-800">
