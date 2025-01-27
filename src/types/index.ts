@@ -10,7 +10,7 @@ export interface IGetProducts {
   total: number;
 }
 export interface IProduct {
-  categoryId?:number;
+  categoryId?: number;
   id: number;
   name: string;
   stock: number;
@@ -28,6 +28,7 @@ export interface IProductQuery {
   page?: number;
   limit?: number;
   priceOrder?: "asc" | "desc";
+  categoryId?: number;
 }
 export interface ICustomer {
   id?: number;

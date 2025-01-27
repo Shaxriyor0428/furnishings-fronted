@@ -1,32 +1,25 @@
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import "./Detail.scss";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
-import {
-  useGetProductsWithCategoryIdQuery,
-  useGetSingleProductQuery,
-} from "../../redux/api/product-api";
-import RelatedProducts from "./RelatedProducts";
-import { useGetSingleCategoryQuery } from "../../redux/api/category-api";
-import Hero from "./Hero";
+import { IProduct } from "@/types";
 
-const ProductDetail = () => {
-  const { id } = useParams();
-
+const ProductDetail = ({
+  product,
+  category,
+  id,
+}: {
+  product: IProduct;
+  category: any;
+  id: number;
+}) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
-  const { data: product } = useGetSingleProductQuery(Number(id));
-  const { data: category } = useGetSingleCategoryQuery(product?.categoryId);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState("");
-  const { data: relatedProducts } = useGetProductsWithCategoryIdQuery(
-    Number(product?.categoryId)
-  );
-  console.log(relatedProducts);
 
   const Modal = ({
     imageUrl,
@@ -85,17 +78,8 @@ const ProductDetail = () => {
     );
   };
 
-  if (!product || !category) {
-    return (
-      <div className="flex justify-center items-center min-h-[50vh]">
-        <div className="loader"></div>
-      </div>
-    );
-  }
-
   return (
     <>
-      <Hero data={product} />
       <div className="container mx-auto my-10">
         <div className="grid grid-cols-2 gap-8 max-[990px]:grid-cols-1 pb-10">
           <div className="flex">
@@ -283,40 +267,34 @@ const ProductDetail = () => {
             </div>
           )}
 
-
-            {activeTab === "additionalInfo" && (
-              <div className="text-sm text-gray-800 dark:text-gray-200">
-                <p>Name: {product.name}</p>
-                <p>Colors: {product.colors.join(", ")}</p>
-                <p>Price: {product.price.toLocaleString()} USD</p>
-                <p>Rating: {product.averageRating}</p>
-                <p>SKU: {product.sku}</p>
-                <p>Tags: {product.tags.join(", ")}</p>
-                <p>Stock: {product.stock}</p>
-              </div>
-            )}
-          </div>
-          <div className="mt-32 grid grid-cols-2 gap-10 mb-14">
-            {product.images.slice(0, 2).map((img, index) => (
-              <img
-                key={index}
-                src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
-                alt={`Product Image ${index + 1}`}
-                className="w-[50vw] h-96 object-cover rounded-lg"
-                onClick={() => {
-                  setModalImage(`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`);
-                  setIsModalOpen(true);
-                }}
-              />
-            ))}
-          </div>
-          <hr />
-
+          {activeTab === "additionalInfo" && (
+            <div className="text-sm text-gray-800 dark:text-gray-200">
+              <p>Name: {product.name}</p>
+              <p>Colors: {product.colors.join(", ")}</p>
+              <p>Price: {product.price.toLocaleString()} USD</p>
+              <p>Rating: {product.averageRating}</p>
+              <p>SKU: {product.sku}</p>
+              <p>Tags: {product.tags.join(", ")}</p>
+              <p>Stock: {product.stock}</p>
+            </div>
+          )}
+        </div>
+        <div className="mt-32 grid grid-cols-2 gap-10 mb-14">
+          {product.images.slice(0, 2).map((img, index) => (
+            <img
+              key={index}
+              src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
+              alt={`Product Image ${index + 1}`}
+              className="w-[50vw] h-96 object-cover rounded-lg"
+              onClick={() => {
+                setModalImage(`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`);
+                setIsModalOpen(true);
+              }}
+            />
+          ))}
+        </div>
+        <hr />
       </div>
-
-      {relatedProducts?.data?.products && (
-        <RelatedProducts relatedProducts={relatedProducts.data.products} />
-      )}
     </>
   );
 };
