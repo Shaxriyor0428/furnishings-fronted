@@ -1,9 +1,8 @@
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IProduct } from "../../types";
 
-const Hero = ({data:product}:{data:IProduct}) => {
-  const { id } = useParams();
+const Hero = ({ data: product }: { data: IProduct }) => {
   const navigate = useNavigate();
   return (
     <div className="bg-[#F9F1E7] dark:bg-zinc-800">
