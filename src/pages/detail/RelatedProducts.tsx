@@ -4,8 +4,10 @@ import { IProduct } from "../../types";
 
 const RelatedProducts = ({
   relatedProducts,
+  productId,
 }: {
   relatedProducts: IProduct[];
+  productId: number;
 }) => {
   const [visibleProducts, setVisibleProducts] = useState(4);
 
@@ -13,14 +15,18 @@ const RelatedProducts = ({
     setVisibleProducts((prev) => prev + 4);
   };
 
+  const relatedProductsWithoutSameId = relatedProducts.filter(
+    (prod: IProduct) => prod.id !== Number(productId)
+  );
+
   return (
     <>
       <Products
         title="Related products"
-        data={relatedProducts.slice(0, visibleProducts)}
+        data={relatedProductsWithoutSameId.slice(0, visibleProducts)}
       />
       <div className="container my-10 max-[620px]:my-4 mt-20">
-        {visibleProducts < relatedProducts.length && (
+        {visibleProducts < relatedProductsWithoutSameId.length && (
           <div className="text-center mt-6">
             <button
               onClick={showMoreProducts}
