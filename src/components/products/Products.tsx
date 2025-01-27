@@ -2,14 +2,13 @@ import { FC, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { IProduct } from "../../types";
 import { IoCartOutline } from "react-icons/io5";
-import { IoMdHeartEmpty } from "react-icons/io";
+import Heart from "./Heart";
 interface IProductProps {
   data: IProduct[];
   title?: string;
 }
 const Products: FC<IProductProps> = ({ data, title }) => {
   const navigate = useNavigate();
-
   const productItems = data?.map((product: IProduct) => (
     <div
       key={product.id}
@@ -25,11 +24,9 @@ const Products: FC<IProductProps> = ({ data, title }) => {
           alt={product.name}
         />
       </div>
-      <button className="hover:bg-slate-200 dark:text-black absolute top-1 md:top-2 right-1 md:right-[-30px] duration-300 group-hover:right-2 w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center text-[20px]">
-        <IoMdHeartEmpty className="text-xl" />
-      </button>
-      <button className="hover:bg-slate-200 dark:text-black absolute top-10 md:top-11 right-1 md:right-[-30px] delay-100 duration-300 group-hover:right-2 w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center text-[20px]">
-        <IoCartOutline className="text-xl" />
+      <Heart product={product} />
+      <button className="hover:bg-slate-200 shadow-md dark:text-black absolute top-10 md:top-12 right-2 md:right-[-40px] delay-100 duration-300 group-hover:right-2 w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[20px]">
+        <IoCartOutline />
       </button>
       <div className="py-4 px-4 bg-[#F4F5F7] dark:bg-zinc-800 transition-colors duration-300">
         <h2
@@ -53,7 +50,7 @@ const Products: FC<IProductProps> = ({ data, title }) => {
 
   return (
     <div className="container my-10 max-[620px]:my-4">
-      <h2 className="font-poppins-bold text-[40px] mb-8 text-center max-[620px]:text-2xl">
+      <h2 className="font-poppins-bold text-[38px] max-sm:text-[25px] mb-8 text-center max-[620px]:text-2xl">
         {title ? title : ""}
       </h2>
       <div className="grid grid-cols-4 gap-8 max-[1240px]:grid-cols-3 max-[990px]:grid-cols-2 max-[620px]:gap-2">

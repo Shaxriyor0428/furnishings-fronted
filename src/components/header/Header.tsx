@@ -121,7 +121,7 @@ const Header: FC = () => {
           </div>
         </div>
       )}
-      <div className="max-[986px]:block hidden font-poppins-light">
+      <div id="header" className="max-[986px]:block hidden font-poppins-light">
         <div className="fixed bottom-0 inset-x-0 bg-white dark:bg-black opacity-95 py-2 flex items-center justify-evenly z-50 max-[725px]:h-14 max-[767px]:h-16">
           <NavLink to={"/"}>
             <div className="flex flex-col items-center hover:text-bg-primary duration-200">
@@ -147,16 +147,16 @@ const Header: FC = () => {
               <p className="text-xs">Cart</p>
             </div>
           </NavLink>
-          <div className="flex flex-col justify-center items-center hover:text-bg-primary duration-200">
+          <div className="flex  cursor-pointer flex-col justify-center items-center hover:text-bg-primary duration-200">
             <FiSearch
-              className="h-5 w-5 cursor-pointer"
+              className="h-5 w-5"
               onClick={() => {
                 setSearchOpen(true);
               }}
             />
             <p className="text-xs"> Search</p>
           </div>
-          <NavLink to={token ? "/auth/profile" : "/auth/sign-up"}>
+          <NavLink to={token ? "/auth/profile" : "/auth/sign-in"}>
             <div className="flex flex-col items-center hover:text-bg-primary duration-200">
               <LuUser className="h-5 w-5" />
               <p className="text-xs">Profile</p>

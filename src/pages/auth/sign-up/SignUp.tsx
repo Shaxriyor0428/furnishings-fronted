@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { saveEmail } from "@/redux/features/otp-slice";
 import { useState } from "react";
 import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
+import { saveUser } from "../../../redux/features/user-slice";
 
 const schema = yup
   .object({
@@ -47,7 +48,7 @@ const SignUp = () => {
   const onSubmit = (data: ICustomer) => {
     createCustomer(data)
       .unwrap()
-      .then(() => {
+      .then((res) => {
         dispatch(
           saveEmail({
             email: data.email,
@@ -55,6 +56,7 @@ const SignUp = () => {
         );
         setrgError("");
         navigate("/auth/otp");
+        saveUser({ email: data?.email, id: res?.data?.customer });
       })
       .catch((err) => {
         const errorMessage = err?.data?.message;
