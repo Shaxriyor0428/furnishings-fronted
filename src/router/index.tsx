@@ -2,6 +2,7 @@ import { SuspenseContainer } from "@/config";
 import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
 
+const Wishlist = lazy(() => import("@/pages/wishlist/Wishlits"));
 const Profile = lazy(() => import("@/pages/auth/profile/Profile"));
 const Auth = lazy(() => import("@/pages/auth/Auth"));
 const MainDetail = lazy(() => import("@/pages/detail/MainDetail"));
@@ -38,6 +39,14 @@ const Routers = () => {
               element: (
                 <SuspenseContainer>
                   <Shop />
+                </SuspenseContainer>
+              ),
+            },
+            {
+              path: "/wishlist",
+              element: (
+                <SuspenseContainer>
+                  <Wishlist />
                 </SuspenseContainer>
               ),
             },

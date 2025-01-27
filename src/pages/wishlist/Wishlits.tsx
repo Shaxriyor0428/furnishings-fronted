@@ -1,8 +1,9 @@
-
-const Wishlits = () => {
+const Wishlist = () => {
   return (
-    <div>Wishlits</div>
-  )
-}
+    <>
+      <div>Wishlits</div>
+    </>
+  );
+};
 
-export default Wishlits
+export default Wishlist;

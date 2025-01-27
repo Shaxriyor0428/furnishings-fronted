@@ -1,15 +1,14 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useSignInMutation } from "../../../redux/api/customer-api";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { saveToken } from "../../../redux/features/token-slice";
 import { saveStorage } from "../../../utils";
 import { saveEmail } from "../../../redux/features/otp-slice";
-import { RootState } from "../../../redux";
 
 const schema = yup.object({
   email: yup
@@ -29,11 +28,7 @@ interface ISignIn {
 
 const SignIn = () => {
   const navigate = useNavigate();
-  let token = useSelector((state: RootState) => state.token.access_token);
 
-  if (token) {
-    return <Navigate replace to={"/auth/profile"} />;
-  }
   const [showPassword, setShowPassword] = useState(false);
   const [signIn] = useSignInMutation();
   const [lgError, setlgError] = useState("");
@@ -59,11 +54,15 @@ const SignIn = () => {
     signIn(data)
       .unwrap()
       .then((res) => {
-        dispatch(saveToken(res?.data?.access_token));
-        saveStorage("access_token", res?.data?.access_token);
-        saveEmail({ email: res?.data?.email });
-        setlgError("");
-        navigate("/auth/profile");
+        if (res?.data?.is_active) {
+          dispatch(saveToken(res?.data?.access_token));
+          saveStorage("access_token", res?.data?.access_token);
+          setlgError("");
+          return navigate("/auth/profile");
+        } else {
+          dispatch(saveEmail({ email: data.email }));
+          return navigate("/auth/otp");
+        }
       })
       .catch((err) => {
         const errorMessage = err?.data?.message;

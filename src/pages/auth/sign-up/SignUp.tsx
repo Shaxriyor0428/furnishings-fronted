@@ -3,12 +3,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ICustomer } from "@/types";
 import { useCreateCustomerMutation } from "@/redux/api/customer-api";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { saveEmail } from "@/redux/features/otp-slice";
-import { FaArrowLeft } from "react-icons/fa";
-import { RootState } from "../../../redux";
 import { useState } from "react";
+import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const schema = yup
   .object({
@@ -22,12 +21,18 @@ const schema = yup
   .required();
 
 const SignUp = () => {
-  let token = useSelector((state: RootState) => state.token.access_token);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword((prev) => !prev);
+  };
 
   const navigate = useNavigate();
-  if (token) {
-    return <Navigate replace to={"/auth/profile"} />;
-  }
   const dispatch = useDispatch();
 
   const [createCustomer, { isLoading }] = useCreateCustomerMutation();
@@ -169,7 +174,7 @@ const SignUp = () => {
                     </p>
                   )}
                 </div>
-                <div>
+                <div className=" relative">
                   <label
                     htmlFor="password"
                     className="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
@@ -179,19 +184,25 @@ const SignUp = () => {
                   <input
                     {...register("password")}
                     autoComplete="off"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     id="password"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Password"
                   />
+                  <span
+                    onClick={togglePasswordVisibility}
+                    className="text-xl absolute top-[50%] right-4 cursor-pointer text-gray-500 dark:text-gray-300"
+                  >
+                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                  </span>
                   {errors.password?.message && (
                     <p className="text-red-500 text-sm">
                       {errors.password?.message}
                     </p>
                   )}
                 </div>
-                <div>
+                <div className=" relative">
                   <label
                     htmlFor="confirm_password"
                     className="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
@@ -201,12 +212,18 @@ const SignUp = () => {
                   <input
                     {...register("confirm_password")}
                     autoComplete="off"
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     name="confirm_password"
                     id="confirm_password"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Confirm password"
                   />
+                  <span
+                    onClick={toggleConfirmPasswordVisibility}
+                    className="text-xl absolute top-[50%] right-4 cursor-pointer text-gray-500 dark:text-gray-300"
+                  >
+                    {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+                  </span>
                   {errors.confirm_password?.message && (
                     <p className="text-red-500 text-sm">
                       {errors.confirm_password?.message}
