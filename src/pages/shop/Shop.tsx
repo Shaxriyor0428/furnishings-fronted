@@ -6,6 +6,7 @@ import { GiSettingsKnobs } from "react-icons/gi";
 import { BsViewList } from "react-icons/bs";
 import Hero from "./Hero";
 import { PiCirclesFourFill } from "react-icons/pi";
+import './Shop.scss'
 
 const Shop = () => {
   const [page, setPage] = useState<number>(1);
@@ -64,9 +65,9 @@ const Shop = () => {
       </div>
       <section className="container">
         {isLoading && (
-          <p className="my-8 text-center text-xl font-semibold text-gray-700 dark:text-white">
-            Loading ...
-          </p>
+          <div className="flex justify-center items-center min-h-[10vh]">
+            <div className="loader"></div>
+          </div>
         )}
         {data ? <Products data={data.data.products} /> : <></>}
         <div className="flex justify-center">
