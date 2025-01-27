@@ -111,26 +111,26 @@ const ProductDetail = () => {
               </div>
             </div>
             <div className="flex items-center space-x-5 mt-6">
-              <div className="flex items-center space-x-5 border border-gray-800 dark:border-gray-200 rounded-lg">
+              <div className="flex items-center space-x-5 border border-gray-800 dark:border-gray-200 rounded-lg hover:border-bg-primary hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary duration-300">
                 <button
-                  className="px-4 py-2 rounded  "
+                  className="px-4 py-2 rounded-lg font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
                   onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
                 >
                   -
                 </button>
-                <span className="text-xl ">{quantity}</span>
+                <span className="text-xl">{quantity}</span>
                 <button
-                  className="px-4 py-2 rounded "
+                  className="px-4 py-2 rounded-lg font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
                   onClick={() => setQuantity((prev) => prev + 1)}
                 >
                   +
                 </button>
               </div>
 
-              <button className=" py-30 border-[1px] px-7 py-2 border-black dark:border-gray-200 text-black dark:text-gray-200 rounded-lg">
+              <button className=" py-30 border-[1px] px-7 py-2 border-black dark:border-gray-200 text-black dark:text-gray-200 rounded-lg dark:hover:text-black hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
                 Add to Cart
               </button>
-              <button className="py-30 border-[1px] px-7 py-2 border-black dark:border-gray-200 text-black dark:text-gray-200 rounded-lg">
+              <button className="py-30 border-[1px] px-7 py-2 border-black dark:border-gray-200 text-black dark:text-gray-200 rounded-lg dark:hover:text-black hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
                 + Compare
               </button>
             </div>
@@ -153,7 +153,7 @@ const ProductDetail = () => {
               <p className="flex items-center text-sm text-gray-800 dark:text-gray-200 mt-4 space-x-3">
                 <span>Share:</span>
                 <FaFacebook
-                  className="w-4 h-4 cursor-pointer dark:text-gray-200"
+                  className="w-4 h-4 cursor-pointer dark:text-gray-200 hover:text-bg-primary dark:hover:text-bg-primary duration-300"
                   onClick={() =>
                     window.open(
                       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
@@ -164,7 +164,7 @@ const ProductDetail = () => {
                   }
                 />
                 <FaLinkedin
-                  className="w-4 h-4 cursor-pointer dark:text-gray-200"
+                  className="w-4 h-4 cursor-pointer dark:text-gray-200 hover:text-bg-primary dark:hover:text-bg-primary duration-300"
                   onClick={() =>
                     window.open(
                       `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
@@ -175,7 +175,7 @@ const ProductDetail = () => {
                   }
                 />
                 <FaTwitter
-                  className="w-4 h-4 cursor-pointer dark:text-gray-200"
+                  className="w-4 h-4 cursor-pointer dark:text-gray-200 hover:text-bg-primary dark:hover:text-bg-primary duration-300"
                   onClick={() =>
                     window.open(
                       `https://twitter.com/intent/tweet?url=${encodeURIComponent(
@@ -188,13 +188,13 @@ const ProductDetail = () => {
               </p>
             </div>
           </div>
-          <div className="mt-32 max-w-4xl">
+          <div className="min-[990px]:mt-32 mt-10 max-w-4xl">
             <div className="flex justify-between space-x-14 mb-6">
               <button
                 onClick={() => setActiveTab("description")}
                 className={`px-4 py-2 text-lg font-semibold ${
                   activeTab === "description"
-                    ? "border-b-2 border-black"
+                    ? "border-b-2 border-black dark:border-white"
                     : "text-gray-500"
                 }`}
               >
@@ -204,7 +204,7 @@ const ProductDetail = () => {
                 onClick={() => setActiveTab("additionalInfo")}
                 className={`px-4 py-2 text-lg font-semibold ${
                   activeTab === "additionalInfo"
-                    ? "border-b-2 border-black"
+                    ? "border-b-2 border-black dark:border-white"
                     : "text-gray-500"
                 }`}
               >
@@ -232,7 +232,7 @@ const ProductDetail = () => {
               </div>
             )}
           </div>
-          <div className="mt-32 flex justify-center space-x-4">
+          <div className="mt-32 grid grid-cols-2 gap-2">
             {product.images.slice(0, 2).map((img, index) => (
               <img
                 key={index}
