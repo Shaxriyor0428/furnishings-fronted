@@ -111,26 +111,26 @@ const ProductDetail = () => {
               </div>
             </div>
             <div className="flex items-center space-x-5 mt-6">
-              <div className="flex items-center space-x-5 border border-gray-800 dark:border-gray-200 rounded-lg dark:hover:text-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
+              <div className="flex items-center space-x-5 border border-gray-800 dark:border-gray-200 rounded-lg hover:border-bg-primary hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary duration-300">
                 <button
-                  className="px-4 py-2 rounded font-bold hover:text-white duration-150"
+                  className="px-4 py-2 rounded-lg font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
                   onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
                 >
                   -
                 </button>
-                <span className="text-xl ">{quantity}</span>
+                <span className="text-xl">{quantity}</span>
                 <button
-                  className="px-4 py-2 rounded font-bold hover:text-white duration-150"
+                  className="px-4 py-2 rounded-lg font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
                   onClick={() => setQuantity((prev) => prev + 1)}
                 >
                   +
                 </button>
               </div>
 
-              <button className=" py-30 border-[1px] px-7 py-2 border-black dark:border-gray-200 text-black dark:text-gray-200 rounded-lg dark:hover:text-bg-primary hover:text-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
+              <button className=" py-30 border-[1px] px-7 py-2 border-black dark:border-gray-200 text-black dark:text-gray-200 rounded-lg dark:hover:text-black hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
                 Add to Cart
               </button>
-              <button className="py-30 border-[1px] px-7 py-2 border-black dark:border-gray-200 text-black dark:text-gray-200 rounded-lg dark:hover:text-bg-primary hover:text-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
+              <button className="py-30 border-[1px] px-7 py-2 border-black dark:border-gray-200 text-black dark:text-gray-200 rounded-lg dark:hover:text-black hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
                 + Compare
               </button>
             </div>

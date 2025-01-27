@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useGetProductsQuery } from "../../redux/api/product-api";
 import Products from "../../components/products/Products";
 import { Pagination } from "@mui/material";
+import { GiSettingsKnobs } from "react-icons/gi";
+import { BsViewList } from "react-icons/bs";
 import Hero from "./Hero";
+import { PiCirclesFourFill } from "react-icons/pi";
 
 const Shop = () => {
   const [page, setPage] = useState<number>(1);
@@ -24,6 +27,41 @@ const Shop = () => {
   return (
     <>
       <Hero />
+      <div className="bg-[#F9F1E7] dark:bg-[#645644] h-[100px] grid place-items-center font-poppins mb-16">
+        <div className="container flex justify-between">
+          <div className="flex justify-between items-center gap-[24px]">
+            <div className="flex justify-between items-center gap-[12px] cursor-pointer hover:text-bg-primary duration-300">
+              <GiSettingsKnobs className="w-[25px] h-[25px]" />
+              <p className="text-[20px] leading-[30px] font-[400]">Filter</p>
+            </div>
+            <div className="flex justify-center items-center cursor-pointer hover:text-bg-primary duration-300">
+              <PiCirclesFourFill className="w-[28px] h-[28px]" />
+            </div>
+            <div className="flex justify-center items-center cursor-pointer hover:text-bg-primary duration-300">
+              <BsViewList className="w-[28px] h-[28px]" />
+            </div>
+            <div>|</div>
+            <div>Showing 1–16 of 32 results</div>
+          </div>
+          <div className="flex justify-between items-center gap-6">
+            <div className="flex gap-3 items-center cursor-pointer hover:text-bg-primary duration-300">
+              <p>Show</p>
+              <input
+                placeholder="16"
+                maxLength={3}
+                className="w-[55px] h-[55px] bg-white dark:bg-slate-100 outline-none text-[20px] text-center rounded-sm text-bg-primary"
+              />
+            </div>
+            <div className="flex gap-3 items-center cursor-pointer hover:text-bg-primary duration-300">
+              <p>Sort by</p>
+              <input
+                placeholder="Default"
+                className="w-[188px] h-[55px] bg-white dark:bg-slate-100 outline-none text-[20px] indent-3 rounded-sm text-bg-primary"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       <section className="container">
         {isLoading && (
           <p className="my-8 text-center text-xl font-semibold text-gray-700 dark:text-white">
