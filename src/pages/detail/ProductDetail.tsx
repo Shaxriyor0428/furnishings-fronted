@@ -24,6 +24,8 @@ const ProductDetail = () => {
   const { data: relatedProducts } = useGetProductsWithCategoryIdQuery(
     Number(product?.categoryId)
   );
+  console.log(relatedProducts);
+  
 
   useEffect(() => {
     setSelectedImage(0);
@@ -245,8 +247,8 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      {relatedProducts?.data?.length > 1 && (
-        <RelatedProducts relatedProducts={relatedProducts} />
+      {relatedProducts?.data?.products && (
+        <RelatedProducts relatedProducts={relatedProducts.data.products} />
       )}
     </>
   );

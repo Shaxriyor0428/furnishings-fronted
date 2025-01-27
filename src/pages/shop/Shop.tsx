@@ -28,7 +28,7 @@ const Shop = () => {
             Loading ...
           </p>
         )}
-        {data ? <Products data={data} /> : <></>}
+        {data ? <Products data={data.data.products} /> : <></>}
         <div className="flex justify-center">
           <Pagination
             count={totalPages}
