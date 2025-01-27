@@ -155,13 +155,13 @@ const SignIn = () => {
             </label>
             <Link
               to={"#"}
-              className="text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-500"
+              className="text-sm text-black dark:text-white hover:text-bg-primary"
             >
               Forgot password?
             </Link>
           </div>
 
-          <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors">
+          <button className="w-full bg-bg-primary text-white font-medium py-2.5 rounded-lg transition-colors">
             Sign In
           </button>
         </form>
@@ -170,7 +170,7 @@ const SignIn = () => {
           Don't have an account?{" "}
           <Link
             to={"/auth/sign-up"}
-            className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500"
+            className="text-black dark:text-white hover:text-bg-primary"
           >
             Sign up
           </Link>
