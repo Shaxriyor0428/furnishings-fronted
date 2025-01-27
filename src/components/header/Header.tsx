@@ -66,7 +66,7 @@ const Header: FC = () => {
           <div>
             <Switch />
           </div>
-          <NavLink to={token ? "/auth/profile" : "/auth/sign-up"}>
+          <NavLink to={token ? "/auth/profile" : "/auth/sign-in"}>
             <LuUser className="h-6 w-6 hover:text-bg-primary duration-200 max-[986px]:hidden" />
           </NavLink>
           <FiSearch
