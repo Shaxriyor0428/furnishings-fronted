@@ -32,7 +32,6 @@ const RelatedProducts = ({
           </div>
         )}
       </div>
-    </>
   );
 };
 

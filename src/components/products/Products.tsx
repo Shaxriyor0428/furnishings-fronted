@@ -9,7 +9,6 @@ interface IProductProps {
 }
 const Products: FC<IProductProps> = ({ data, title }) => {
   const navigate = useNavigate();
-
   const productItems = data?.map((product: IProduct) => (
     <div
       key={product.id}
@@ -20,7 +19,7 @@ const Products: FC<IProductProps> = ({ data, title }) => {
         className="relative w-full overflow-hidden h-[301px] max-[620px]:h-[240px] max-[450px]:h-[200px]"
       >
         <img
-          className="w-full h-full bg-no-repeat bg-center bg-cover group-hover:scale-[1.02] duration-300 md:scale-100"
+          className="w-full h-full bg-no-repeat bg-center bg-cover group-hover:scale-[1.02] duration-300 md:scale-100 cursor-pointer"
           src={`${import.meta.env.VITE_BASE_IMAGE_URL}${product.images[0]}`}
           alt={product.name}
         />

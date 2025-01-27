@@ -79,7 +79,7 @@ const SignIn = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center p-4">
-      <Link to={"/"} className="absolute top-6 left-6 text-xl container">
+      <Link to={"/"} className="absolute top-6 left-6 text-xl">
         <FaArrowLeft />
       </Link>
       <div className="max-w-md w-full bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-xl shadow-lg p-8">

@@ -218,7 +218,7 @@ const SignUp = () => {
               <div>
                 <button
                   disabled={isLoading}
-                  className="p-2.5 bg-bg-primary w-full text-white rounded-lg disabled:opacity-70"
+                  className="p-2.5 mt-2 bg-bg-primary w-full text-white rounded-lg disabled:opacity-70"
                 >
                   {isLoading ? "Loading..." : "Sign up"}
                 </button>
