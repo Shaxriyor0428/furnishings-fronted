@@ -11,8 +11,6 @@ const Wishlist = () => {
 
   const { data } = useGetWishlistQuery(Number(id));
 
-  console.log(data);
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
