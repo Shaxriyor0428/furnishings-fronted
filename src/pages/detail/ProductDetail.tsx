@@ -4,7 +4,7 @@ import "./Detail.scss";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
-import { IProduct } from "@/types";
+import { IProduct, IReview } from "@/types";
 
 const ProductDetail = ({
   product,
@@ -233,7 +233,7 @@ const ProductDetail = ({
                 activeTab === "description"
                   ? "border-b-2 border-black dark:border-white"
                   : "text-gray-500"
-              }`}
+              } hover:text-black dark:hover:text-white transition duration-300`}
             >
               Description
             </button>
@@ -243,7 +243,7 @@ const ProductDetail = ({
                 activeTab === "additionalInfo"
                   ? "border-b-2 border-black dark:border-white"
                   : "text-gray-500"
-              }`}
+              } hover:text-black dark:hover:text-white transition duration-300`}
             >
               Additional Information
             </button>
@@ -253,12 +253,13 @@ const ProductDetail = ({
                 activeTab === "reviews"
                   ? "border-b-2 border-black dark:border-white"
                   : "text-gray-500"
-              }`}
+              } hover:text-black dark:hover:text-white transition duration-300`}
             >
               Reviews
             </button>
           </div>
 
+          {/* Description Tab */}
           {activeTab === "description" && (
             <div>
               <p className="text-sm text-gray-800 dark:text-gray-200">
@@ -267,18 +268,64 @@ const ProductDetail = ({
             </div>
           )}
 
+          {/* Additional Info Tab */}
           {activeTab === "additionalInfo" && (
-            <div className="text-sm text-gray-800 dark:text-gray-200">
-              <p>Name: {product.name}</p>
-              <p>Colors: {product.colors.join(", ")}</p>
-              <p>Price: {product.price.toLocaleString()} USD</p>
-              <p>Rating: {product.averageRating}</p>
-              <p>SKU: {product.sku}</p>
-              <p>Tags: {product.tags.join(", ")}</p>
-              <p>Stock: {product.stock}</p>
+            <div className="text-sm text-gray-800 dark:text-gray-200 space-y-2">
+              <p>
+                <strong>Name:</strong> {product.name}
+              </p>
+              <p>
+                <strong>Colors:</strong> {product.colors.join(", ")}
+              </p>
+              <p>
+                <strong>Price:</strong> {product.price.toLocaleString()} USD
+              </p>
+              <p>
+                <strong>Rating:</strong> {product.averageRating}
+              </p>
+              <p>
+                <strong>SKU:</strong> {product.sku}
+              </p>
+              <p>
+                <strong>Tags:</strong> {product.tags.join(", ")}
+              </p>
+              <p>
+                <strong>Stock:</strong> {product.stock}
+              </p>
+            </div>
+          )}
+
+          {/* Reviews Tab */}
+          {activeTab === "reviews" && (
+            <div className="max-h-96 overflow-y-auto space-y-4">
+              {/* Show reviews if available */}
+              {product.reviews && product.reviews.length > 0 ? (
+                product.reviews.slice(0, 5).map((review: IReview) => (
+                  <div key={review.id} className="border-b py-4">
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      {review.comment}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-sm text-gray-500">No reviews available</p>
+              )}
+
+              {/* Show button to show all reviews if there are more than 5 */}
+              {product.reviews && product.reviews.length > 5 && (
+                <div className="mt-4 text-center">
+                  <button
+                    onClick={() => setActiveTab("reviews")}
+                    className="text-blue-600 hover:underline transition duration-300"
+                  >
+                    Show all reviews
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>
+
         <div className="mt-32 grid grid-cols-2 gap-10 mb-14">
           {product.images.slice(0, 2).map((img, index) => (
             <img
