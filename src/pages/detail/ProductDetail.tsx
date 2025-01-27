@@ -283,32 +283,35 @@ const ProductDetail = () => {
             </div>
           )}
 
-          {activeTab === "additionalInfo" && (
-            <div className="text-sm text-gray-800 dark:text-gray-200">
-              <p>Name: {product.name}</p>
-              <p>Colors: {product.colors.join(", ")}</p>
-              <p>Price: {product.price.toLocaleString()} USD</p>
-              <p>Rating: {product.averageRating}</p>
-              <p>SKU: {product.sku}</p>
-              <p>Tags: {product.tags.join(", ")}</p>
-              <p>Stock: {product.stock}</p>
-            </div>
-          )}
-        </div>
-        <div className="mt-32 grid grid-cols-2 gap-10">
-          {product.images.slice(0, 2).map((img, index) => (
-            <img
-              key={index}
-              src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
-              alt={`Product Image ${index + 1}`}
-              className="w-[50vw] h-96 object-cover rounded-lg"
-              onClick={() => {
-                setModalImage(`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`);
-                setIsModalOpen(true);
-              }}
-            />
-          ))}
-        </div>
+
+            {activeTab === "additionalInfo" && (
+              <div className="text-sm text-gray-800 dark:text-gray-200">
+                <p>Name: {product.name}</p>
+                <p>Colors: {product.colors.join(", ")}</p>
+                <p>Price: {product.price.toLocaleString()} USD</p>
+                <p>Rating: {product.averageRating}</p>
+                <p>SKU: {product.sku}</p>
+                <p>Tags: {product.tags.join(", ")}</p>
+                <p>Stock: {product.stock}</p>
+              </div>
+            )}
+          </div>
+          <div className="mt-32 grid grid-cols-2 gap-10 mb-14">
+            {product.images.slice(0, 2).map((img, index) => (
+              <img
+                key={index}
+                src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
+                alt={`Product Image ${index + 1}`}
+                className="w-[50vw] h-96 object-cover rounded-lg"
+                onClick={() => {
+                  setModalImage(`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`);
+                  setIsModalOpen(true);
+                }}
+              />
+            ))}
+          </div>
+          <hr />
+
       </div>
 
       {relatedProducts?.data?.products && (
