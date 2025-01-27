@@ -15,7 +15,10 @@ const RelatedProducts = ({
 
   return (
     <>
-      <Products data={relatedProducts.slice(0, visibleProducts)} />
+      <Products
+        title="Related products"
+        data={relatedProducts.slice(0, visibleProducts)}
+      />
       <div className="container my-10 max-[620px]:my-4 mt-20">
         {visibleProducts < relatedProducts.length && (
           <div className="text-center mt-6">
