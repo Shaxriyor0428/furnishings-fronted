@@ -11,6 +11,7 @@ import {
 } from "../../redux/api/product-api";
 import RelatedProducts from "./RelatedProducts";
 import { useGetSingleCategoryQuery } from "../../redux/api/category-api";
+import Hero from "./Hero";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -26,9 +27,14 @@ const ProductDetail = () => {
     Number(product?.categoryId)
   );
   console.log(relatedProducts);
-  
 
-  const Modal = ({ imageUrl, onClose }: { imageUrl: string; onClose: () => void }) => {
+  const Modal = ({
+    imageUrl,
+    onClose,
+  }: {
+    imageUrl: string;
+    onClose: () => void;
+  }) => {
     return (
       <div
         className="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50 z-50"
@@ -48,16 +54,12 @@ const ProductDetail = () => {
           <img
             src={imageUrl}
             alt="Modal Image"
-            className="w-full h-auto object-contain" 
+            className="w-full h-auto object-contain"
           />
         </div>
       </div>
     );
   };
-  
-  
-  
-
 
   useEffect(() => {
     setSelectedImage(0);
@@ -93,6 +95,7 @@ const ProductDetail = () => {
 
   return (
     <>
+      <Hero data={product} />
       <div className="container mx-auto my-10">
         <div className="grid grid-cols-2 gap-8 max-[990px]:grid-cols-1 pb-10">
           <div className="flex">
@@ -117,16 +120,23 @@ const ProductDetail = () => {
                   alt={product.name}
                   className="w-full h-full object-cover rounded-lg"
                   onClick={() => {
-                    setModalImage(`${import.meta.env.VITE_BASE_IMAGE_URL}${
-                    product.images[selectedImage]
-                  }`);
+                    setModalImage(
+                      `${import.meta.env.VITE_BASE_IMAGE_URL}${
+                        product.images[selectedImage]
+                      }`
+                    );
                     setIsModalOpen(true);
                   }}
                 />
               </div>
             </div>
           </div>
-          {isModalOpen && <Modal imageUrl={modalImage} onClose={() => setIsModalOpen(false)} />}
+          {isModalOpen && (
+            <Modal
+              imageUrl={modalImage}
+              onClose={() => setIsModalOpen(false)}
+            />
+          )}
 
           <div>
             <h1 className="text-3xl font-bold">{product.name}</h1>
@@ -232,73 +242,73 @@ const ProductDetail = () => {
         </div>
         <hr />
         <div className="min-[990px]:mt-32 mt-10">
-            <div className="flex justify-center space-x-14 mb-6">
-              <button
-                onClick={() => setActiveTab("description")}
-                className={`px-4 py-2 text-lg font-semibold ${
-                  activeTab === "description"
-                    ? "border-b-2 border-black dark:border-white"
-                    : "text-gray-500"
-                }`}
-              >
-                Description
-              </button>
-              <button
-                onClick={() => setActiveTab("additionalInfo")}
-                className={`px-4 py-2 text-lg font-semibold ${
-                  activeTab === "additionalInfo"
-                    ? "border-b-2 border-black dark:border-white"
-                    : "text-gray-500"
-                }`}
-              >
-                Additional Information
-              </button>
-              <button
-                onClick={() => setActiveTab("reviews")}
-                className={`px-4 py-2 text-lg font-semibold ${
-                  activeTab === "reviews"
-                    ? "border-b-2 border-black dark:border-white"
-                    : "text-gray-500"
-                }`}
-              >
-                Reviews
-              </button>
+          <div className="flex justify-center space-x-14 mb-6">
+            <button
+              onClick={() => setActiveTab("description")}
+              className={`px-4 py-2 text-lg font-semibold ${
+                activeTab === "description"
+                  ? "border-b-2 border-black dark:border-white"
+                  : "text-gray-500"
+              }`}
+            >
+              Description
+            </button>
+            <button
+              onClick={() => setActiveTab("additionalInfo")}
+              className={`px-4 py-2 text-lg font-semibold ${
+                activeTab === "additionalInfo"
+                  ? "border-b-2 border-black dark:border-white"
+                  : "text-gray-500"
+              }`}
+            >
+              Additional Information
+            </button>
+            <button
+              onClick={() => setActiveTab("reviews")}
+              className={`px-4 py-2 text-lg font-semibold ${
+                activeTab === "reviews"
+                  ? "border-b-2 border-black dark:border-white"
+                  : "text-gray-500"
+              }`}
+            >
+              Reviews
+            </button>
+          </div>
+
+          {activeTab === "description" && (
+            <div>
+              <p className="text-sm text-gray-800 dark:text-gray-200">
+                {product.description}
+              </p>
             </div>
+          )}
 
-            {activeTab === "description" && (
-              <div>
-                <p className="text-sm text-gray-800 dark:text-gray-200">
-                  {product.description}
-                </p>
-              </div>
-            )}
-
-            {activeTab === "additionalInfo" && (
-              <div className="text-sm text-gray-800 dark:text-gray-200">
-                <p>Name: {product.name}</p>
-                <p>Colors: {product.colors.join(", ")}</p>
-                <p>Price: {product.price.toLocaleString()} USD</p>
-                <p>Rating: {product.averageRating}</p>
-                <p>SKU: {product.sku}</p>
-                <p>Tags: {product.tags.join(", ")}</p>
-                <p>Stock: {product.stock}</p>
-              </div>
-            )}
-          </div>
-          <div className="mt-32 grid grid-cols-2 gap-10">
-            {product.images.slice(0, 2).map((img, index) => (
-              <img
-                key={index}
-                src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
-                alt={`Product Image ${index + 1}`}
-                className="w-[50vw] h-96 object-cover rounded-lg"
-                onClick={() => {
-                  setModalImage(`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`);
-                  setIsModalOpen(true);
-                }}
-              />
-            ))}
-          </div>
+          {activeTab === "additionalInfo" && (
+            <div className="text-sm text-gray-800 dark:text-gray-200">
+              <p>Name: {product.name}</p>
+              <p>Colors: {product.colors.join(", ")}</p>
+              <p>Price: {product.price.toLocaleString()} USD</p>
+              <p>Rating: {product.averageRating}</p>
+              <p>SKU: {product.sku}</p>
+              <p>Tags: {product.tags.join(", ")}</p>
+              <p>Stock: {product.stock}</p>
+            </div>
+          )}
+        </div>
+        <div className="mt-32 grid grid-cols-2 gap-10">
+          {product.images.slice(0, 2).map((img, index) => (
+            <img
+              key={index}
+              src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
+              alt={`Product Image ${index + 1}`}
+              className="w-[50vw] h-96 object-cover rounded-lg"
+              onClick={() => {
+                setModalImage(`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`);
+                setIsModalOpen(true);
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       {relatedProducts?.data?.products && (
