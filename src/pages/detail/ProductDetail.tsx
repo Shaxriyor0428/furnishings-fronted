@@ -60,7 +60,7 @@ const ProductDetail = () => {
   return (
     <>
       <div className="container mx-auto my-10">
-        <div className="grid grid-cols-2 gap-8 max-[990px]:grid-cols-1">
+        <div className="grid grid-cols-2 gap-8 max-[990px]:grid-cols-1 pb-10">
           <div className="flex">
             <div className="product__detail flex flex-col space-y-4 mr-4 overflow-y-auto h-80 no-scrollbar">
               {product?.images.map((img, index) => (
@@ -188,8 +188,10 @@ const ProductDetail = () => {
               </p>
             </div>
           </div>
-          <div className="min-[990px]:mt-32 mt-10 max-w-4xl">
-            <div className="flex justify-between space-x-14 mb-6">
+        </div>
+        <hr />
+        <div className="min-[990px]:mt-32 mt-10">
+            <div className="flex justify-center space-x-14 mb-6">
               <button
                 onClick={() => setActiveTab("description")}
                 className={`px-4 py-2 text-lg font-semibold ${
@@ -209,6 +211,16 @@ const ProductDetail = () => {
                 }`}
               >
                 Additional Information
+              </button>
+              <button
+                onClick={() => setActiveTab("reviews")}
+                className={`px-4 py-2 text-lg font-semibold ${
+                  activeTab === "reviews"
+                    ? "border-b-2 border-black dark:border-white"
+                    : "text-gray-500"
+                }`}
+              >
+                Reviews
               </button>
             </div>
 
@@ -232,17 +244,16 @@ const ProductDetail = () => {
               </div>
             )}
           </div>
-          <div className="mt-32 grid grid-cols-2 gap-2">
+          <div className="mt-32 grid grid-cols-2 gap-10">
             {product.images.slice(0, 2).map((img, index) => (
               <img
                 key={index}
                 src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
                 alt={`Product Image ${index + 1}`}
-                className="w-60 h-60 object-cover rounded-lg"
+                className="w-[50vw] h-96 object-cover rounded-lg"
               />
             ))}
           </div>
-        </div>
       </div>
 
       {relatedProducts?.data?.length > 1 && (
