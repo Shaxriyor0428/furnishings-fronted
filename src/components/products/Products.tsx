@@ -9,7 +9,16 @@ interface IProductProps {
 }
 const Products: FC<IProductProps> = ({ data, title }) => {
   const navigate = useNavigate();
+<<<<<<< HEAD
+
+<<<<<<< HEAD
   const productItems = data?.map((product: IProduct) => (
+=======
+  const productItems = data?.data?.products.map((product: IProduct) => (
+>>>>>>> c54cfe304583bb1dc4e206364cdd03e7d5d38b78
+=======
+  const productItems = data?.map((product: IProduct) => (
+>>>>>>> aff87644a885ab83ddd2cd654e8a6bb3b8df1c40
     <div
       key={product.id}
       className="relative overflow-hidden group rounded-lg shadow-md"
