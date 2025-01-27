@@ -285,7 +285,7 @@ const ProductDetail = () => {
               </div>
             )}
           </div>
-          <div className="mt-32 grid grid-cols-2 gap-10">
+          <div className="mt-32 grid grid-cols-2 gap-10 mb-14">
             {product.images.slice(0, 2).map((img, index) => (
               <img
                 key={index}
@@ -299,6 +299,7 @@ const ProductDetail = () => {
               />
             ))}
           </div>
+          <hr />
       </div>
 
       {relatedProducts?.data?.products && (
