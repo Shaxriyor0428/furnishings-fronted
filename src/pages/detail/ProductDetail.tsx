@@ -20,10 +20,42 @@ const ProductDetail = () => {
   const [activeTab, setActiveTab] = useState("description");
   const { data: product } = useGetSingleProductQuery(Number(id));
   const { data: category } = useGetSingleCategoryQuery(product?.categoryId);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState("");
   const { data: relatedProducts } = useGetProductsWithCategoryIdQuery(
     Number(product?.categoryId)
   );
+
+  const Modal = ({ imageUrl, onClose }: { imageUrl: string; onClose: () => void }) => {
+    return (
+      <div
+        className="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50 z-50"
+        onClick={onClose}
+      >
+        <div
+          className="relative"
+          onClick={(e) => e.stopPropagation()}
+          style={{ width: "90%", maxWidth: "600px", maxHeight: "80vh" }}
+        >
+          <button
+            onClick={onClose}
+            className="absolute top-0 right-0 text-white text-3xl p-2"
+          >
+            &times;
+          </button>
+          <img
+            src={imageUrl}
+            alt="Modal Image"
+            className="w-full h-auto object-contain" 
+          />
+        </div>
+      </div>
+    );
+  };
+  
+  
+  
+
 
   useEffect(() => {
     setSelectedImage(0);
@@ -82,10 +114,17 @@ const ProductDetail = () => {
                   }`}
                   alt={product.name}
                   className="w-full h-full object-cover rounded-lg"
+                  onClick={() => {
+                    setModalImage(`${import.meta.env.VITE_BASE_IMAGE_URL}${
+                    product.images[selectedImage]
+                  }`);
+                    setIsModalOpen(true);
+                  }}
                 />
               </div>
             </div>
           </div>
+          {isModalOpen && <Modal imageUrl={modalImage} onClose={() => setIsModalOpen(false)} />}
 
           <div>
             <h1 className="text-3xl font-bold">{product.name}</h1>
@@ -251,6 +290,10 @@ const ProductDetail = () => {
                 src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
                 alt={`Product Image ${index + 1}`}
                 className="w-[50vw] h-96 object-cover rounded-lg"
+                onClick={() => {
+                  setModalImage(`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`);
+                  setIsModalOpen(true);
+                }}
               />
             ))}
           </div>
