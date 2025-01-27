@@ -16,6 +16,11 @@
     font-family: "Montserrat";
     src: url(/src/assets/fonts/Montserrat-Medium.ttf);
   }
+  @font-face {
+    font-family: "Poppins Light";
+    font-display: swap;
+    src: url(/src/assets/fonts/Poppins-Light.woff2) format("woff2");
+  }
 }
 html {
   scroll-behavior: smooth;

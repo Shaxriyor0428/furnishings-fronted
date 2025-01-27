@@ -36,14 +36,18 @@ const Header: FC = () => {
     >
       <div
         id="header"
-        className="container mx-auto h-20 flex justify-between items-center font-poppins"
+        className="container mx-auto h-20 flex justify-between items-center font-poppins max-[725px]:h-14 max-[767px]:h-16"
       >
         <div
           onClick={() => navigate("/")}
           className="flex items-center hover:opacity-70 duration-200"
         >
-          <img src={logo} alt="logo.svg" className="h-14 w-14 cursor-pointer" />
-          <h2 className="ml-1 text-[30px] font-montserrat font-semibold cursor-pointer">
+          <img
+            src={logo}
+            alt="logo.svg"
+            className="h-14 w-14 cursor-pointer max-[767px]:h-10 max-[767px]:w-10"
+          />
+          <h2 className="ml-1 text-[30px] font-montserrat font-semibold cursor-pointer max-[767px]:text-[24px]">
             Furnishings
           </h2>
         </div>
@@ -92,24 +96,6 @@ const Header: FC = () => {
               <PiXBold className="inline-block" />
             </button>
             <div className="flex flex-col items-start gap-4 mt-8">
-              <NavLink to={"/wishlist"}>
-                <div
-                  onClick={() => closeMenu()}
-                  className="flex gap-2 items-center text-lg font-medium hover:text-bg-primary duration-200"
-                >
-                  <AiOutlineHeart className="h-6 w-6" />
-                  <p>Wishlist</p>
-                </div>
-              </NavLink>
-              <NavLink to={"/cart"}>
-                <div
-                  onClick={() => closeMenu()}
-                  className="flex gap-2 items-center text-lg font-medium hover:text-bg-primary duration-200"
-                >
-                  <AiOutlineShoppingCart className="h-6 w-6" />
-                  <p>Cart</p>
-                </div>
-              </NavLink>
               <NavLink
                 to={"/about"}
                 className="text-lg font-medium hover:text-bg-primary duration-200"
@@ -135,33 +121,45 @@ const Header: FC = () => {
           </div>
         </div>
       )}
-      <div className="max-[986px]:block hidden font-poppins">
-        <div className="fixed bottom-0 inset-x-0 bg-white dark:bg-black py-4 flex items-center justify-evenly z-50">
+      <div className="max-[986px]:block hidden font-poppins-light">
+        <div className="fixed bottom-0 inset-x-0 bg-white dark:bg-black opacity-95 py-2 flex items-center justify-evenly z-50 max-[725px]:h-14 max-[767px]:h-16">
           <NavLink to={"/"}>
             <div className="flex flex-col items-center hover:text-bg-primary duration-200">
-              <AiOutlineHome className="h-6 w-6" />
-              <p className="text-sm uppercase">Home</p>
+              <AiOutlineHome className="h-5 w-5" />
+              <p className="text-xs">Home</p>
             </div>
           </NavLink>
           <NavLink to={"/shop"}>
             <div className="flex flex-col items-center hover:text-bg-primary duration-200">
-              <FiShoppingBag className="h-6 w-6" />
-              <p className="text-sm uppercase">Shop</p>
+              <FiShoppingBag className="h-5 w-5" />
+              <p className="text-xs">Shop</p>
+            </div>
+          </NavLink>
+          <NavLink to={"/wishlist"}>
+            <div className="flex flex-col items-center hover:text-bg-primary duration-200">
+              <AiOutlineHeart className="h-5 w-5" />
+              <p className="text-xs">Wishlist</p>
+            </div>
+          </NavLink>
+          <NavLink to={"/cart"}>
+            <div className="flex flex-col items-center hover:text-bg-primary duration-200">
+              <AiOutlineShoppingCart className="h-5 w-5" />
+              <p className="text-xs">Cart</p>
             </div>
           </NavLink>
           <div className="flex flex-col justify-center items-center hover:text-bg-primary duration-200">
             <FiSearch
-              className="h-6 w-6 cursor-pointer"
+              className="h-5 w-5 cursor-pointer"
               onClick={() => {
                 setSearchOpen(true);
               }}
             />
-            <p className="text-sm uppercase"> Search</p>
+            <p className="text-xs"> Search</p>
           </div>
           <NavLink to={token ? "/auth/profile" : "/auth/sign-up"}>
             <div className="flex flex-col items-center hover:text-bg-primary duration-200">
-              <LuUser className="h-6 w-6" />
-              <p className="text-sm uppercase">Profile</p>
+              <LuUser className="h-5 w-5" />
+              <p className="text-xs">Profile</p>
             </div>
           </NavLink>
         </div>
