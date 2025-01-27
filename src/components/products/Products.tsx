@@ -10,7 +10,11 @@ interface IProductProps {
 const Products: FC<IProductProps> = ({ data, title }) => {
   const navigate = useNavigate();
 
+<<<<<<< HEAD
   const productItems = data?.map((product: IProduct) => (
+=======
+  const productItems = data?.data?.products.map((product: IProduct) => (
+>>>>>>> c54cfe304583bb1dc4e206364cdd03e7d5d38b78
     <div
       key={product.id}
       className="relative overflow-hidden group rounded-lg shadow-md"
@@ -20,7 +24,7 @@ const Products: FC<IProductProps> = ({ data, title }) => {
         className="relative w-full overflow-hidden h-[301px] max-[620px]:h-[240px] max-[450px]:h-[200px]"
       >
         <img
-          className="w-full h-full bg-no-repeat bg-center bg-cover group-hover:scale-[1.02] duration-300 md:scale-100"
+          className="w-full h-full bg-no-repeat bg-center bg-cover group-hover:scale-[1.02] duration-300 md:scale-100 cursor-pointer"
           src={`${import.meta.env.VITE_BASE_IMAGE_URL}${product.images[0]}`}
           alt={product.name}
         />
