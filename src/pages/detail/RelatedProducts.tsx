@@ -27,6 +27,7 @@ const RelatedProducts = ({
             </button>
           </div>
         )}
+        
       </div>
     </>
   );
