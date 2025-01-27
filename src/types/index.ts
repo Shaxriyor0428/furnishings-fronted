@@ -9,6 +9,10 @@ export interface IGetProducts {
   products: IProduct[];
   total: number;
 }
+export interface IReview {
+  id: number;
+  comment: string;
+}
 export interface IProduct {
   categoryId?: number;
   id: number;
@@ -25,6 +29,7 @@ export interface IProduct {
   discount?: {
     percent?: number;
   };
+  reviews?: IReview[];
 }
 export interface IProductQuery {
   filter?: string;
