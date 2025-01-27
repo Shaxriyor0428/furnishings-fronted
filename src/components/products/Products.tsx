@@ -1,16 +1,15 @@
 import { FC, memo } from "react";
 import { useNavigate } from "react-router-dom";
-import { IGetResponseProducts, IProduct } from "../../types";
+import { IProduct } from "../../types";
 import { IoCartOutline } from "react-icons/io5";
 import { IoMdHeartEmpty } from "react-icons/io";
 interface IProductProps {
-  data: IGetResponseProducts;
+  data: IProduct[];
   title?: string;
 }
 const Products: FC<IProductProps> = ({ data, title }) => {
   const navigate = useNavigate();
-
-  const productItems = data?.data?.products.map((product: IProduct) => (
+  const productItems = data?.map((product: IProduct) => (
     <div
       key={product.id}
       className="relative overflow-hidden group rounded-lg shadow-md"

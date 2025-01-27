@@ -12,7 +12,7 @@ const Home = () => {
     <div>
       <Hero />
       <Browse />
-      {data && <Products data={data} title="Our products" />}
+      {data && <Products data={data.data.products} title="Our products" />}
       <Insparation />
       <SwiperInfinite />
     </div>

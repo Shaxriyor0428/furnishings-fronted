@@ -25,6 +25,8 @@ const ProductDetail = () => {
   const { data: relatedProducts } = useGetProductsWithCategoryIdQuery(
     Number(product?.categoryId)
   );
+  console.log(relatedProducts);
+  
 
   const Modal = ({ imageUrl, onClose }: { imageUrl: string; onClose: () => void }) => {
     return (
@@ -299,8 +301,8 @@ const ProductDetail = () => {
           </div>
       </div>
 
-      {relatedProducts?.data?.length > 1 && (
-        <RelatedProducts relatedProducts={relatedProducts} />
+      {relatedProducts?.data?.products && (
+        <RelatedProducts relatedProducts={relatedProducts.data.products} />
       )}
     </>
   );
