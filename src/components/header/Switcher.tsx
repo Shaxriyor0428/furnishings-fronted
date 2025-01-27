@@ -18,10 +18,10 @@ const Switcher: FC = () => {
 const StyledWrapper = styled.div`
   .switch {
     display: block;
-    --width-of-switch: 3.5em;
-    --height-of-switch: 2em;
-    --size-of-icon: 1.4em;
-    --slider-offset: 0.3em;
+    --width-of-switch: 3.2em;
+    --height-of-switch: 1.5em;
+    --size-of-icon: 1.1em;
+    --slider-offset: 0.4em;
     position: relative;
     width: var(--width-of-switch);
     height: var(--height-of-switch);

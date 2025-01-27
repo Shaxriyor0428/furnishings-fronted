@@ -8,6 +8,7 @@ export default {
         poppins: ['"Poppins", sans-serif'],
         "poppins-bold": ['"Poppins Bold", sans-serif'],
         montserrat: ['"Montserrat", sans-serif'],
+        "poppins-light": ['"Poppins Light", sans-serif'],
       },
       colors: {
         "bg-primary": "#B88E2F",
