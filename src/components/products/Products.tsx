@@ -9,7 +9,6 @@ interface IProductProps {
 }
 const Products: FC<IProductProps> = ({ data, title }) => {
   const navigate = useNavigate();
-
   const productItems = data?.map((product: IProduct) => (
     <div
       key={product.id}

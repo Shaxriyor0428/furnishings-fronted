@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { saveToken } from "../../../redux/features/token-slice";
 import { saveStorage } from "../../../utils";
 import { saveEmail } from "../../../redux/features/otp-slice";
+import { saveUser } from "../../../redux/features/user-slice";
 
 const schema = yup.object({
   email: yup
@@ -57,6 +58,7 @@ const SignIn = () => {
         if (res?.data?.is_active) {
           dispatch(saveToken(res?.data?.access_token));
           saveStorage("access_token", res?.data?.access_token);
+          dispatch(saveUser({ email: data?.email, id: res?.data?.id }));
           setlgError("");
           return navigate("/auth/profile");
         } else {

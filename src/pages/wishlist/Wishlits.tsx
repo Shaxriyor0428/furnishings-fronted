@@ -17,8 +17,12 @@ const Wishlist = () => {
   return (
     <>
       <Products
-        data={token ? data : wishlist}
-        title={!data?.length || !token ? "Yours like prouducts" : ""}
+        data={token ? data?.data?.products : wishlist}
+        title={
+          data?.data?.products?.length > 0 || wishlist?.length > 0
+            ? "Yours like products"
+            : "You have not like products"
+        }
       />
     </>
   );

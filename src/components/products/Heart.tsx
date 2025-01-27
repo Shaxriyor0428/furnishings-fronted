@@ -16,13 +16,11 @@ const Heart = ({ product }: { product: IProduct }) => {
   );
 
   const handleLike = () => {
-    dispatch(toggleLike(product));
-    //    if (token) {
-
-    //      toggleWishlist({ productId: product.id, clientId: Number(clientId) });
-    //    } else {
-    //      dispatch(toggleLike(product));
-    //    }
+    if (token) {
+      toggleWishlist({ productId: product.id, customerId: Number(customerId) });
+    } else {
+      dispatch(toggleLike(product));
+    }
   };
   return (
     <button
