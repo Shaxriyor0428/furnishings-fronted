@@ -145,30 +145,32 @@ const ProductDetail = ({
                 ))}
               </div>
             </div>
-            <div className="flex items-center space-x-5 mt-6">
-              <div className="flex items-center space-x-5 border border-gray-800 dark:border-gray-200 rounded-lg hover:border-bg-primary hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary duration-300">
+            <div className="flex items-center space-x-3 mt-4">
+              <div className="flex items-center border border-gray-800 dark:border-gray-200 rounded-lg hover:border-bg-primary hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary duration-300">
                 <button
-                  className="px-4 py-2 rounded-lg font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
+                  className="px-2 py-1 rounded-lg text-sm font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
                   onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
                 >
                   -
                 </button>
-                <span className="text-xl">{quantity}</span>
+                <span className="text-base">{quantity}</span>
                 <button
-                  className="px-4 py-2 rounded-lg font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
+                  className="px-2 py-1 rounded-lg text-sm font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
                   onClick={() => setQuantity((prev) => prev + 1)}
                 >
                   +
                 </button>
               </div>
 
-              <button className=" py-30 border-[1px] px-7 py-2 border-black dark:border-gray-200 text-black dark:text-gray-200 rounded-lg dark:hover:text-black hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
+              <button className="py-1 px-4 border border-black dark:border-gray-200 text-sm text-black dark:text-gray-200 rounded-lg dark:hover:text-black hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
                 Add to Cart
               </button>
-              <button className="py-30 border-[1px] px-7 py-2 border-black dark:border-gray-200 text-black dark:text-gray-200 rounded-lg dark:hover:text-black hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
+
+              <button className="py-1 px-4 border border-black dark:border-gray-200 text-sm text-black dark:text-gray-200 rounded-lg dark:hover:text-black hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
                 + Compare
               </button>
             </div>
+
             <div className="flex items-center space-x-4 mt-8"></div>
             <hr className="font-bold" />
             <div className="mt-8">
@@ -225,11 +227,11 @@ const ProductDetail = ({
           </div>
         </div>
         <hr />
-        <div className="min-[990px]:mt-32 mt-10">
-          <div className="flex justify-center space-x-14 mb-6">
+        <div className="mt-10 md:mt-20 lg:mt-32">
+          <div className="flex flex-col md:flex-row md:justify-center md:space-x-8 lg:space-x-14 mb-6">
             <button
               onClick={() => setActiveTab("description")}
-              className={`px-4 py-2 text-lg font-semibold ${
+              className={`px-3 md:px-4 py-2 text-sm md:text-lg font-semibold ${
                 activeTab === "description"
                   ? "border-b-2 border-black dark:border-white"
                   : "text-gray-500"
@@ -239,7 +241,7 @@ const ProductDetail = ({
             </button>
             <button
               onClick={() => setActiveTab("additionalInfo")}
-              className={`px-4 py-2 text-lg font-semibold ${
+              className={`px-3 md:px-4 py-2 text-sm md:text-lg font-semibold ${
                 activeTab === "additionalInfo"
                   ? "border-b-2 border-black dark:border-white"
                   : "text-gray-500"
@@ -249,7 +251,7 @@ const ProductDetail = ({
             </button>
             <button
               onClick={() => setActiveTab("reviews")}
-              className={`px-4 py-2 text-lg font-semibold ${
+              className={`px-3 md:px-4 py-2 text-sm md:text-lg font-semibold ${
                 activeTab === "reviews"
                   ? "border-b-2 border-black dark:border-white"
                   : "text-gray-500"
@@ -259,18 +261,16 @@ const ProductDetail = ({
             </button>
           </div>
 
-          {/* Description Tab */}
           {activeTab === "description" && (
             <div>
-              <p className="text-sm text-gray-800 dark:text-gray-200">
+              <p className="text-sm md:text-base text-gray-800 dark:text-gray-200">
                 {product.description}
               </p>
             </div>
           )}
 
-          {/* Additional Info Tab */}
           {activeTab === "additionalInfo" && (
-            <div className="text-sm text-gray-800 dark:text-gray-200 space-y-2">
+            <div className="text-sm md:text-base text-gray-800 dark:text-gray-200 space-y-2">
               <p>
                 <strong>Name:</strong> {product.name}
               </p>
@@ -295,23 +295,22 @@ const ProductDetail = ({
             </div>
           )}
 
-          {/* Reviews Tab */}
           {activeTab === "reviews" && (
             <div className="max-h-96 overflow-y-auto space-y-4">
-              {/* Show reviews if available */}
               {product.reviews && product.reviews.length > 0 ? (
                 product.reviews.slice(0, 5).map((review: IReview) => (
                   <div key={review.id} className="border-b py-4">
-                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <p className="text-sm md:text-base text-gray-700 dark:text-gray-300">
                       {review.comment}
                     </p>
                   </div>
                 ))
               ) : (
-                <p className="text-sm text-gray-500">No reviews available</p>
+                <p className="text-sm md:text-base text-gray-500">
+                  No reviews available
+                </p>
               )}
 
-              {/* Show button to show all reviews if there are more than 5 */}
               {product.reviews && product.reviews.length > 5 && (
                 <div className="mt-4 text-center">
                   <button
@@ -326,13 +325,13 @@ const ProductDetail = ({
           )}
         </div>
 
-        <div className="mt-32 grid grid-cols-2 gap-10 mb-14">
+        <div className="mt-16 md:mt-32 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mb-14">
           {product.images.slice(0, 2).map((img, index) => (
             <img
               key={index}
               src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
               alt={`Product Image ${index + 1}`}
-              className="w-[50vw] h-96 object-cover rounded-lg"
+              className="w-full h-64 md:h-96 object-cover rounded-lg cursor-pointer"
               onClick={() => {
                 setModalImage(`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`);
                 setIsModalOpen(true);
@@ -340,6 +339,7 @@ const ProductDetail = ({
             />
           ))}
         </div>
+
         <hr />
       </div>
     </>
