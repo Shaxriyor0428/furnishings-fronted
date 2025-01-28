@@ -43,6 +43,12 @@ const extendedApi = mainApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    signOut: build.mutation<any, any>({
+      query: () => ({
+        url: "customer/auth/signout",
+        method: "POST",
+      }),
+    }),
   }),
 });
 
@@ -53,4 +59,5 @@ export const {
   useSignInMutation,
   useGetCustomerByIdQuery,
   useCheckTokenQuery,
+  useSignOutMutation,
 } = extendedApi;
