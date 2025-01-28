@@ -228,102 +228,103 @@ const ProductDetail = ({
         </div>
         <hr />
         <div className="mt-10 md:mt-20 lg:mt-32">
-          <div className="flex flex-col md:flex-row md:justify-center md:space-x-8 lg:space-x-14 mb-6">
-            <button
-              onClick={() => setActiveTab("description")}
-              className={`px-3 md:px-4 py-2 text-sm md:text-lg font-semibold ${
-                activeTab === "description"
-                  ? "border-b-2 border-black dark:border-white"
-                  : "text-gray-500"
-              } hover:text-black dark:hover:text-white transition duration-300`}
-            >
-              Description
-            </button>
-            <button
-              onClick={() => setActiveTab("additionalInfo")}
-              className={`px-3 md:px-4 py-2 text-sm md:text-lg font-semibold ${
-                activeTab === "additionalInfo"
-                  ? "border-b-2 border-black dark:border-white"
-                  : "text-gray-500"
-              } hover:text-black dark:hover:text-white transition duration-300`}
-            >
-              Additional Information
-            </button>
-            <button
-              onClick={() => setActiveTab("reviews")}
-              className={`px-3 md:px-4 py-2 text-sm md:text-lg font-semibold ${
-                activeTab === "reviews"
-                  ? "border-b-2 border-black dark:border-white"
-                  : "text-gray-500"
-              } hover:text-black dark:hover:text-white transition duration-300`}
-            >
-              Reviews
-            </button>
+  <div className="flex flex-wrap justify-center space-x-4 md:space-x-8 lg:space-x-14 mb-6">
+    <button
+      onClick={() => setActiveTab("description")}
+      className={`px-2 sm:px-3 md:px-4 py-2 text-sm sm:text-base md:text-lg font-semibold ${
+        activeTab === "description"
+          ? "border-b-2 border-black dark:border-white"
+          : "text-gray-500"
+      } hover:text-black dark:hover:text-white transition duration-300`}
+    >
+      Description
+    </button>
+    <button
+      onClick={() => setActiveTab("additionalInfo")}
+      className={`px-2 sm:px-3 md:px-4 py-2 text-sm sm:text-base md:text-lg font-semibold ${
+        activeTab === "additionalInfo"
+          ? "border-b-2 border-black dark:border-white"
+          : "text-gray-500"
+      } hover:text-black dark:hover:text-white transition duration-300`}
+    >
+      Additional Information
+    </button>
+    <button
+      onClick={() => setActiveTab("reviews")}
+      className={`px-2 sm:px-3 md:px-4 py-2 text-sm sm:text-base md:text-lg font-semibold ${
+        activeTab === "reviews"
+          ? "border-b-2 border-black dark:border-white"
+          : "text-gray-500"
+      } hover:text-black dark:hover:text-white transition duration-300`}
+    >
+      Reviews
+    </button>
+  </div>
+
+  {activeTab === "description" && (
+    <div>
+      <p className="text-sm md:text-base text-gray-800 dark:text-gray-200">
+        {product.description}
+      </p>
+    </div>
+  )}
+
+  {activeTab === "additionalInfo" && (
+    <div className="text-sm md:text-base text-gray-800 dark:text-gray-200 space-y-2">
+      <p>
+        <strong>Name:</strong> {product.name}
+      </p>
+      <p>
+        <strong>Colors:</strong> {product.colors.join(", ")}
+      </p>
+      <p>
+        <strong>Price:</strong> {product.price.toLocaleString()} USD
+      </p>
+      <p>
+        <strong>Rating:</strong> {product.averageRating}
+      </p>
+      <p>
+        <strong>SKU:</strong> {product.sku}
+      </p>
+      <p>
+        <strong>Tags:</strong> {product.tags.join(", ")}
+      </p>
+      <p>
+        <strong>Stock:</strong> {product.stock}
+      </p>
+    </div>
+  )}
+
+  {activeTab === "reviews" && (
+    <div className="max-h-96 overflow-y-auto space-y-4">
+      {product.reviews && product.reviews.length > 0 ? (
+        product.reviews.slice(0, 5).map((review: IReview) => (
+          <div key={review.id} className="border-b py-4">
+            <p className="text-sm md:text-base text-gray-700 dark:text-gray-300">
+              {review.comment}
+            </p>
           </div>
+        ))
+      ) : (
+        <p className="text-sm md:text-base text-gray-500">
+          No reviews available
+        </p>
+      )}
 
-          {activeTab === "description" && (
-            <div>
-              <p className="text-sm md:text-base text-gray-800 dark:text-gray-200">
-                {product.description}
-              </p>
-            </div>
-          )}
-
-          {activeTab === "additionalInfo" && (
-            <div className="text-sm md:text-base text-gray-800 dark:text-gray-200 space-y-2">
-              <p>
-                <strong>Name:</strong> {product.name}
-              </p>
-              <p>
-                <strong>Colors:</strong> {product.colors.join(", ")}
-              </p>
-              <p>
-                <strong>Price:</strong> {product.price.toLocaleString()} USD
-              </p>
-              <p>
-                <strong>Rating:</strong> {product.averageRating}
-              </p>
-              <p>
-                <strong>SKU:</strong> {product.sku}
-              </p>
-              <p>
-                <strong>Tags:</strong> {product.tags.join(", ")}
-              </p>
-              <p>
-                <strong>Stock:</strong> {product.stock}
-              </p>
-            </div>
-          )}
-
-          {activeTab === "reviews" && (
-            <div className="max-h-96 overflow-y-auto space-y-4">
-              {product.reviews && product.reviews.length > 0 ? (
-                product.reviews.slice(0, 5).map((review: IReview) => (
-                  <div key={review.id} className="border-b py-4">
-                    <p className="text-sm md:text-base text-gray-700 dark:text-gray-300">
-                      {review.comment}
-                    </p>
-                  </div>
-                ))
-              ) : (
-                <p className="text-sm md:text-base text-gray-500">
-                  No reviews available
-                </p>
-              )}
-
-              {product.reviews && product.reviews.length > 5 && (
-                <div className="mt-4 text-center">
-                  <button
-                    onClick={() => setActiveTab("reviews")}
-                    className="text-blue-600 hover:underline transition duration-300"
-                  >
-                    Show all reviews
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
+      {product.reviews && product.reviews.length > 5 && (
+        <div className="mt-4 text-center">
+          <button
+            onClick={() => setActiveTab("reviews")}
+            className="text-blue-600 hover:underline transition duration-300"
+          >
+            Show all reviews
+          </button>
         </div>
+      )}
+    </div>
+  )}
+</div>
+
 
         <div className="mt-16 md:mt-32 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mb-14">
           {product.images.slice(0, 2).map((img, index) => (
