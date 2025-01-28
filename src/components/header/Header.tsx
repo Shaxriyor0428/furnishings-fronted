@@ -42,9 +42,6 @@ const Header: FC = () => {
     : 0;
 
   const navigate = useNavigate();
-
-  const closeMenu = () => setMenuOpen(false);
-
   return (
     <div
       className={`bg-white dark:bg-zinc-950 w-full shadow-sm sticky left-0 z-50 transition-colors duration-300 ${
@@ -165,14 +162,14 @@ const Header: FC = () => {
               <p className="text-xs">Shop</p>
             </div>
           </NavLink>
-          <NavLink to={"/wishlist"} className={'relative'}>
+          <NavLink to={"/wishlist"} className={"relative"}>
             <div className="flex flex-col items-center hover:text-bg-primary duration-200">
               <AiOutlineHeart className="h-5 w-5" />
               {!!totalWishlist && (
-              <span className="absolute top-[-5px] right-[4px] bg-bg-primary  w-4 rounded-full text-white flex items-center justify-center text-[12px] h-4">
-                {totalWishlist}
-              </span>
-            )}
+                <span className="absolute top-[-5px] right-[4px] bg-bg-primary  w-4 rounded-full text-white flex items-center justify-center text-[12px] h-4">
+                  {totalWishlist}
+                </span>
+              )}
               <p className="text-xs">Wishlist</p>
             </div>
           </NavLink>
