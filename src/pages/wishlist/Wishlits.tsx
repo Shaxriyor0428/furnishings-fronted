@@ -3,13 +3,17 @@ import { RootState } from "../../redux";
 import { useGetWishlistQuery } from "../../redux/api/wishlist-api";
 import Products from "../../components/products/Products";
 import { useEffect } from "react";
+import { useCheckTokenQuery } from "@/redux/api/customer-api";
 
 const Wishlist = () => {
-  const id = useSelector((state: RootState) => state.user.value.id);
   const wishlist = useSelector((state: RootState) => state.wishlist.value);
   const token = useSelector((state: RootState) => state.token.access_token);
-
-  const { data } = useGetWishlistQuery(Number(id));
+  const { data: tokenData } = useCheckTokenQuery(null, {
+    skip: Boolean(!token),
+  });
+  const { data } = useGetWishlistQuery(Number(tokenData?.customer?.id), {
+    skip: Boolean(!tokenData),
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
