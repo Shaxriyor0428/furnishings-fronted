@@ -55,8 +55,10 @@ const SignUp = () => {
           })
         );
         setrgError("");
-        navigate("/auth/otp");
-        saveUser({ email: data?.email, id: res?.data?.customer });
+        dispatch(
+          saveUser({ email: data?.email, id: res?.data?.newCustomer?.id })
+        );
+        return navigate("/auth/otp");
       })
       .catch((err) => {
         const errorMessage = err?.data?.message;
