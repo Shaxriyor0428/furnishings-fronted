@@ -5,19 +5,21 @@ import { useToggleWishlistMutation } from "../../redux/api/wishlist-api";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import { toggleLike } from "../../redux/features/wishlist-slice";
 import { memo } from "react";
+import { useCheckTokenQuery } from "@/redux/api/customer-api";
 
 const Heart = ({ product }: { product: IProduct }) => {
   const [toggleWishlist] = useToggleWishlistMutation();
   const dispatch = useDispatch();
   const wishlist = useSelector((state: RootState) => state.wishlist.value);
   const token = useSelector((state: RootState) => state.token.access_token);
-  const { id: customerId } = useSelector(
-    (state: RootState) => state.user.value
-  );
+  const { data } = useCheckTokenQuery(null, { skip: Boolean(!token) });
 
   const handleLike = () => {
     if (token) {
-      toggleWishlist({ productId: product.id, customerId: Number(customerId) });
+      toggleWishlist({
+        productId: product.id,
+        customerId: Number(data?.customer?.id),
+      });
     } else {
       dispatch(toggleLike(product));
     }

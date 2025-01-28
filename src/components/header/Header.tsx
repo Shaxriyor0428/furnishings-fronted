@@ -10,7 +10,6 @@ import {
 import { FiSearch, FiShoppingBag } from "react-icons/fi";
 import { MdMenu } from "react-icons/md";
 import { LuUser } from "react-icons/lu";
-import { LiaInfoSolid, LiaPhoneSolid } from "react-icons/lia";
 import { PiXBold } from "react-icons/pi";
 import useOnlineonline from "@/hooks/useOnlineStatus";
 import "./Header.scss";
@@ -18,12 +17,30 @@ import HeaderSearch from "./HeaderSearch";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
 import Switch from "./Switcher";
+import { useCheckTokenQuery } from "../../redux/api/customer-api";
+import { useGetWishlistQuery } from "../../redux/api/wishlist-api";
 
 const Header: FC = () => {
   const token = useSelector((state: RootState) => state.token.access_token);
   const { online, firstEnter } = useOnlineonline();
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const { data, isSuccess } = useCheckTokenQuery(null, {
+    skip: Boolean(!token),
+  });
+
+  const wishlist = useSelector((state: RootState) => state.wishlist.value);
+  const { data: wishlistData } = useGetWishlistQuery(
+    Number(data?.customer?.id),
+    { skip: Boolean(!data) }
+  );
+
+  const totalWishlist = wishlistData
+    ? wishlistData?.data?.products?.length
+    : wishlist?.length
+    ? wishlist?.length
+    : 0;
+
   const navigate = useNavigate();
 
   const closeMenu = () => setMenuOpen(false);
@@ -36,7 +53,7 @@ const Header: FC = () => {
     >
       <div
         id="header"
-        className="container mx-auto h-20 flex justify-between items-center font-poppins max-[725px]:h-14 max-[767px]:h-16"
+        className="container relative mx-auto h-20 flex justify-between items-center font-poppins max-[725px]:h-14 max-[767px]:h-16"
       >
         <div
           onClick={() => navigate("/")}
@@ -66,58 +83,71 @@ const Header: FC = () => {
           <div>
             <Switch />
           </div>
-          <NavLink to={token ? "/auth/profile" : "/auth/sign-in"}>
-            <LuUser className="h-6 w-6 hover:text-bg-primary duration-200 max-[986px]:hidden" />
-          </NavLink>
+
           <FiSearch
             className="h-6 w-6 cursor-pointer hover:text-bg-primary duration-200 max-[986px]:hidden"
             onClick={() => setSearchOpen(true)}
           />
-          <NavLink to={"/wishlist"}>
+          <NavLink to={"/wishlist"} className="relative ">
             <AiOutlineHeart className="h-6 w-6 hover:text-bg-primary duration-200 max-[986px]:hidden" />
+            {!!totalWishlist && (
+              <span className="absolute max-[986px]:hidden top-[-5px] right-[-5px] bg-bg-primary  w-4 rounded-full text-white flex items-center justify-center text-[12px] h-4">
+                {totalWishlist}
+              </span>
+            )}
           </NavLink>
           <NavLink to={"/cart"}>
             <AiOutlineShoppingCart className="h-6 w-6 hover:text-bg-primary duration-200 max-[986px]:hidden" />
           </NavLink>
+          <NavLink to={token ? "/auth/profile" : "/auth/sign-in"}>
+            {isSuccess ? (
+              <div className="w-8 h-8 bg-bg-primary max-[986px]:hidden rounded-full flex items-center justify-center text-white uppercase">
+                {data?.customer?.first_name?.trim()?.slice(0, 1)}
+              </div>
+            ) : (
+              <LuUser className="h-6 w-6 hover:text-bg-primary duration-200 max-[986px]:hidden" />
+            )}
+          </NavLink>
           <MdMenu
             className="h-6 w-6 min-[987px]:hidden hover:text-bg-primary duration-200 cursor-pointer"
-            onClick={() => setMenuOpen(true)}
+            onClick={() => setMenuOpen((prev) => !prev)}
           />
         </div>
       </div>
       <HeaderSearch setSearchOpen={setSearchOpen} searchOpen={searchOpen} />
       {menuOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white dark:bg-black w-80 p-6 rounded-lg shadow-lg relative">
+        <div className="absolute  container top-20 border-t  w-1/2 right-0 bg-white dark:bg-black shadow-md z-50">
+          <div className="flex justify-between items-center p-4">
+            <h2 className="text-lg font-bold">Menu</h2>
             <button
               onClick={() => setMenuOpen(false)}
-              className="absolute top-3 right-3 text-right"
+              className="text-gray-600 hover:text-black dark:hover:text-white"
             >
-              <PiXBold className="inline-block" />
+              <PiXBold className="h-6 w-6" />
             </button>
-            <div className="flex flex-col items-start gap-4 mt-8">
-              <NavLink
-                to={"/about"}
-                className="text-lg font-medium hover:text-bg-primary duration-200"
-              >
-                <div
-                  onClick={() => closeMenu()}
-                  className="flex gap-2 items-center text-lg font-medium hover:text-bg-primary duration-200"
-                >
-                  <LiaInfoSolid className="h-6 w-6" />
-                  <p>About</p>
-                </div>
-              </NavLink>
-              <NavLink to={"/contact"}>
-                <div
-                  onClick={() => closeMenu()}
-                  className="flex gap-2 items-center text-lg font-medium hover:text-bg-primary duration-200"
-                >
-                  <LiaPhoneSolid className="h-6 w-6" />
-                  <p>Contact</p>
-                </div>
-              </NavLink>
-            </div>
+          </div>
+          <div className="flex flex-col p-4 gap-4">
+            <NavLink
+              to="/about"
+              onClick={() => setMenuOpen(false)}
+              className="text-lg font-medium hover:text-bg-primary duration-200"
+            >
+              About
+            </NavLink>
+            <NavLink
+              to="/contact"
+              onClick={() => setMenuOpen(false)}
+              className="text-lg font-medium hover:text-bg-primary duration-200"
+            >
+              Contact
+            </NavLink>
+            <NavLink
+              to="/auth/profile"
+              onClick={() => setMenuOpen(false)}
+              className="text-lg font-medium hover:text-bg-primary duration-200"
+            >
+              Profile
+            </NavLink>
           </div>
         </div>
       )}
@@ -135,9 +165,14 @@ const Header: FC = () => {
               <p className="text-xs">Shop</p>
             </div>
           </NavLink>
-          <NavLink to={"/wishlist"}>
+          <NavLink to={"/wishlist"} className={'relative'}>
             <div className="flex flex-col items-center hover:text-bg-primary duration-200">
               <AiOutlineHeart className="h-5 w-5" />
+              {!!totalWishlist && (
+              <span className="absolute top-[-5px] right-[4px] bg-bg-primary  w-4 rounded-full text-white flex items-center justify-center text-[12px] h-4">
+                {totalWishlist}
+              </span>
+            )}
               <p className="text-xs">Wishlist</p>
             </div>
           </NavLink>
@@ -156,12 +191,6 @@ const Header: FC = () => {
             />
             <p className="text-xs"> Search</p>
           </div>
-          <NavLink to={token ? "/auth/profile" : "/auth/sign-in"}>
-            <div className="flex flex-col items-center hover:text-bg-primary duration-200">
-              <LuUser className="h-5 w-5" />
-              <p className="text-xs">Profile</p>
-            </div>
-          </NavLink>
         </div>
       </div>
     </div>
