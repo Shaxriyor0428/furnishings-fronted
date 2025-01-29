@@ -8,6 +8,7 @@ export interface IGetProducts {
   page: number;
   products: IProduct[];
   total: number;
+  totalPages: number;
 }
 export interface IReview {
   id: number;

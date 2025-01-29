@@ -3,52 +3,71 @@ import { BsViewList } from "react-icons/bs";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { PiCirclesFourFill } from "react-icons/pi";
 import { IGetResponseProducts } from "../../types";
+
 interface IFilterProps {
   setGrid: (value: boolean) => void;
+  setLimit?: (value: number) => void;
+  setSortBy?: (value: string) => void;
   data: IGetResponseProducts;
   page: number;
 }
-const Filter: FC<IFilterProps> = ({ setGrid, data, page }) => {
+
+const Filter: FC<IFilterProps> = ({
+  setGrid,
+  data,
+  page,
+  setLimit,
+  setSortBy,
+}) => {
   return (
-    <div className="bg-[#F9F1E7] dark:bg-zinc-800 h-[100px] grid place-items-center font-poppins mb-16">
+    <div className="bg-[#F9F1E7] dark:bg-zinc-800 py-4 px-6 rounded-lg shadow-md">
       <div className="container flex flex-wrap justify-between items-center gap-4">
-        <div className="flex items-center gap-6 sm:gap-4">
-          <div className="flex items-center gap-3 cursor-pointer hover:text-bg-primary duration-300">
-            <GiSettingsKnobs className="w-6 h-6 md:w-5 md:h-5" />
-            <p className="text-xl md:text-base font-medium">Filter</p>
-          </div>
-          <div
+        <div className="flex items-center gap-4 sm:gap-2">
+          <button className="flex items-center gap-2 text-gray-700 dark:text-white hover:text-primary duration-300">
+            <GiSettingsKnobs className="w-6 h-6 sm:w-5 sm:h-5" />
+            <span className="text-lg sm:text-sm font-medium">Filter</span>
+          </button>
+          <button
             onClick={() => setGrid(true)}
-            className="flex justify-center items-center cursor-pointer hover:text-bg-primary duration-300"
+            className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-zinc-700"
           >
-            <PiCirclesFourFill className="w-7 h-7 md:w-6 md:h-6" />
-          </div>
-          <div
+            <PiCirclesFourFill className="w-6 h-6 sm:w-5 sm:h-5" />
+          </button>
+          <button
             onClick={() => setGrid(false)}
-            className="flex justify-center items-center cursor-pointer hover:text-bg-primary duration-300"
+            className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-zinc-700"
           >
-            <BsViewList className="w-7 h-7 md:w-6 md:h-6" />
-          </div>
-          <div className="hidden md:inline-block">|</div>
-          <div className="text-sm md:text-xs">
-            Showing {page}–{data?.data?.limit} of {data?.data?.total} results
-          </div>
+            <BsViewList className="w-6 h-6 sm:w-5 sm:h-5" />
+          </button>
         </div>
-        <div className="flex flex-wrap gap-4 md:gap-2 items-center">
-          <div className="flex items-center gap-2 cursor-pointer hover:text-bg-primary duration-300">
-            <p className="text-base md:text-sm">Show</p>
-            <input
-              placeholder="16"
-              maxLength={3}
-              className="w-14 h-14 md:w-12 md:h-12 bg-white dark:bg-slate-100 outline-none text-lg md:text-sm text-center rounded-sm text-bg-primary"
-            />
+        <p className="text-sm sm:text-xs text-gray-600 dark:text-gray-300">
+          Showing {page}–{data?.data?.limit} of {data?.data?.total} results
+        </p>
+        <div className="flex flex-wrap gap-4 sm:gap-2 items-center">
+          <div className="flex items-center gap-2">
+            <span className="text-sm sm:text-xs">Show</span>
+            <select
+              onChange={(e) =>
+                setLimit && setLimit(parseInt(e.target.value, 10))
+              }
+              className="cursor-pointer border rounded-md px-2 py-1 text-gray-700 dark:text-white dark:bg-zinc-800"
+            >
+              <option value="12">12</option>
+              <option value="16">16</option>
+              <option value="20">20</option>
+            </select>
           </div>
-          <div className="flex items-center gap-2 cursor-pointer hover:text-bg-primary duration-300">
-            <p className="text-base md:text-sm">Sort by</p>
-            <input
-              placeholder="Default"
-              className="w-48 h-14 md:w-32 md:h-12 bg-white dark:bg-slate-100 outline-none text-lg md:text-sm indent-3 rounded-sm text-bg-primary"
-            />
+          <div className="flex items-center gap-2">
+            <span className="text-sm sm:text-xs">Sort by</span>
+            <select
+              onChange={(e) => setSortBy && setSortBy(e.target.value)}
+              className="cursor-pointer border rounded-md px-2 py-1 text-gray-700 dark:text-white dark:bg-zinc-800"
+            >
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+              <option value="cheapest">Cheapest</option>
+              <option value="expensive">Most Expensive</option>
+            </select>
           </div>
         </div>
       </div>
