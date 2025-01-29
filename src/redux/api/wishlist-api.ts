@@ -2,7 +2,10 @@ import { mainApi } from "./index";
 
 const extendedApi = mainApi.injectEndpoints({
   endpoints: (build) => ({
-    toggleWishlist: build.mutation<any,{ productId: number; customerId: number }>({
+    toggleWishlist: build.mutation<
+      any,
+      { productId: number; customerId: number }
+    >({
       query: (body) => ({
         url: "like",
         method: "POST",
@@ -15,7 +18,7 @@ const extendedApi = mainApi.injectEndpoints({
         url: `like/customer/${id}`,
         method: "GET",
       }),
-      providesTags: ["Wishlist", "Product"],
+      providesTags: ["Wishlist"],
     }),
 
     setWishlist: build.mutation<any, any>({

@@ -11,11 +11,16 @@ import Hero from "./Hero";
 const MainDetail = () => {
   const { id } = useParams();
   const { data: product } = useGetSingleProductQuery(Number(id));
-  const { data: category } = useGetSingleCategoryQuery(product?.categoryId);
-
-  const { data: relatedProducts } = useGetProductsQuery({
-    categoryId: product?.categoryId,
+  const { data: category } = useGetSingleCategoryQuery(product?.categoryId, {
+    skip: Boolean(!product),
   });
+
+  const { data: relatedProducts } = useGetProductsQuery(
+    {
+      categoryId: product?.categoryId,
+    },
+    { skip: Boolean(!category) }
+  );
 
   if (!product || !category) {
     return (
