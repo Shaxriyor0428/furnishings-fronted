@@ -4,12 +4,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useSignInMutation } from "../../../redux/api/customer-api";
-import { useDispatch } from "react-redux";
-import { saveToken } from "../../../redux/features/token-slice";
-import { saveStorage } from "../../../utils";
-import { saveEmail } from "../../../redux/features/otp-slice";
-import { saveUser } from "../../../redux/features/user-slice";
+import { useSignInMutation } from "@/redux/api/customer-api";
+import { useDispatch, useSelector } from "react-redux";
+import { saveToken } from "@/redux/features/token-slice";
+import { saveStorage } from "@/utils";
+import { saveEmail } from "@/redux/features/otp-slice";
+import { RootState } from "@/redux";
+import { useSetWishlistMutation } from "@/redux/api/wishlist-api";
+import { clearWishlist } from "@/redux/features/wishlist-slice";
 
 const schema = yup.object({
   email: yup
@@ -31,6 +33,9 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const wishlist = useSelector((state: RootState) => state.wishlist.value);
+  const [setWishlist] = useSetWishlistMutation();
+
   const [signIn] = useSignInMutation();
   const [lgError, setlgError] = useState("");
   const togglePasswordVisibility = () => {
@@ -58,8 +63,17 @@ const SignIn = () => {
         if (res?.data?.is_active) {
           dispatch(saveToken(res?.data?.access_token));
           saveStorage("access_token", res?.data?.access_token);
-          dispatch(saveUser({ email: data?.email, id: res?.data?.id }));
           setlgError("");
+          if (wishlist.length) {
+            setWishlist({
+              customerId: res?.data?.id,
+              wishlist: wishlist.map((item) => item.id),
+            })
+              .unwrap()
+              .then(() => {
+                dispatch(clearWishlist());
+              });
+          }
           return navigate("/auth/profile");
         } else {
           dispatch(saveEmail({ email: data.email }));

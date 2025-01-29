@@ -26,6 +26,7 @@ const HeaderSearch: FC<{ searchOpen: boolean; setSearchOpen: any }> = ({
   const handlClose = () => {
     setSearchOpen(false);
     setValue("");
+    
   };
 
   return (

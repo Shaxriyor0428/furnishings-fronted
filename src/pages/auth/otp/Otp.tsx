@@ -12,10 +12,15 @@ import { saveToken } from "@/redux/features/token-slice";
 import Timer from "./Timer";
 import { clearOtp } from "@/redux/features/otp-slice";
 import OTP from "./OtpElement";
+import { useSetWishlistMutation } from "@/redux/api/wishlist-api";
+import { clearWishlist } from "@/redux/features/wishlist-slice";
 
 export default function OTPInput() {
   const { email } = useSelector((state: RootState) => state.otp);
   const dispatch = useDispatch();
+
+  const wishlist = useSelector((state: RootState) => state.wishlist.value);
+  const [setWishlist] = useSetWishlistMutation();
 
   const [otp, setOtp] = React.useState("");
   const [reload, setReload] = React.useState(true);
@@ -50,7 +55,17 @@ export default function OTPInput() {
             dispatch(clearOtp());
           }, 300);
           dispatch(saveToken(res.access_token));
-          navigate("/auth/profile");
+          if (wishlist.length) {
+            setWishlist({
+              customerId: res?.id,
+              wishlist: wishlist.map((item) => item.id),
+            })
+              .unwrap()
+              .then(() => {
+                dispatch(clearWishlist());
+              });
+          }
+          return navigate("/auth/profile");
         });
     }
   }, [otp]);
