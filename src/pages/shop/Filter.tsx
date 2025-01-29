@@ -25,27 +25,27 @@ const Filter: FC<IFilterProps> = ({
         <div className="flex items-center gap-4 sm:gap-2">
           <button className="flex items-center gap-2 text-gray-700 dark:text-white hover:text-primary duration-300">
             <GiSettingsKnobs className="w-6 h-6 sm:w-5 sm:h-5" />
-            <span className="text-lg sm:text-sm font-medium">Filter</span>
+            <span className="text-xl max-sm:text-sm font-medium">Filter</span>
           </button>
           <button
             onClick={() => setGrid(true)}
             className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-zinc-700"
           >
-            <PiCirclesFourFill className="w-6 h-6 sm:w-5 sm:h-5" />
+            <PiCirclesFourFill className="w-6 h-6 max-sm:w-5 max-sm:h-5" />
           </button>
           <button
             onClick={() => setGrid(false)}
             className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-zinc-700"
           >
-            <BsViewList className="w-6 h-6 sm:w-5 sm:h-5" />
+            <BsViewList className="w-6 h-6 max-sm:w-5 max-sm:h-5" />
           </button>
         </div>
-        <p className="text-sm sm:text-xs text-gray-600 dark:text-gray-300">
+        <p className="text-lg max-sm:text-xs text-gray-600 dark:text-gray-300">
           Showing {page}–{data?.data?.limit} of {data?.data?.total} results
         </p>
         <div className="flex flex-wrap gap-4 sm:gap-2 items-center">
           <div className="flex items-center gap-2">
-            <span className="text-sm sm:text-xs">Show</span>
+            <span className="text-lg max-sm:text-sm">Show</span>
             <select
               onChange={(e) =>
                 setLimit && setLimit(parseInt(e.target.value, 10))
@@ -58,7 +58,7 @@ const Filter: FC<IFilterProps> = ({
             </select>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-sm sm:text-xs">Sort by</span>
+            <span className="text-lg max-sm:text-xs">Sort by</span>
             <select
               onChange={(e) => setSortBy && setSortBy(e.target.value)}
               className="cursor-pointer border rounded-md px-2 py-1 text-gray-700 dark:text-white dark:bg-zinc-800"
