@@ -71,12 +71,16 @@ const Insparation = () => {
                   <img
                     src={image.src}
                     alt={image.title}
-                    className="rounded-lg shadow-lg w-[500px] max-[400px]:w-[200px] transition-transform duration-300 group-hover:scale-105"
+                    className="rounded-lg dark:opacity-70 shadow-lg w-[500px] max-[400px]:w-[200px] transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute bottom-10 left-5 w-[90%] bg-white bg-opacity-50 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center px-6 py-4 rounded-lg">
-                    <div className="text-black">
-                      <p className="text-sm mb-1">01 - Bed Room</p>
-                      <h3 className="text-lg font-bold">Inner Peace</h3>
+                  <div className="absolute bottom-10 left-5 w-[90%] bg-white dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-60 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center px-6 py-4 rounded-lg">
+                    <div className="text-black dark:text-white">
+                      <p className="text-sm mb-1 text-gray-700 dark:text-gray-300">
+                        01 - Bed Room
+                      </p>
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                        Inner Peace
+                      </h3>
                     </div>
                     <button className="ml-auto bg-[#B88E2F] hover:bg-[#9C792A] text-white py-2 px-4 rounded shadow-md transition-all">
                       →
