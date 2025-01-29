@@ -1,4 +1,5 @@
 import { SuspenseContainer } from "@/config";
+import MainCart from "@/pages/cart/MainCart";
 import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
 
@@ -109,6 +110,14 @@ const Routers = () => {
           element: (
             <SuspenseContainer>
               <SignUp />
+            </SuspenseContainer>
+          ),
+        },
+        {
+          path: "/cart",
+          element: (
+            <SuspenseContainer>
+              <MainCart />
             </SuspenseContainer>
           ),
         },

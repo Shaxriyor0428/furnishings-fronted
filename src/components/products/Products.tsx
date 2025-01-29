@@ -1,9 +1,9 @@
 import { FC, memo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IProduct } from "../../types";
-import { IoCartOutline } from "react-icons/io5";
 import Heart from "./Heart";
 import Discount from "./Discount";
+import CartButton from "./CartButton";
 interface IProductProps {
   data: IProduct[];
   title?: any;
@@ -33,9 +33,9 @@ const Products: FC<IProductProps> = ({ data, title, grid }) => {
         />
       </div>
       <Heart product={product} />
-      <button className="hover:bg-slate-200 shadow-md dark:text-black absolute top-12 md:top-12 right-2 md:right-[-40px] delay-100 duration-300 group-hover:right-2 w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[20px]">
-        <IoCartOutline />
-      </button>
+      <div className="hover:bg-slate-200 shadow-md dark:text-black absolute top-12 md:top-12 right-2 md:right-[-40px] delay-100 duration-300 group-hover:right-2 w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[20px]">
+        <CartButton product={product} />
+      </div>
       {!!product.discount?.percent && (
         <Discount percent={Number(product.discount?.percent)} />
       )}
