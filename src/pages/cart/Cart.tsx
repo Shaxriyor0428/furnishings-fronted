@@ -18,8 +18,8 @@ const Cart = () => {
   );
 
   return (
-    <div className="container mx-auto p-4 flex max-[980px]:block  flex-col md:flex-row gap-6 dark:bg-zinc-900">
-      <div className="w-full md:w-2/3">
+    <div className="container mx-auto p-4 flex  flex-col lg:flex-row gap-6 dark:bg-zinc-900">
+      <div className="w-full lg:w-2/3">
         <div className="bg-[#F9F1E7] dark:bg-zinc-800 p-3 rounded-t-lg flex justify-between font-semibold text-base">
           <p className="w-1/4 text-center">Product</p>
           <p className="w-1/4 text-center">Price</p>
@@ -32,9 +32,9 @@ const Cart = () => {
             cart.map((product: ICartProduct) => (
               <div
                 key={product.id}
-                className="flex items-center justify-between border-b py-3 "
+                className="flex items-center justify-between border-b py-3 gap-3"
               >
-                <div className="w-1/4 flex items-center gap-5 ">
+                <div className="flex items-center gap-5">
                   <img
                     src={
                       import.meta.env.VITE_BASE_IMAGE_URL + product.images[0]
@@ -47,15 +47,15 @@ const Cart = () => {
                   </p>
                 </div>
 
-                <p className="w-1/4 text-center text-base text-black dark:text-white">
+                <p className="text-base text-black dark:text-white">
                   Rs.{product.price.toFixed(2)}
                 </p>
 
-                <div className="w-1/4 flex items-center justify-center gap-2">
+                <div className="flex items-center gap-2">
                   <button
                     disabled={product.amount <= 1}
                     onClick={() => dispatch(decrementAmountCart(product.id))}
-                    className=" text-xl px-2 py-1 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition"
+                    className="text-xl px-2 py-1 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition"
                   >
                     −
                   </button>
@@ -65,13 +65,13 @@ const Cart = () => {
                   <button
                     disabled={product.stock <= product.amount}
                     onClick={() => dispatch(incrementAmountCart(product.id))}
-                    className=" text-xl px-2 py-1 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition"
+                    className="text-xl px-2 py-1 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition"
                   >
                     +
                   </button>
                 </div>
 
-                <p className="w-1/4 text-center font-semibold text-base text-black dark:text-white">
+                <p className="font-semibold text-base text-black dark:text-white">
                   Rs.{(product.price * product.amount).toFixed(2)}
                 </p>
 
@@ -91,7 +91,7 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="w-full md:w-1/3 bg-[#F9F1E7] dark:bg-zinc-800 p-4 rounded-lg shadow-md">
+      <div className="w-full lg:w-1/3 bg-[#F9F1E7] dark:bg-zinc-800 p-4 rounded-lg shadow-md">
         <h3 className="text-2xl font-bold mb-10 text-center text-black dark:text-white">
           Cart Totals
         </h3>

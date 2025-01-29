@@ -33,9 +33,10 @@ const Products: FC<IProductProps> = ({ data, title, grid }) => {
         />
       </div>
       <Heart product={product} />
-      <div className="hover:bg-slate-200 shadow-md dark:text-black absolute top-12 md:top-12 right-2 md:right-[-40px] delay-100 duration-300 group-hover:right-2 w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[20px]">
+      <div className="absolute top-12 right-2 md:right-[-40px] group-hover:right-2 w-10 h-10 bg-white dark:text-black  shadow-md rounded-full flex items-center justify-center text-xl transition-all duration-300">
         <CartButton product={product} />
       </div>
+
       {!!product.discount?.percent && (
         <Discount percent={Number(product.discount?.percent)} />
       )}
