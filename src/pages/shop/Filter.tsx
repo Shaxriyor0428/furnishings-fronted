@@ -3,6 +3,14 @@ import { BsViewList } from "react-icons/bs";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { PiCirclesFourFill } from "react-icons/pi";
 import { IGetResponseProducts } from "../../types";
+import {
+  Box,
+  FormControl,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { useDarkMode } from "../../context/DarkModeProvider";
 
 interface IFilterProps {
   setGrid: (value: boolean) => void;
@@ -19,55 +27,102 @@ const Filter: FC<IFilterProps> = ({
   setLimit,
   setSortBy,
 }) => {
+  const { isDarkMode } = useDarkMode();
+
   return (
-    <div className="bg-[#F9F1E7] dark:bg-zinc-800 py-4 px-6 rounded-lg shadow-md">
+    <div
+      className={`p-4 rounded-lg shadow-md ${
+        isDarkMode ? "bg-zinc-800" : "bg-[#F9F1E7]"
+      }`}
+    >
       <div className="container flex flex-wrap justify-between items-center gap-4">
         <div className="flex items-center gap-4 sm:gap-2">
-          <button className="flex items-center gap-2 text-gray-700 dark:text-white hover:text-primary duration-300">
+          <button
+            className={`flex items-center gap-2 duration-300 ${
+              isDarkMode ? "text-white" : "text-gray-700"
+            } hover:text-primary`}
+          >
             <GiSettingsKnobs className="w-6 h-6 sm:w-5 sm:h-5" />
             <span className="text-xl max-sm:text-sm font-medium">Filter</span>
           </button>
           <button
+            className={`p-2 rounded-lg transition ${
+              isDarkMode ? "hover:bg-zinc-700" : "hover:bg-gray-300"
+            }`}
             onClick={() => setGrid(true)}
-            className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-zinc-700"
           >
             <PiCirclesFourFill className="w-6 h-6 max-sm:w-5 max-sm:h-5" />
           </button>
           <button
+            className={`p-2 rounded-lg transition ${
+              isDarkMode ? "hover:bg-zinc-700" : "hover:bg-gray-300"
+            }`}
             onClick={() => setGrid(false)}
-            className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-zinc-700"
           >
             <BsViewList className="w-6 h-6 max-sm:w-5 max-sm:h-5" />
           </button>
         </div>
-        <p className="text-lg max-sm:text-xs text-gray-600 dark:text-gray-300">
+
+        <p
+          className={`text-lg max-sm:text-xs ${
+            isDarkMode ? "text-gray-300" : "text-gray-600"
+          }`}
+        >
           Showing {page}–{data?.data?.limit} of {data?.data?.total} results
         </p>
+
         <div className="flex flex-wrap gap-4 sm:gap-2 items-center">
           <div className="flex items-center gap-2">
-            <span className="text-lg max-sm:text-sm">Show</span>
-            <select
-              onChange={(e) =>
-                setLimit && setLimit(parseInt(e.target.value, 10))
-              }
-              className="cursor-pointer border rounded-md px-2 py-1 text-gray-700 dark:text-white dark:bg-zinc-800"
+            <span
+              className={`text-lg max-sm:text-sm ${
+                isDarkMode ? "text-white" : "text-black"
+              }`}
             >
-              <option value="12">12</option>
-              <option value="16">16</option>
-              <option value="20">20</option>
-            </select>
+              Show
+            </span>
+            <Box sx={{ minWidth: 100 }}>
+              <FormControl fullWidth>
+                <Select
+                  className={`${
+                    isDarkMode ? "bg-zinc-700 dark:text-white text-white" : ""
+                  }`}
+                  value={data?.data?.limit || 12}
+                  onChange={(e: SelectChangeEvent<number>) =>
+                    setLimit && setLimit(Number(e.target.value))
+                  }
+                >
+                  <MenuItem value={12}>12</MenuItem>
+                  <MenuItem value={15}>15</MenuItem>
+                  <MenuItem value={20}>20</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
           </div>
+
           <div className="flex items-center gap-2">
-            <span className="text-lg max-sm:text-xs">Sort by</span>
-            <select
-              onChange={(e) => setSortBy && setSortBy(e.target.value)}
-              className="cursor-pointer border rounded-md px-2 py-1 text-gray-700 dark:text-white dark:bg-zinc-800"
+            <span
+              className={`text-lg max-sm:text-xs ${
+                isDarkMode ? "text-white dark:text-white" : "text-black"
+              }`}
             >
-              <option value="newest">Newest</option>
-              <option value="oldest">Oldest</option>
-              <option value="cheapest">Cheapest</option>
-              <option value="expensive">Most Expensive</option>
-            </select>
+              Sort by
+            </span>
+            <Box sx={{ minWidth: 150 }}>
+              <FormControl fullWidth>
+                <Select
+                  className={`${
+                    isDarkMode ? "bg-zinc-700 dark:text-white text-white" : ""
+                  }`}
+                  defaultValue="newest"
+                  onChange={(e) => setSortBy && setSortBy(e.target.value)}
+                >
+                  <MenuItem value="newest">Newest</MenuItem>
+                  <MenuItem value="oldest">Oldest</MenuItem>
+                  <MenuItem value="cheapest">Cheapest</MenuItem>
+                  <MenuItem value="expensive">Most Expensive</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
           </div>
         </div>
       </div>

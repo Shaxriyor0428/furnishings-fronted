@@ -30,6 +30,8 @@ const Header: FC = () => {
   });
 
   const wishlist = useSelector((state: RootState) => state.wishlist.value);
+  const cart = useSelector((state: RootState) => state.cart.value);
+
   const { data: wishlistData } = useGetWishlistQuery(
     Number(data?.customer?.id),
     { skip: Boolean(!data) }
@@ -40,6 +42,8 @@ const Header: FC = () => {
     : wishlist?.length
     ? wishlist?.length
     : 0;
+
+  const cartTotal = cart?.length || 0;
 
   const navigate = useNavigate();
   return (
@@ -93,7 +97,12 @@ const Header: FC = () => {
               </span>
             )}
           </NavLink>
-          <NavLink to={"/cart"}>
+          <NavLink to={"/cart"} className={"relative"}>
+            {!!cartTotal && (
+              <span className="absolute max-[986px]:hidden top-[-5px] right-[-5px] bg-bg-primary  w-4 rounded-full text-white flex items-center justify-center text-[12px] h-4">
+                {cartTotal}
+              </span>
+            )}
             <AiOutlineShoppingCart className="h-6 w-6 hover:text-bg-primary duration-200 max-[986px]:hidden" />
           </NavLink>
           <NavLink to={token ? "/auth/profile" : "/auth/sign-in"}>
@@ -173,8 +182,13 @@ const Header: FC = () => {
               <p className="text-xs">Wishlist</p>
             </div>
           </NavLink>
-          <NavLink to={"/cart"}>
+          <NavLink to={"/cart"} className={"relative"}>
             <div className="flex flex-col items-center hover:text-bg-primary duration-200">
+              {!!cartTotal && (
+                <span className="absolute top-[-5px] right-[-5px] bg-bg-primary  w-4 rounded-full text-white flex items-center justify-center text-[12px] h-4">
+                  {cartTotal}
+                </span>
+              )}
               <AiOutlineShoppingCart className="h-5 w-5" />
               <p className="text-xs">Cart</p>
             </div>
