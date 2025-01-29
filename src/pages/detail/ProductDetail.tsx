@@ -20,6 +20,7 @@ const ProductDetail = ({
   const [activeTab, setActiveTab] = useState("description");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState("");
+  
 
   const Modal = ({
     imageUrl,
@@ -148,14 +149,14 @@ const ProductDetail = ({
             <div className="flex items-center space-x-3 mt-4">
               <div className="flex items-center border border-gray-800 dark:border-gray-200 rounded-lg hover:border-bg-primary hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary duration-300">
                 <button
-                  className="px-2 py-1 rounded-lg text-sm font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
+                  className="px-[10px] py-1 rounded-lg text-sm font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
                   onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
                 >
                   -
                 </button>
-                <span className="text-base">{quantity}</span>
+                <span className="text-base px-[6px]">{quantity}</span>
                 <button
-                  className="px-2 py-1 rounded-lg text-sm font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
+                  className="px-[10px] py-1 rounded-lg text-sm font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
                   onClick={() => setQuantity((prev) => prev + 1)}
                 >
                   +
