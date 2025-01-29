@@ -7,16 +7,18 @@ import SwiperInfinite from "./swiper_infinite/swiper_infinite";
 import Insparation from "./Insparation";
 
 const Home = () => {
-  const { data } = useGetProductsQuery({ limit: 8 });
-  return (
-    <div>
-      <Hero />
-      <Browse />
-      {data && <Products data={data.data.products} title="Our products" />}
-      <Insparation />
-      <SwiperInfinite />
-    </div>
-  );
+    const { data } = useGetProductsQuery({ limit: 8 });
+    return (
+        <div>
+            <Hero />
+            <Browse />
+            {data && (
+                <Products data={data.data.products} title="Our products" />
+            )}
+            <Insparation />
+            <SwiperInfinite />
+        </div>
+    );
 };
 
 export default React.memo(Home);
