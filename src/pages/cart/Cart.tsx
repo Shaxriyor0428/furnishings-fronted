@@ -7,11 +7,15 @@ import {
 } from "@/redux/features/cart-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { IoTrashOutline } from "react-icons/io5";
+import { useEffect } from "react";
 
 const Cart = () => {
   const cart = useSelector((state: RootState) => state.cart.value);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const subtotal = cart.reduce(
     (acc, product) => acc + product.price * product.amount,
     0
