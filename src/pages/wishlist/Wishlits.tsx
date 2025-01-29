@@ -4,6 +4,7 @@ import { useGetWishlistQuery } from "../../redux/api/wishlist-api";
 import Products from "../../components/products/Products";
 import { useEffect } from "react";
 import { useCheckTokenQuery } from "@/redux/api/customer-api";
+import EmptyWishlist from "./EmptyWishlist";
 
 const Wishlist = () => {
   const wishlist = useSelector((state: RootState) => state.wishlist.value);
@@ -23,9 +24,11 @@ const Wishlist = () => {
       <Products
         data={token ? data?.data?.products : wishlist}
         title={
-          data?.data?.products?.length > 0 || wishlist?.length > 0
-            ? "Yours like products"
-            : "You have not like products"
+          data?.data?.products?.length > 0 || wishlist?.length > 0 ? (
+            "Yours like products"
+          ) : (
+            <EmptyWishlist />
+          )
         }
       />
     </>

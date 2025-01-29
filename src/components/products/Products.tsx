@@ -6,7 +6,7 @@ import Heart from "./Heart";
 import Discount from "./Discount";
 interface IProductProps {
   data: IProduct[];
-  title?: string;
+  title?: any;
   grid?: boolean;
 }
 const Products: FC<IProductProps> = ({ data, title, grid }) => {
