@@ -1,17 +1,21 @@
 import { REGIONS } from "@/static";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useCheckTokenQuery } from "@/redux/api/customer-api";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
-import { useCreateOrderMutation } from "../../redux/api/order-api";
+import { useCreateOrderMutation, useGetOrderQuery } from "../../redux/api/order-api";
 
 const schema = yup
   .object({
-    street: yup.string().required(),
-    region: yup.string().required(),
-    zipCode: yup.number().required(),
+    street: yup.string().required("Street is required"),
+    region: yup.string().required("Region is required"),
+    zip_code: yup
+      .number()
+      .required("Zip code is required")
+      .typeError("Zip code must be a number"),
+    district: yup.string().required("District is required"),
   })
   .required();
 
@@ -20,23 +24,30 @@ const Checkout = () => {
   const cart = useSelector((state: RootState) => state.cart.value);
   const [createOrder] = useCreateOrderMutation();
 
+  const {data:order} = useGetOrderQuery({})
+
+  console.log(order);
+  
   const {
     register,
     handleSubmit,
-    formState: {
-      /*errors*/
-    },
+    reset,
+    formState: { errors },
+    setFocus,
   } = useForm({
     resolver: yupResolver(schema),
+    mode: "onBlur",
+    defaultValues: {
+      district: "",
+      region: "",
+      street: "",
+      // zip_code: '' ,
+    },
   });
 
-  const onSubmit = (address: any) => {
-    // const totalPrice = cart?.reduce((sum, product)=> sum + (product.price * product.amount) ,0)
+  const onSubmit: SubmitHandler<any> = (address) => {
     const total_price = cart?.reduce(
-      (sum, product) =>
-        sum +
-        ((product.price * (100 - product.discount.percent)) / 100) *
-          product.amount,
+      (sum, product) => sum + product.price * product.amount,
       0
     );
     let order = {
@@ -49,26 +60,90 @@ const Checkout = () => {
       total_price,
     };
     createOrder(order);
+    reset();
   };
 
   return (
-    <div className="container">
-      <h2>Checkout</h2>
-      <form onSubmit={handleSubmit(onSubmit)} action="">
-        <input className="border" {...register("street")} type="text" />
-        <select className="border" {...register("region")} name="" id="">
-          <option value="" disabled>
-            {" "}
-            Choose region
-          </option>
-          {REGIONS?.map((region) => (
-            <option key={region} value={region}>
-              {region}
+    <div className="container max-w-2xl mx-auto mt-10 p-4 dark:bg-gray-800 dark:text-white">
+      <h2 className="text-3xl font-semibold mb-6 text-center">Checkout</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <div>
+          <input
+            className={`w-full p-3 border ${
+              errors.street ? "border-red-500" : "border-gray-300"
+            } rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 text-black dark:text-white`}
+            {...register("street")}
+            type="text"
+            placeholder="Street"
+            onFocus={() => setFocus("street")}
+          />
+          {errors.street && (
+            <p className="text-red-500 text-sm mt-1">{errors.street.message}</p>
+          )}
+        </div>
+
+        <div>
+          <select
+            className={`w-full p-3 border ${
+              errors.region ? "border-red-500" : "border-gray-300"
+            } rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 text-black dark:text-white`}
+            {...register("region")}
+            onFocus={() => setFocus("region")}
+          >
+            <option value="" disabled>
+              Choose region
             </option>
-          ))}
-        </select>
-        <input className="border" {...register("zipCode")} type="number" />
-        <button>Order</button>
+            {REGIONS?.map((region) => (
+              <option key={region} value={region}>
+                {region}
+              </option>
+            ))}
+          </select>
+          {errors.region && (
+            <p className="text-red-500 text-sm mt-1">{errors.region.message}</p>
+          )}
+        </div>
+
+        <div>
+          <input
+            className={`w-full p-3 border ${
+              errors.zip_code ? "border-red-500" : "border-gray-300"
+            } rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 text-black dark:text-white`}
+            {...register("zip_code")}
+            type="number"
+            placeholder="Zip Code"
+            onFocus={() => setFocus("zip_code")}
+          />
+          {errors.zip_code && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.zip_code.message}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <input
+            className={`w-full p-3 border ${
+              errors.district ? "border-red-500" : "border-gray-300"
+            } rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 text-black dark:text-white`}
+            {...register("district")}
+            type="text"
+            placeholder="District"
+            onFocus={() => setFocus("district")}
+          />
+          {errors.district && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.district.message}
+            </p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition"
+        >
+          Order
+        </button>
       </form>
     </div>
   );
