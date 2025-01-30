@@ -46,7 +46,7 @@ const Shop = () => {
 
   return (
     <>
-      <Hero title="Shop" />
+      <Hero title="Shop" path="/shop" />
       {data && (
         <Filter
           data={data}

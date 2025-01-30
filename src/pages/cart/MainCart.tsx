@@ -4,7 +4,7 @@ import Cart from "./Cart";
 const MainCart = () => {
   return (
     <>
-      <Hero title="Cart"/>
+      <Hero title="Cart" path="/cart"/>
       <Cart />
     </>
   );
