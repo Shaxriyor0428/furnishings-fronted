@@ -129,7 +129,7 @@ const Header: FC = () => {
       {menuOpen && (
         <div
           ref={ref}
-          className="absolute container top-14  w-full bg-white dark:bg-black shadow-md z-50"
+          className="absolute w-full bg-white dark:bg-black shadow-md z-50"
         >
           <div className="flex flex-col justify-center items-center py-4 gap-4">
             <div className="w-full border-b grid place-items-center pb-3">
