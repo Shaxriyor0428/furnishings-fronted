@@ -122,6 +122,7 @@ const Routers = () => {
               ),
             },
           ],
+          // Sign in and sign up start
         },
         {
           path: "/auth/sign-in",
@@ -139,6 +140,7 @@ const Routers = () => {
             </SuspenseContainer>
           ),
         },
+        // Sign in and sign up end
       ])}
     </>
   );
