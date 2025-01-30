@@ -28,8 +28,6 @@ const Cart = () => {
     (sum, product) => sum + product.price * product.amount,
     0
   );
-  console.log(total);
-  console.log(subtotal);
 
   return (
     <div className="container mx-auto p-4 flex  flex-col lg:flex-row gap-6 dark:bg-zinc-900">

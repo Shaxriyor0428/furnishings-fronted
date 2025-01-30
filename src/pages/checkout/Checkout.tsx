@@ -18,6 +18,7 @@ const schema = yup
       .required("Zip code is required")
       .typeError("Zip code must be a number"),
     district: yup.string().required("District is required"),
+    additional_info: yup.string().optional(),
   })
   .required();
 
@@ -43,6 +44,7 @@ const Checkout = () => {
       district: "",
       region: "",
       street: "",
+      additional_info: "",
       // zip_code: '' ,
     },
   });
@@ -61,6 +63,7 @@ const Checkout = () => {
       })),
       total_price,
     };
+
     createOrder(order);
     reset();
     return navigate("/auth/profile/self");
@@ -70,21 +73,6 @@ const Checkout = () => {
     <div className="container max-w-2xl mx-auto mt-10 p-4 dark:bg-gray-800 dark:text-white">
       <h2 className="text-3xl font-semibold mb-6 text-center">Checkout</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <div>
-          <input
-            className={`w-full p-3 border ${
-              errors.street ? "border-red-500" : "border-gray-300"
-            } rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 text-black dark:text-white`}
-            {...register("street")}
-            type="text"
-            placeholder="Street"
-            onFocus={() => setFocus("street")}
-          />
-          {errors.street && (
-            <p className="text-red-500 text-sm mt-1">{errors.street.message}</p>
-          )}
-        </div>
-
         <div>
           <select
             className={`w-full p-3 border ${
@@ -110,6 +98,38 @@ const Checkout = () => {
         <div>
           <input
             className={`w-full p-3 border ${
+              errors.district ? "border-red-500" : "border-gray-300"
+            } rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 text-black dark:text-white`}
+            {...register("district")}
+            type="text"
+            placeholder="District"
+            onFocus={() => setFocus("district")}
+          />
+          {errors.district && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.district.message}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <input
+            className={`w-full p-3 border ${
+              errors.street ? "border-red-500" : "border-gray-300"
+            } rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 text-black dark:text-white`}
+            {...register("street")}
+            type="text"
+            placeholder="Street"
+            onFocus={() => setFocus("street")}
+          />
+          {errors.street && (
+            <p className="text-red-500 text-sm mt-1">{errors.street.message}</p>
+          )}
+        </div>
+
+        <div>
+          <input
+            className={`w-full p-3 border ${
               errors.zip_code ? "border-red-500" : "border-gray-300"
             } rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 text-black dark:text-white`}
             {...register("zip_code")}
@@ -127,20 +147,14 @@ const Checkout = () => {
         <div>
           <input
             className={`w-full p-3 border ${
-              errors.district ? "border-red-500" : "border-gray-300"
+              errors.additional_info ? "border-red-500" : "border-gray-300"
             } rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 text-black dark:text-white`}
-            {...register("district")}
+            {...register("additional_info")}
             type="text"
-            placeholder="District"
-            onFocus={() => setFocus("district")}
+            placeholder="Additional info"
+            onFocus={() => setFocus("additional_info")}
           />
-          {errors.district && (
-            <p className="text-red-500 text-sm mt-1">
-              {errors.district.message}
-            </p>
-          )}
         </div>
-
         <button
           type="submit"
           className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition"
