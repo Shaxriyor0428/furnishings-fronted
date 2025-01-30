@@ -8,11 +8,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { IoTrashOutline } from "react-icons/io5";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector((state: RootState) => state.cart.value);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -129,7 +130,10 @@ const Cart = () => {
             Rs.{subtotal.toFixed(2)}
           </p>
         </div>
-        <div className="flex justify-center pt-10">
+        <div
+          onClick={() => navigate("/checkout")}
+          className="flex justify-center pt-10"
+        >
           <button
             className="w-full py-3 text-lg font-semibold transition-all duration-300 border rounded-lg shadow-md text-white bg-bg-primary hover:opacity-85 active:scale-95 
                  dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-500 dark:text-gray-200"
