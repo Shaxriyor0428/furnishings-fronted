@@ -5,7 +5,9 @@ import * as yup from "yup";
 import { useCheckTokenQuery } from "@/redux/api/customer-api";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
-import { useCreateOrderMutation, useGetOrderQuery } from "../../redux/api/order-api";
+import { useCreateOrderMutation } from "../../redux/api/order-api";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup
   .object({
@@ -23,11 +25,11 @@ const Checkout = () => {
   const { data } = useCheckTokenQuery(null);
   const cart = useSelector((state: RootState) => state.cart.value);
   const [createOrder] = useCreateOrderMutation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-  const {data:order} = useGetOrderQuery({})
-
-  console.log(order);
-  
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -61,6 +63,7 @@ const Checkout = () => {
     };
     createOrder(order);
     reset();
+    return navigate("/auth/profile/self");
   };
 
   return (
