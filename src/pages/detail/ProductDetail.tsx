@@ -90,7 +90,7 @@ const ProductDetail = ({
                   key={index}
                   src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
                   alt={`Thumbnail ${index + 1}`}
-                  className="w-40 h-24 object-cover rounded cursor-pointer border-2 border-gray-200 hover:border-blue-500"
+                  className="w-40 h-24 object-cover max-sm:w-30 max-sm:h-14px max-[450px]:w-15 rounded cursor-pointer border-2 border-gray-200 hover:border-blue-500"
                   onClick={() => setSelectedImage(index)}
                 />
               ))}

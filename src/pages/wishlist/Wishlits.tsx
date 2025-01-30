@@ -25,7 +25,7 @@ const Wishlist = () => {
         data={token ? data?.data?.products : wishlist}
         title={
           data?.data?.products?.length > 0 || wishlist?.length > 0 ? (
-            "Yours like products"
+            "Your like products"
           ) : (
             <EmptyWishlist />
           )
