@@ -1,7 +1,7 @@
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-const Hero = ({ title }: { title: string }) => {
+const Hero = ({ title,path }: { title: string,path:string }) => {
   const navigate = useNavigate();
   return (
     <div className="relative bg-main-hero-image bg-cover bg-center font-poppins">
@@ -20,7 +20,7 @@ const Hero = ({ title }: { title: string }) => {
             </span>
             <MdOutlineArrowForwardIos className="inline-block" />
             <span
-              onClick={() => navigate("/cart")}
+              onClick={() => navigate(path)}
               className="font-light cursor-pointer hover:text-bg-primary duration-300"
             >
               {title}
