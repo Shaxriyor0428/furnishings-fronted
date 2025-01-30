@@ -1,11 +1,11 @@
-import { useCheckTokenQuery } from "@/redux/api/customer-api";
+// import { useCheckTokenQuery } from "@/redux/api/customer-api";
 import { NavLink, Outlet } from "react-router-dom";
 import "./Profile.scss";
 import { useDispatch } from "react-redux";
 import { clearToken } from "@/redux/features/token-slice";
 
 const Profile = () => {
-  const { data } = useCheckTokenQuery(null);
+  // const { data } = useCheckTokenQuery(null);
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
