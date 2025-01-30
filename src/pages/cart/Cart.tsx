@@ -129,8 +129,11 @@ const Cart = () => {
             Rs.{subtotal.toFixed(2)}
           </p>
         </div>
-        <div className="flex justify-center pt-6">
-          <button className="w-full max-w-xs border dark:border-white border-black text-black py-2 px-6 rounded-md text-lg font-semibold transition  dark:text-white">
+        <div className="flex justify-center pt-10">
+          <button
+            className="w-full py-3 text-lg font-semibold transition-all duration-300 border rounded-lg shadow-md text-white bg-bg-primary hover:opacity-85 active:scale-95 
+                 dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-500 dark:text-gray-200"
+          >
             Check Out
           </button>
         </div>
