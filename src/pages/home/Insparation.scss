@@ -32,6 +32,15 @@
   transition: all 0.3s ease;
 }
 
+@media (max-width: 400px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
   background-color: #9c792a;
