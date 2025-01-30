@@ -26,11 +26,11 @@ export interface IProduct {
   sku: string;
   colors: string[];
   tags: string[];
-  is_liked?: boolean;
-  discount?: {
-    percent?: number;
+  is_liked: boolean;
+  discount: {
+    percent: number;
   };
-  reviews?: IReview[];
+  reviews: IReview[];
 }
 export interface IProductQuery {
   filter?: string;

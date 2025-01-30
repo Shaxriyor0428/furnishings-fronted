@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useGetProductsQuery } from "../../redux/api/product-api";
 import Products from "../../components/products/Products";
 import { Pagination } from "@mui/material";
-import Hero from "./Hero";
+import Hero from "../../components/hero/Hero";
 import "./Shop.scss";
 import Filter from "./Filter";
 import { useDarkMode } from "../../context/DarkModeProvider";
@@ -46,7 +46,7 @@ const Shop = () => {
 
   return (
     <>
-      <Hero />
+      <Hero title="Shop" />
       {data && (
         <Filter
           data={data}
