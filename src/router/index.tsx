@@ -2,6 +2,8 @@ import { SuspenseContainer } from "@/config";
 import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
 
+const About = lazy(() => import("@/pages/about/About"));
+const Contact = lazy(() => import("@/pages/contact/Contact"));
 const MainCart = lazy(() => import("@/pages/cart/MainCart"));
 const Wishlist = lazy(() => import("@/pages/wishlist/Wishlits"));
 const Profile = lazy(() => import("@/pages/auth/profile/Profile"));
@@ -48,6 +50,22 @@ const Routers = () => {
               element: (
                 <SuspenseContainer>
                   <MainCart />
+                </SuspenseContainer>
+              ),
+            },
+            {
+              path: "/about",
+              element: (
+                <SuspenseContainer>
+                  <About />
+                </SuspenseContainer>
+              ),
+            },
+            {
+              path: "/contact",
+              element: (
+                <SuspenseContainer>
+                  <Contact />
                 </SuspenseContainer>
               ),
             },
