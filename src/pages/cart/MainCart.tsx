@@ -1,19 +1,13 @@
-import Header from '@/components/header/Header'
-import Hero from './Hero'
-import Cart from './Cart'
-import Footer from '@/components/footer/Footer'
-import Info from '@/components/info/Info'
+import Hero from "./Hero";
+import Cart from "./Cart";
 
 const MainCart = () => {
   return (
-    <div>
-        <Header/>
-        <Hero/>
-        <Cart/>
-        <Info/>
-        <Footer/>
-    </div>
-  )
-}
+    <>
+      <Hero />
+      <Cart />
+    </>
+  );
+};
 
-export default MainCart
+export default MainCart;
