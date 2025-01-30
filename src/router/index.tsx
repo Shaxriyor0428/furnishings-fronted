@@ -1,6 +1,8 @@
 import { SuspenseContainer } from "@/config";
 import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
+import Self from "../pages/auth/profile/self/Self";
+import Order from "../pages/auth/profile/order/Order";
 
 const About = lazy(() => import("@/pages/about/About"));
 const Contact = lazy(() => import("@/pages/contact/Contact"));
@@ -101,6 +103,24 @@ const Routers = () => {
                       <Profile />
                     </SuspenseContainer>
                   ),
+                  children: [
+                    {
+                      path: "self",
+                      element: (
+                        <SuspenseContainer>
+                          <Self />
+                        </SuspenseContainer>
+                      ),
+                    },
+                    {
+                      path: "order",
+                      element: (
+                        <SuspenseContainer>
+                          <Order />
+                        </SuspenseContainer>
+                      ),
+                    },
+                  ],
                 },
               ],
             },
