@@ -110,7 +110,7 @@ const Header: FC = () => {
             )}
             <AiOutlineShoppingCart className="h-6 w-6 hover:text-bg-primary duration-200 max-[986px]:hidden" />
           </NavLink>
-          <NavLink to={token ? "/auth/profile" : "/auth/sign-in"}>
+          <NavLink to={token ? "/auth/profile/self" : "/auth/sign-in"}>
             {isSuccess ? (
               <div className="w-8 h-8 bg-bg-primary max-[986px]:hidden rounded-full flex items-center justify-center text-white uppercase">
                 {data?.customer?.first_name?.trim()?.slice(0, 1)}
@@ -152,7 +152,7 @@ const Header: FC = () => {
             </div>
             <div className="w-full border-b grid place-items-center pb-3">
               <NavLink
-                to="/auth/profile"
+                to="/auth/profile/self"
                 onClick={() => setMenuOpen(false)}
                 className="text-lg font-medium hover:text-bg-primary duration-200"
               >

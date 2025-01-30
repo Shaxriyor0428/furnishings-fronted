@@ -74,7 +74,7 @@ const SignIn = () => {
                 dispatch(clearWishlist());
               });
           }
-          return navigate("/auth/profile");
+          return navigate("/auth/profile/self");
         } else {
           dispatch(saveEmail({ email: data.email }));
           return navigate("/auth/otp");
