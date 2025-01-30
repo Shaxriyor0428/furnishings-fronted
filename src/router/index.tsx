@@ -16,6 +16,7 @@ const NotFound = lazy(() => import("@/pages/not-found/NotFound"));
 const SignUp = lazy(() => import("@/pages/auth/sign-up/SignUp"));
 const SignIn = lazy(() => import("@/pages/auth/sign-in/SignIn"));
 const Otp = lazy(() => import("@/pages/auth/otp/Otp"));
+const Checkout = lazy(() => import("@/pages/checkout/Checkout"));
 
 const Routers = () => {
   return (
@@ -74,6 +75,14 @@ const Routers = () => {
               element: (
                 <SuspenseContainer>
                   <Wishlist />
+                </SuspenseContainer>
+              ),
+            },
+            {
+              path: "/checkout",
+              element: (
+                <SuspenseContainer>
+                  <Checkout />
                 </SuspenseContainer>
               ),
             },
