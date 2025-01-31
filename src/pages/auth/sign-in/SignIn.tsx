@@ -12,6 +12,7 @@ import { saveEmail } from "@/redux/features/otp-slice";
 import { RootState } from "@/redux";
 import { useSetWishlistMutation } from "@/redux/api/wishlist-api";
 import { clearWishlist } from "@/redux/features/wishlist-slice";
+import { useParamsHook } from "../../../hooks/useParamsHook";
 
 const schema = yup.object({
   email: yup
@@ -31,6 +32,7 @@ interface ISignIn {
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const { getParam } = useParamsHook();
 
   const [showPassword, setShowPassword] = useState(false);
   const wishlist = useSelector((state: RootState) => state.wishlist.value);
@@ -74,7 +76,9 @@ const SignIn = () => {
                 dispatch(clearWishlist());
               });
           }
-          return navigate("/auth/profile/self");
+          getParam("q") === "checkout"
+            ? navigate("/checkout")
+            : navigate("/auth/profile/self");
         } else {
           dispatch(saveEmail({ email: data.email }));
           return navigate("/auth/otp");
