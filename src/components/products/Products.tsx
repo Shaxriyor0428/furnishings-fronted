@@ -34,7 +34,7 @@ const Products: FC<IProductProps> = ({ data, title, grid }) => {
         />
       </div>
 
-      <div className="absolute top-2  right-2 flex flex-col gap-2 max-sm:gap-1">
+      <div className="absolute top-2 flex flex-col gap-2 max-sm:gap-1 right-[-50px] group-hover:right-2 duration-300 max-md:right-2">
         <Heart product={product} />
         <CartButton product={product} />
       </div>
@@ -43,7 +43,7 @@ const Products: FC<IProductProps> = ({ data, title, grid }) => {
         <Discount percent={Number(product.discount?.percent)} />
       )}
 
-      <div className=" dark:bg-zinc-800 transition-colors duration-300 p-4 max-[500px]:py-1 max-[500px]:px-2">
+      <div className=" dark:bg-zinc-800 transition-colors duration-300 p-4 max-[500px]:p-1">
         <h2 className="line-clamp-1 text-[20px] font-semibold leading-8 max-[620px]:text-lg">
           {product.name}
         </h2>
