@@ -8,7 +8,7 @@ import Insparation from "./Insparation";
 import Skeleton from "../../components/products/Skeleton";
 
 const Home = () => {
-  const { data, isLoading } = useGetProductsQuery({ limit: 8 });
+  const { data } = useGetProductsQuery({ limit: 8 });
   return (
     <div>
       <Hero />
