@@ -80,7 +80,7 @@ const Shop = () => {
           setSortBy={setSortBy}
         />
       )}
-      <section className="container">
+      <section>
         {isLoading ? (
           <Skeleton grid={grid} count={limit} />
         ) : data ? (

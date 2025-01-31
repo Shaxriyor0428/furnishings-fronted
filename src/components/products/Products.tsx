@@ -23,7 +23,7 @@ const Products: FC<IProductProps> = ({ data, title, grid }) => {
         onClick={() => navigate(`/product/${product.id}`)}
         className={`relative w-full overflow-hidden  ${
           grid || !pathname.startsWith("/shop")
-            ? "h-[301px] max-[620px]:h-[240px] max-[450px]:h-[200px]"
+            ? "h-[301px] max-[620px]:h-[240px] max-[450px]:h-[180px]"
             : "h-[500px] max-[620px]:h-[400px] max-[450px]:h-[300px]"
         } `}
       >
@@ -43,7 +43,7 @@ const Products: FC<IProductProps> = ({ data, title, grid }) => {
       {!!product.discount?.percent && (
         <Discount percent={Number(product.discount?.percent)} />
       )}
-      <div className="py-4 px-4  dark:bg-zinc-800 transition-colors duration-300">
+      <div className="py-4 px-4 max-[450px]:py-2 max-[450px]:px-2  dark:bg-zinc-800 transition-colors duration-300">
         <h2
           title={product.name}
           className="line-clamp-1 text-[24px] font-semibold leading-8 max-[620px]:text-lg"
