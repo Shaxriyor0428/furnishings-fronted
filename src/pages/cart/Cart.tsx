@@ -30,9 +30,9 @@ const Cart = () => {
   );
 
   return (
-    <div className="container mx-auto p-4 flex  flex-col lg:flex-row gap-6 dark:bg-zinc-900">
+    <div className="container p-4 flex  flex-col lg:flex-row items-start gap-6 dark:bg-zinc-900">
       <div className="w-full lg:w-2/3">
-        <div className=" dark:bg-zinc-900 p-3 rounded-t-lg ">
+        <div className=" dark:bg-zinc-900 md:p-3 py-0 rounded-t-lg ">
           <table className="w-full table-auto text-left hidden md:table">
             <thead>
               <tr className="font-semibold text-base bg-[#F9F1E7] dark:bg-zinc-800">
@@ -117,7 +117,7 @@ const Cart = () => {
             </tbody>
           </table>
 
-          <div className="md:hidden p-4">
+          <div className="md:hidden md:p-4 py-4">
             {cart.length > 0 ? (
               cart.map((product: ICartProduct) => (
                 <div
@@ -171,7 +171,7 @@ const Cart = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between ">
                     <p className="text-sm text-gray-600 dark:text-gray-300">
                       Subtotal:
                     </p>
@@ -199,7 +199,7 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="w-full lg:w-1/3 bg-[#F9F1E7] dark:bg-zinc-800 p-4 rounded-lg shadow-md">
+      <div className="w-full lg:sticky lg:top-[90px] lg:w-1/3 bg-[#F9F1E7] dark:bg-zinc-800 p-4 rounded-lg shadow-md">
         <h3 className="text-2xl font-bold mb-10 text-center text-black dark:text-white">
           Cart Totals
         </h3>

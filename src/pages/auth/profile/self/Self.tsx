@@ -1,9 +1,12 @@
-import { memo } from "react"
+import { memo } from "react";
+import { useGetOrderQuery } from "@/redux/api/order-api";
 
 const Self = () => {
-  return (
-    <div>Self</div>
-  )
-}
+  const { data } = useGetOrderQuery(null);
 
-export default memo(Self)
+  console.log(data);
+
+  return <div>Self</div>;
+};
+
+export default memo(Self);
