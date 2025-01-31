@@ -188,7 +188,7 @@ const SignIn = () => {
           Don't have an account?{" "}
           <Link
             to={"/auth/sign-up"}
-            className="text-black dark:text-white hover:text-bg-primary"
+            className="font-medium text-primary-600 hover:underline dark:text-primary-500"
           >
             Sign up
           </Link>

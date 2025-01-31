@@ -161,7 +161,7 @@ const Cart = () => {
                     <p className="text-sm text-gray-600 dark:text-gray-300">
                       Quantity:
                     </p>
-                    <div className="flex items-center gap-3 dark:bg-zinc-800 px-3 py-2 rounded-md shadow-sm">
+                    <div className="flex items-center dark:bg-zinc-800 px-3 py-2 rounded-md shadow-sm">
                       <button
                         disabled={product.amount <= 1}
                         onClick={() =>
