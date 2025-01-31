@@ -10,7 +10,6 @@ import {
 import { FiSearch, FiShoppingBag } from "react-icons/fi";
 import { MdMenu } from "react-icons/md";
 import { LuUser } from "react-icons/lu";
-import { PiXBold } from "react-icons/pi";
 import useOnlineonline from "@/hooks/useOnlineStatus";
 import "./Header.scss";
 import HeaderSearch from "./HeaderSearch";
@@ -19,6 +18,7 @@ import { RootState } from "@/redux";
 import Switch from "./Switcher";
 import { useCheckTokenQuery } from "../../redux/api/customer-api";
 import { useGetWishlistQuery } from "../../redux/api/wishlist-api";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 
 const Header: FC = () => {
   const token = useSelector((state: RootState) => state.token.access_token);
@@ -44,6 +44,11 @@ const Header: FC = () => {
     : 0;
 
   const cartTotal = cart?.length || 0;
+
+  const handleClear = () => {
+    setMenuOpen(false);
+  };
+  const ref = useOutsideClick(handleClear);
 
   const navigate = useNavigate();
   return (
@@ -105,7 +110,7 @@ const Header: FC = () => {
             )}
             <AiOutlineShoppingCart className="h-6 w-6 hover:text-bg-primary duration-200 max-[986px]:hidden" />
           </NavLink>
-          <NavLink to={token ? "/auth/profile" : "/auth/sign-in"}>
+          <NavLink to={token ? "/auth/profile/self" : "/auth/sign-in"}>
             {isSuccess ? (
               <div className="w-8 h-8 bg-bg-primary max-[986px]:hidden rounded-full flex items-center justify-center text-white uppercase">
                 {data?.customer?.first_name?.trim()?.slice(0, 1)}
@@ -122,38 +127,38 @@ const Header: FC = () => {
       </div>
       <HeaderSearch setSearchOpen={setSearchOpen} searchOpen={searchOpen} />
       {menuOpen && (
-        <div className="absolute  container top-20 border-t  w-1/2 right-0 bg-white dark:bg-black shadow-md z-50">
-          <div className="flex justify-between items-center p-4">
-            <h2 className="text-lg font-bold">Menu</h2>
-            <button
-              onClick={() => setMenuOpen(false)}
-              className="text-gray-600 hover:text-black dark:hover:text-white"
-            >
-              <PiXBold className="h-6 w-6" />
-            </button>
-          </div>
-          <div className="flex flex-col p-4 gap-4">
-            <NavLink
-              to="/about"
-              onClick={() => setMenuOpen(false)}
-              className="text-lg font-medium hover:text-bg-primary duration-200"
-            >
-              About
-            </NavLink>
-            <NavLink
-              to="/contact"
-              onClick={() => setMenuOpen(false)}
-              className="text-lg font-medium hover:text-bg-primary duration-200"
-            >
-              Contact
-            </NavLink>
-            <NavLink
-              to="/auth/profile"
-              onClick={() => setMenuOpen(false)}
-              className="text-lg font-medium hover:text-bg-primary duration-200"
-            >
-              Profile
-            </NavLink>
+        <div
+          ref={ref}
+          className="absolute w-full bg-white dark:bg-black shadow-md z-50"
+        >
+          <div className="flex flex-col justify-center items-center py-4 gap-4">
+            <div className="w-full border-b grid place-items-center pb-3">
+              <NavLink
+                to="/about"
+                onClick={() => setMenuOpen(false)}
+                className="text-lg font-medium hover:text-bg-primary duration-200"
+              >
+                About
+              </NavLink>
+            </div>
+            <div className="w-full border-b grid place-items-center pb-3">
+              <NavLink
+                to="/contact"
+                onClick={() => setMenuOpen(false)}
+                className="text-lg font-medium hover:text-bg-primary duration-200"
+              >
+                Contact
+              </NavLink>
+            </div>
+            <div className="w-full border-b grid place-items-center pb-3">
+              <NavLink
+                to="/auth/profile/self"
+                onClick={() => setMenuOpen(false)}
+                className="text-lg font-medium hover:text-bg-primary duration-200"
+              >
+                Profile
+              </NavLink>
+            </div>
           </div>
         </div>
       )}
