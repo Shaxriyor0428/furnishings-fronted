@@ -15,7 +15,10 @@ const Products: FC<IProductProps> = ({ data, title, grid }) => {
 
   const navigate = useNavigate();
   const productItems = data?.map((product: IProduct) => (
-    <div key={product.id} className="relative overflow-hidden group rounded-lg shadow bg-white dark:bg-zinc-800">
+    <div
+      key={product.id}
+      className="relative overflow-hidden group rounded-lg shadow bg-white dark:bg-zinc-800"
+    >
       <div
         onClick={() => navigate(`/product/${product.id}`)}
         className={`relative w-full overflow-hidden cursor-pointer transition-all duration-300 ${
@@ -40,7 +43,7 @@ const Products: FC<IProductProps> = ({ data, title, grid }) => {
         <Discount percent={Number(product.discount?.percent)} />
       )}
 
-      <div className="p-4 dark:bg-zinc-800 transition-colors duration-300">
+      <div className=" dark:bg-zinc-800 transition-colors duration-300 p-4 max-[500px]:py-1 max-[500px]:px-2">
         <h2 className="line-clamp-1 text-[20px] font-semibold leading-8 max-[620px]:text-lg">
           {product.name}
         </h2>
