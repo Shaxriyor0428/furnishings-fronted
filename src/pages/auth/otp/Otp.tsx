@@ -75,7 +75,7 @@ export default function OTPInput() {
   }, [otp]);
 
   return !email ? (
-    <Navigate replace to={"/auth/sign-in"} />
+    <Navigate replace to={"/"} />
   ) : (
     <Box
       sx={{
