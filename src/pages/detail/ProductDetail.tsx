@@ -80,7 +80,7 @@ const ProductDetail = ({
 
   return (
     <>
-      <div className="container mx-auto my-10">
+      <div id="product__detail" className="container mx-auto my-10 ">
         <div className="grid grid-cols-2 gap-8 max-[990px]:grid-cols-1 pb-10">
           <div className="flex">
             <div className="product__detail flex flex-col space-y-4 mr-4 overflow-y-auto h-80 no-scrollbar">
