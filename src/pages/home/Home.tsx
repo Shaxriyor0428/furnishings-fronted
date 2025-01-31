@@ -8,12 +8,12 @@ import Insparation from "./Insparation";
 import Skeleton from "../../components/products/Skeleton";
 
 const Home = () => {
-  const { data, isFetching } = useGetProductsQuery({ limit: 8 });
+  const { data, isLoading } = useGetProductsQuery({ limit: 8 });
   return (
     <div>
       <Hero />
       <Browse />!
-      {!data || isFetching ? (
+      {!data  ? (
         <Skeleton count={8} />
       ) : (
         <Products data={data.data.products} title="Our products" />
