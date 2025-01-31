@@ -32,10 +32,10 @@ const Products: FC<IProductProps> = ({ data, title, grid }) => {
           alt={product.name}
         />
       </div>
-      <div className="absolute top-1 md:right-[-40px] group-hover:right-2 shadow-md rounded-full flex items-center justify-center transition-all duration-300">
+      <div className="absolute top-1 md:right-[-40px] max-[768px]:right-2 group-hover:right-2 shadow-md rounded-full flex items-center justify-center transition-all duration-300">
         <Heart product={product} />
       </div>
-      <div className="absolute top-11 md:right-[-40px] group-hover:right-2 shadow-md rounded-full flex items-center justify-center transition-all duration-500">
+      <div className="absolute top-11 md:right-[-40px] max-[768px]:right-2 group-hover:right-2 shadow-md rounded-full flex items-center justify-center transition-all duration-500">
         <CartButton product={product} />
       </div>
 

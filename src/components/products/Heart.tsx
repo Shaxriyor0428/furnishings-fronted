@@ -47,7 +47,7 @@ const Heart = ({ product }: { product: IProduct }) => {
   return (
     <button
       onClick={handleLike}
-      className="hover:bg-slate-200 shadow-md dark:text-black top-1 md:top-2 md:right-[-40px] right-2 duration-300 group-hover:right-2 w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[20px]"
+      className="hover:bg-slate-200 shadow-md dark:text-black top-1 right-2 duration-300 group-hover:right-2 w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[20px]"
     >
       {token ? (
         heartState ? (

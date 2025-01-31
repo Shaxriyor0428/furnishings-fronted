@@ -12,7 +12,7 @@ const CartButton = ({ product }: { product: IProduct }) => {
   return (
     <button
       onClick={() => dispatch(addCart(product))}
-      className="hover:bg-slate-200 shadow-md dark:text-black  top-1 md:top-2 md:right-[-40px] duration-300 group-hover:right-2 w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[20px]"
+      className="hover:bg-slate-200 shadow-md dark:text-black top-1 duration-300 group-hover:right-2 w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[20px]"
     >
       {cartData?.some((cart) => cart.id === product.id) ? (
         <IoCart />
