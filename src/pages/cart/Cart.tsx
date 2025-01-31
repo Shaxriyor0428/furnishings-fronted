@@ -35,7 +35,7 @@ const Cart = () => {
         <div className=" dark:bg-zinc-900 md:p-3 py-0 rounded-t-lg ">
           <table className="w-full table-auto text-left hidden md:table">
             <thead>
-              <tr className="font-semibold text-base bg-[#F9F1E7] dark:bg-zinc-800">
+              <tr className="font-semibold text-base bg-slate-50 dark:bg-zinc-800">
                 <th className="px-4 py-3 text-center">Product</th>
                 <th className="px-4 py-3 text-center">Price</th>
                 <th className="px-4 py-3 text-center">Quantity</th>
@@ -122,7 +122,7 @@ const Cart = () => {
               cart.map((product: ICartProduct) => (
                 <div
                   key={product.id}
-                  className="border border-[#F9F1E7] dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900 shadow-lg rounded-xl mb-4 flex flex-col gap-4 transition-transform "
+                  className="border border-[#F9F1E7] dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900 shadow-sm rounded-xl mb-4 flex flex-col gap-4 transition-transform "
                 >
                   <div className="flex gap-6 items-center">
                     <img
@@ -199,7 +199,7 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="w-full lg:sticky lg:top-[90px] lg:w-1/3 bg-[#F9F1E7] dark:bg-zinc-800 p-4 rounded-lg shadow-md">
+      <div className="w-full lg:sticky lg:top-[90px] lg:w-1/3  dark:bg-zinc-800 p-4 rounded-lg shadow-md">
         <h3 className="text-2xl font-bold mb-10 text-center text-black dark:text-white">
           Cart Totals
         </h3>

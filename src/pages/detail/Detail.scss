@@ -1,49 +1,48 @@
 .product__detail::-webkit-scrollbar {
-    width: 10px; 
+  width: 10px;
 }
 
 .product__detail::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-    border-radius: 10px; 
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+#product__detail {
+  scroll-behavior: smooth;
 }
 
 .product__detail::-webkit-scrollbar-thumb {
-    background-color: #B88E2F; 
-    border-radius: 10px;
-    border: 3px solid #f1f1f1; 
+  background-color: #b88e2f;
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
 }
 
 .loader {
-    width: 50px;
-    aspect-ratio: 1;
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-right-color: rgba(255, 165, 0, 0.59);
+  position: relative;
+  animation: l24 1s infinite linear;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
     border-radius: 50%;
-    border: 8px solid transparent;
-    border-right-color: rgba(255, 165, 0, 0.59);
-    position: relative;
-    animation: l24 1s infinite linear;
-  
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      border: inherit;
-      animation: inherit;
-      animation-duration: 2s;
-    }
-  
-    &::after {
-      animation-duration: 4s;
-    }
+    border: inherit;
+    animation: inherit;
+    animation-duration: 2s;
   }
-  
-  @keyframes l24 {
-    100% {
-      transform: rotate(1turn);
-    }
+
+  &::after {
+    animation-duration: 4s;
   }
-  
-  
-  
-  
+}
+
+@keyframes l24 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
