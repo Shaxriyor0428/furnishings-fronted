@@ -132,12 +132,12 @@ const Cart = () => {
             </tbody>
           </table>
 
-          <div className="md:hidden md:p-4 py-4">
+          <div className="md:hidden md:p-4 py-4 sm:p-0">
             {cart.length > 0 ? (
               cart.map((product: ICartProduct) => (
                 <div
                   key={product.id}
-                  className="border border-[#F9F1E7] dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900 shadow-sm rounded-xl mb-4 flex flex-col gap-4 transition-transform "
+                  className="border border-[#F9F1E7] dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900 shadow-sm rounded-xl mb-4 flex flex-col gap-4 transition-transform max-sm:gap-1.5"
                 >
                   <div className="flex gap-6 items-center">
                     <img
@@ -214,13 +214,13 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="w-full lg:sticky lg:top-[90px] lg:w-1/3  dark:bg-zinc-800 p-4 rounded-md shadow-md">
-        <h3 className="text-2xl font-bold mb-10 text-center text-black dark:text-white">
+      <div className="w-full lg:sticky lg:top-[90px] lg:w-1/3  dark:bg-zinc-800 p-4 rounded-md shadow-md max-sm:p-2 ">
+        <h3 className="text-2xl font-bold mb-10 max-sm:mb-6 text-center text-black dark:text-white">
           Cart Totals
         </h3>
 
-        <div className="flex justify-between mb-6">
-          <p className="text-lg font-bold text-black dark:text-white">
+        <div className="flex justify-between mb-6 max-sm:mb-4">
+          <p className="text-lg font-bold text-black dark:text-white ">
             Original Price:
           </p>
           <p className="text-lg text-[#9F9F9F] dark:text-[#B88E2F]">
@@ -228,7 +228,7 @@ const Cart = () => {
           </p>
         </div>
 
-        <div className="flex justify-between mb-6">
+        <div className="flex justify-between mb-6 max-sm:mb-4">
           <p className="text-lg font-bold text-black dark:text-white">
             Discounted Price (Total):
           </p>
@@ -237,10 +237,13 @@ const Cart = () => {
           </p>
         </div>
 
-        <div onClick={handleCheckout} className="flex justify-center pt-10">
+        <div
+          onClick={handleCheckout}
+          className="flex justify-center pt-10 max-sm:pt-4"
+        >
           <button
             className="w-full py-3 text-lg font-semibold transition-all duration-300 border rounded-lg shadow-md text-white bg-bg-primary hover:opacity-85 active:scale-95 
-           dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-500 dark:text-gray-200"
+           dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-500 dark:text-gray-200 max-sm:text-[16px] max-sm:py-2"
           >
             Check Out
           </button>
