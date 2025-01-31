@@ -65,7 +65,7 @@ export default function OTPInput() {
                 dispatch(clearWishlist());
               });
           }
-          return navigate("/auth/profile");
+          return navigate("/auth/profile/self");
         });
     }
   }, [otp]);
