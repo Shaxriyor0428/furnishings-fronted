@@ -14,10 +14,11 @@ import { useDarkMode } from "../../context/DarkModeProvider";
 
 interface IFilterProps {
   setGrid: (value: boolean) => void;
-  setLimit?: (value: number) => void;
-  setSortBy?: (value: string) => void;
+  setLimit: (value: number) => void;
+  setSortBy: (value: string) => void;
   data: IGetResponseProducts;
   page: number;
+  sortBy: string;
 }
 
 const Filter: FC<IFilterProps> = ({
@@ -26,6 +27,7 @@ const Filter: FC<IFilterProps> = ({
   page,
   setLimit,
   setSortBy,
+  sortBy,
 }) => {
   const { isDarkMode } = useDarkMode();
 
@@ -88,7 +90,7 @@ const Filter: FC<IFilterProps> = ({
                   }`}
                   value={data?.data?.limit || 12}
                   onChange={(e: SelectChangeEvent<number>) =>
-                    setLimit && setLimit(Number(e.target.value))
+                    setLimit(Number(e.target.value))
                   }
                 >
                   <MenuItem value={12}>12</MenuItem>
@@ -114,7 +116,8 @@ const Filter: FC<IFilterProps> = ({
                     isDarkMode ? "bg-zinc-700 dark:text-white text-white" : ""
                   }`}
                   defaultValue="newest"
-                  onChange={(e) => setSortBy && setSortBy(e.target.value)}
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
                 >
                   <MenuItem value="newest">Newest</MenuItem>
                   <MenuItem value="oldest">Oldest</MenuItem>

@@ -7,11 +7,15 @@ import "./Shop.scss";
 import Filter from "./Filter";
 import { useDarkMode } from "../../context/DarkModeProvider";
 import Info from "../../components/info/Info";
+import { useParamsHook } from "@/hooks/useParamsHook";
+import Skeleton from "@/components/products/Skeleton";
 
 const Shop = () => {
-  const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(12);
-  const [sortBy, setSortBy] = useState<string>("newest");
+  const { setParam, getParam, removeParam } = useParamsHook();
+  const page = Number(getParam("page")) || 1;
+  const sortBy = getParam("sort") || "newest";
+  const limit = Number(getParam("limit")) || 12;
+
   const { data, isLoading } = useGetProductsQuery({
     limit,
     page,
@@ -26,6 +30,21 @@ const Shop = () => {
     JSON.parse(localStorage.getItem("grid") || "true")
   );
 
+  const setLimit = (value: number) => {
+    if (value === 12) {
+      removeParam("limit");
+    } else {
+      setParam("limit", value);
+    }
+  };
+  const setSortBy = (value: string) => {
+    if (value === "newest") {
+      removeParam("sort");
+    } else {
+      setParam("sort", value);
+    }
+  };
+
   useEffect(() => {
     localStorage.setItem("grid", JSON.stringify(grid));
   }, [grid]);
@@ -39,7 +58,11 @@ const Shop = () => {
     value: number
   ) => {
     event.preventDefault();
-    setPage(value);
+    if (value === 1) {
+      removeParam("page");
+    } else {
+      setParam("page", value);
+    }
   };
 
   const { isDarkMode } = useDarkMode();
@@ -49,6 +72,7 @@ const Shop = () => {
       <Hero title="Shop" path="/shop" />
       {data && (
         <Filter
+          sortBy={sortBy}
           data={data}
           page={page}
           setGrid={setGrid}
@@ -57,57 +81,61 @@ const Shop = () => {
         />
       )}
       <section className="container">
-        {isLoading && (
-          <div className="flex justify-center items-center min-h-[10vh]">
-            <div className="loader"></div>
+        {isLoading ? (
+          <Skeleton grid={grid} count={limit} />
+        ) : data ? (
+          <Products grid={grid} data={data?.data?.products} />
+        ) : (
+          <></>
+        )}
+
+        {!isLoading && (
+          <div className="flex justify-center">
+            <Pagination
+              count={data?.data?.totalPages}
+              shape="rounded"
+              page={page}
+              onChange={handlePageChange}
+              sx={{
+                "& .MuiPagination-ul": {
+                  display: "flex",
+                  gap: "20px",
+                  justifyContent: "center",
+                  "& .Mui-selected": {
+                    backgroundColor: isDarkMode ? "#B88E2F" : "#B88E2F",
+                    color: "#fff",
+                    fontWeight: "600",
+                    transition: "all 0.3s ease",
+                  },
+                },
+                "& .MuiPaginationItem-root": {
+                  backgroundColor: isDarkMode ? "#333" : "#F9F1E7",
+                  color: isDarkMode ? "#fff" : "#000",
+                  borderRadius: "10px",
+                  fontSize: "18px",
+                  height: "50px",
+                  width: "50px",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    backgroundColor: "#E0C097",
+                    color: "#fff",
+                  },
+                },
+                "@media (max-width: 600px)": {
+                  "& .MuiPaginationItem-root": {
+                    fontSize: "14px",
+                    height: "40px",
+                    width: "40px",
+                    borderRadius: "8px",
+                  },
+                  "& .MuiPagination-ul": {
+                    gap: "10px",
+                  },
+                },
+              }}
+            />
           </div>
         )}
-        {data ? <Products grid={grid} data={data.data.products} /> : <></>}
-        <div className="flex justify-center">
-          <Pagination
-            count={data?.data?.totalPages}
-            shape="rounded"
-            page={page}
-            onChange={handlePageChange}
-            sx={{
-              "& .MuiPagination-ul": {
-                display: "flex",
-                gap: "20px",
-                justifyContent: "center",
-                "& .Mui-selected": {
-                  backgroundColor: isDarkMode ? "#B88E2F" : "#B88E2F",
-                  color: "#fff",
-                  fontWeight: "600",
-                  transition: "all 0.3s ease",
-                },
-              },
-              "& .MuiPaginationItem-root": {
-                backgroundColor: isDarkMode ? "#333" : "#F9F1E7",
-                color: isDarkMode ? "#fff" : "#000",
-                borderRadius: "10px",
-                fontSize: "18px",
-                height: "50px",
-                width: "50px",
-                transition: "all 0.3s ease",
-                "&:hover": {
-                  backgroundColor: "#E0C097",
-                  color: "#fff",
-                },
-              },
-              "@media (max-width: 600px)": {
-                "& .MuiPaginationItem-root": {
-                  fontSize: "14px",
-                  height: "40px",
-                  width: "40px",
-                  borderRadius: "8px",
-                },
-                "& .MuiPagination-ul": {
-                  gap: "10px",
-                },
-              },
-            }}
-          />
-        </div>
       </section>
       <Info />
     </>

@@ -4,6 +4,7 @@ import { IProduct } from "../../types";
 import Heart from "./Heart";
 import Discount from "./Discount";
 import CartButton from "./CartButton";
+
 interface IProductProps {
   data: IProduct[];
   title?: any;
