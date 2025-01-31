@@ -15,49 +15,40 @@ const Products: FC<IProductProps> = ({ data, title, grid }) => {
 
   const navigate = useNavigate();
   const productItems = data?.map((product: IProduct) => (
-    <div
-      key={product.id}
-      className="relative overflow-hidden group rounded-lg shadow"
-    >
+    <div key={product.id} className="relative overflow-hidden group rounded-lg shadow bg-white dark:bg-zinc-800">
       <div
         onClick={() => navigate(`/product/${product.id}`)}
-        className={`relative w-full overflow-hidden  ${
+        className={`relative w-full overflow-hidden cursor-pointer transition-all duration-300 ${
           grid || !pathname.startsWith("/shop")
             ? "h-[301px] max-[620px]:h-[240px] max-[450px]:h-[180px]"
             : "h-[500px] max-[620px]:h-[400px] max-[450px]:h-[300px]"
         } `}
       >
         <img
-          className="w-full h-full bg-no-repeat bg-center bg-cover group-hover:scale-[1.02] duration-300 md:scale-100 cursor-pointer"
+          className="w-full h-full object-cover group-hover:scale-[1.02] transition-all duration-300"
           src={`${import.meta.env.VITE_BASE_IMAGE_URL}${product.images[0]}`}
           alt={product.name}
         />
       </div>
-      <div className="absolute top-1 md:right-[-40px] group-hover:right-2 shadow-md rounded-full flex items-center justify-center transition-all duration-300">
+
+      <div className="absolute top-2  right-2 flex flex-col gap-2 max-sm:gap-1">
         <Heart product={product} />
-      </div>
-      <div className="absolute top-11 md:right-[-40px] group-hover:right-2 shadow-md rounded-full flex items-center justify-center transition-all duration-500">
         <CartButton product={product} />
       </div>
 
       {!!product.discount?.percent && (
         <Discount percent={Number(product.discount?.percent)} />
       )}
-      <div className="py-4 px-4 max-[450px]:py-2 max-[450px]:px-2  dark:bg-zinc-800 transition-colors duration-300">
-        <h2
-          title={product.name}
-          className="line-clamp-1 text-[24px] font-semibold leading-8 max-[620px]:text-lg"
-        >
+
+      <div className="p-4 dark:bg-zinc-800 transition-colors duration-300">
+        <h2 className="line-clamp-1 text-[20px] font-semibold leading-8 max-[620px]:text-lg">
           {product.name}
         </h2>
-        <p
-          title={product.description}
-          className="line-clamp-1 text-[#898989] text-lg max-[620px]:text-sm"
-        >
+        <p className="line-clamp-1 text-gray-500 dark:text-gray-300 text-sm">
           {product.description}
         </p>
-        <strong className="text-[#3A3A3A] dark:text-slate-200 text-[20px] leading-8 font-semibold max-[620px]:text-[15px]">
-          {product.price.toLocaleString()}USD
+        <strong className="text-gray-900 dark:text-white text-lg font-semibold">
+          {product.price.toLocaleString()} USD
         </strong>
         {!!product.discount?.percent && (
           <s className="ml-2 text-gray-400">
