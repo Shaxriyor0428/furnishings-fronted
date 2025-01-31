@@ -54,15 +54,15 @@ const Products: FC<IProductProps> = ({ data, title, grid }) => {
           {product.description}
         </p>
         <strong className="text-[#3A3A3A] dark:text-slate-200 text-[20px] leading-8 font-semibold max-[620px]:text-[15px]">
-          {(
-            (product.price * (100 - Number(product.discount?.percent))) /
-            100
-          ).toLocaleString()}{" "}
-          USD
+          {product.price.toLocaleString()}USD
         </strong>
         {!!product.discount?.percent && (
           <s className="ml-2 text-gray-400">
-            {product.price.toLocaleString()} USD
+            {(
+              product.price /
+              (1 - Number(product.discount?.percent / 100))
+            ).toLocaleString()}{" "}
+            USD
           </s>
         )}
       </div>
