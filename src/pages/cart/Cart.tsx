@@ -72,17 +72,24 @@ const Cart = () => {
                       Rs.{product.price.toFixed(2)}
                     </td>
                     <td className="px-3 py-4 text-center">
-                      <div className="flex items-center gap-2 justify-center">
+                      <div className="flex items-center justify-between shadow-sm py-2 px-2 rounded-md">
                         <button
                           disabled={product.amount <= 1}
                           onClick={() =>
                             dispatch(decrementAmountCart(product.id))
                           }
-                          className="text-xl px-2 py-1 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition"
+                          className="text-[18px] px-3 py-2 rounded-md transition-all duration-300 
+                            bg-gray-200 dark:bg-zinc-700 dark:text-white text-gray-700 
+                            hover:bg-gray-300 dark:hover:bg-zinc-600 
+                              disabled:opacity-50 "
                         >
                           −
                         </button>
-                        <span className="text-lg font-semibold w-10 dark:text-black text-center bg-white px-3 py-1 border rounded-md shadow">
+                        <span
+                          className="text-[18px] select-none font-semibold text-center 
+                          bg-white dark:bg-zinc-900 dark:text-white 
+                          px-3 py-2"
+                        >
                           {product.amount}
                         </span>
                         <button
@@ -90,7 +97,10 @@ const Cart = () => {
                           onClick={() =>
                             dispatch(incrementAmountCart(product.id))
                           }
-                          className="text-xl px-2 py-1 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition"
+                          className="text-[18px] px-3 py-2 rounded-lg transition-all duration-300 
+                                  bg-gray-200 dark:bg-zinc-700 dark:text-white text-gray-700 
+                                  hover:bg-gray-300 dark:hover:bg-zinc-600 
+                                  disabled:opacity-50"
                         >
                           +
                         </button>
@@ -151,13 +161,13 @@ const Cart = () => {
                     <p className="text-sm text-gray-600 dark:text-gray-300">
                       Quantity:
                     </p>
-                    <div className="flex items-center gap-3 bg-gray-100 dark:bg-zinc-800 px-3 py-2 rounded-lg shadow-sm">
+                    <div className="flex items-center gap-3 dark:bg-zinc-800 px-3 py-2 rounded-md shadow-sm">
                       <button
                         disabled={product.amount <= 1}
                         onClick={() =>
                           dispatch(decrementAmountCart(product.id))
                         }
-                        className="text-xl px-3 py-1 rounded-lg bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-600 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                        className="text-xl px-3 py-1 rounded-md bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-600 disabled:opacity-50 transition"
                       >
                         −
                       </button>
@@ -169,7 +179,7 @@ const Cart = () => {
                         onClick={() =>
                           dispatch(incrementAmountCart(product.id))
                         }
-                        className="text-xl px-3 py-1 rounded-lg bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-600 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                        className="text-xl px-3 py-1 rounded-lg bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-600 disabled:opacity-50 transition"
                       >
                         +
                       </button>
@@ -204,7 +214,7 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="w-full lg:sticky lg:top-[90px] lg:w-1/3  dark:bg-zinc-800 p-4 rounded-lg shadow-md">
+      <div className="w-full lg:sticky lg:top-[90px] lg:w-1/3  dark:bg-zinc-800 p-4 rounded-md shadow-md">
         <h3 className="text-2xl font-bold mb-10 text-center text-black dark:text-white">
           Cart Totals
         </h3>
