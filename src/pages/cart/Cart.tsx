@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector((state: RootState) => state.cart.value);
+  const token = useSelector((state: RootState) => state.token.access_token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -28,6 +29,10 @@ const Cart = () => {
     (sum, product) => sum + product.price * product.amount,
     0
   );
+
+  const handleCheckout = () => {
+    token ? navigate("/checkout") : navigate("/auth/sign-in?q=checkout");
+  };
 
   return (
     <div className="container p-4 flex  flex-col lg:flex-row items-start gap-6 dark:bg-zinc-900">
@@ -222,10 +227,7 @@ const Cart = () => {
           </p>
         </div>
 
-        <div
-          onClick={() => navigate("/checkout")}
-          className="flex justify-center pt-10"
-        >
+        <div onClick={handleCheckout} className="flex justify-center pt-10">
           <button
             className="w-full py-3 text-lg font-semibold transition-all duration-300 border rounded-lg shadow-md text-white bg-bg-primary hover:opacity-85 active:scale-95 
            dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-500 dark:text-gray-200"
