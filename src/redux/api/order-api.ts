@@ -9,11 +9,11 @@ const extendedApi = mainApi.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: [],
+      invalidatesTags: ["Order"],
     }),
-    getOrder: build.query({
-      query: () => ({
-        url: "order",
+    getOrderByCustomerId: build.query<any, number>({
+      query: (customer_id) => ({
+        url: `order/${customer_id}`,
         method: "GET",
       }),
       providesTags: [],
@@ -21,4 +21,5 @@ const extendedApi = mainApi.injectEndpoints({
   }),
 });
 
-export const { useCreateOrderMutation, useGetOrderQuery } = extendedApi;
+export const { useCreateOrderMutation, useGetOrderByCustomerIdQuery } =
+  extendedApi;
