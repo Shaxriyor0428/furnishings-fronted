@@ -1,6 +1,6 @@
 import React from "react";
 import { useCheckTokenQuery } from "@/redux/api/customer-api";
-import { useGetOrderByCustomerIdQuery } from "@/redux/api/order-api";
+import { useGetOrderByCustomerIdQuery } from "../../../../redux/api/order-api";
 
 const Order = () => {
   const { data } = useCheckTokenQuery(null);
@@ -43,7 +43,6 @@ const Order = () => {
             <strong>Total Price:</strong> ${order.total_price}
           </p>
 
-          {/* Order Items */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             {order.order_details.map((detail: any, index: number) => (
               <div
@@ -64,8 +63,20 @@ const Order = () => {
                     Quantity: {detail.quantity}
                   </p>
                   <p className="text-gray-600 text-sm">
-                    Price: ${detail.product.price}
+                    Price: $
+                    {(
+                      detail.product.price -
+                      (detail.product.price *
+                        detail.product?.discount?.percent || 0) /
+                        100
+                    ).toFixed(2)}
                   </p>
+
+                  {detail.product.discount?.percent && (
+                    <p className="text-red-500 text-sm mt-2">
+                      Discount: {detail.product.discount.percent}% OFF
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
