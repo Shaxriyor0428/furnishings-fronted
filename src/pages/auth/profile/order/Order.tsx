@@ -1,6 +1,6 @@
 import React from "react";
 import { useCheckTokenQuery } from "@/redux/api/customer-api";
-import { useGetOrderByCustomerIdQuery } from "../../../../redux/api/order-api";
+import { useGetOrderByCustomerIdQuery } from "@/redux/api/order-api";
 
 const Order = () => {
   const { data } = useCheckTokenQuery(null);

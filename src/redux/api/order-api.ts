@@ -16,7 +16,7 @@ const extendedApi = mainApi.injectEndpoints({
         url: `order/${customer_id}`,
         method: "GET",
       }),
-      providesTags: [],
+      providesTags: ["Order"],
     }),
   }),
 });
