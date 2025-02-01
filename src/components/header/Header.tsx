@@ -150,7 +150,7 @@ const Header: FC = () => {
                 Contact
               </NavLink>
             </div>
-            <div className="w-full border-b grid place-items-center pb-3">
+            <div className="w-full grid place-items-center">
               <NavLink
                 to={token ? "/auth/profile/self" : "/auth/sign-in"}
                 onClick={() => setMenuOpen(false)}
