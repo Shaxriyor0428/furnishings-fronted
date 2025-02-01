@@ -70,14 +70,14 @@ const Checkout = () => {
     createOrder(order)
       .unwrap()
       .then(() => {
-        navigate("/auth/profile/order");
-        reset();
         dispatch(clearCart());
+        reset();
+        navigate("/auth/profile/order");
       })
       .catch((e) => console.log(e));
   };
 
-  return !token || !cart?.length ? (
+  return !token && !cart?.length ? (
     <Navigate replace to={"/cart"} />
   ) : (
     <div className="container max-w-2xl mx-auto mt-10 p-4 dark:bg-gray-800 dark:text-white rounded-lg">
