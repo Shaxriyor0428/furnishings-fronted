@@ -13,7 +13,7 @@ const Contact = () => {
   const subjectRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     const name = nameRef.current?.value.trim() || "";
@@ -22,7 +22,7 @@ const Contact = () => {
     const message = messageRef.current?.value.trim() || "";
 
     if (!name || !email || !subject || !message) {
-      alert("Please fill in all fields.");
+      toast.error("Please fill in all fields.", { position: "top-right" });
       return;
     }
 
@@ -45,17 +45,17 @@ const Contact = () => {
       const data = await response.json();
 
       if (data.ok) {
-        toast.success("Message sent successfully!");
+        toast.success("Message sent successfully!",{position:"top-right"});
         if (nameRef.current) nameRef.current.value = "";
         if (emailRef.current) emailRef.current.value = "";
         if (subjectRef.current) subjectRef.current.value = "";
         if (messageRef.current) messageRef.current.value = "";
       } else {
-        toast.error("Failed to send message. Please try again.");
+        toast.error("Failed to send message. Please try again.",{position:"top-right"});
       }
     } catch (error) {
       console.error("Error sending message:", error);
-      alert("Failed to send message. Please try again.");
+      toast.error("Failed to send message. Please try again.",{position:"top-right"});
     }
   };
 
@@ -103,6 +103,7 @@ const Contact = () => {
               </label>
               <input
                 ref={nameRef}
+                required
                 type="text"
                 id="name"
                 placeholder="Enter your name"
@@ -119,6 +120,7 @@ const Contact = () => {
               </label>
               <input
                 ref={emailRef}
+                required
                 type="email"
                 id="email"
                 placeholder="Enter your email"
@@ -137,6 +139,7 @@ const Contact = () => {
                 ref={subjectRef}
                 type="text"
                 id="subject"
+                required
                 placeholder="Enter subject"
                 className="w-full p-3 h-14 border dark:text-black dark:bg-gray-300 border-gray-300 rounded-md focus:ring-2 focus:ring-[#cec1a3] focus:border-[#B88E2F] outline-none"
               />
@@ -152,6 +155,7 @@ const Contact = () => {
               <textarea
                 ref={messageRef}
                 id="message"
+                required
                 placeholder="Enter your message"
                 rows={4}
                 className="w-full p-3 border dark:text-black dark:bg-gray-300 border-gray-300 rounded-md focus:ring-2 focus:ring-[#cec1a3] focus:border-[#B88E2F] outline-none"
