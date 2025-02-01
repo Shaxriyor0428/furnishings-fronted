@@ -77,9 +77,11 @@ const Checkout = () => {
       .catch((e) => console.log(e));
   };
 
-  return !token && !cart?.length ? (
-    <Navigate replace to={"/cart"} />
-  ) : (
+  if (!token || cart.length === 0) {
+    return <Navigate replace to="/cart" />;
+  }
+
+  return (
     <div className="container max-w-2xl mx-auto mt-10 p-4 dark:bg-gray-800 dark:text-white rounded-lg">
       <h2 className="text-3xl font-semibold mb-6 text-center">Checkout</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
