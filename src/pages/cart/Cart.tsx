@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IoTrashOutline } from "react-icons/io5";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import empty_cart from "@/assets/images/image.png";
 const Cart = () => {
   const cart = useSelector((state: RootState) => state.cart.value);
   const token = useSelector((state: RootState) => state.token.access_token);
@@ -33,6 +33,32 @@ const Cart = () => {
   const handleCheckout = () => {
     token ? navigate("/checkout") : navigate("/auth/sign-in?q=checkout");
   };
+
+  if (cart.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-10 w-full">
+        <div className="w-full max-w-md flex flex-col items-center px-4 sm:px-0">
+          <img
+            src={empty_cart}
+            alt="Empty Cart"
+            className="w-40 h-40 sm:w-48 sm:h-48 object-contain opacity-80"
+          />
+          <h2 className="text-2xl sm:text-3xl font-semibold text-gray-700 dark:text-white mt-4 text-center">
+            Your cart is empty.
+          </h2>
+          <p className="text-gray-500 dark:text-gray-400 mt-2 text-center text-sm sm:text-base">
+            Looks like you haven’t added anything yet.
+          </p>
+          <button
+            onClick={() => navigate("/shop")}
+            className="mt-6 px-4 py-2 sm:px-6 sm:py-3 bg-[#B88E2F] text-white rounded-md shadow-md hover:bg-[#a07424] transition text-sm sm:text-base"
+          >
+            Start Shopping
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container p-4 flex  flex-col lg:flex-row items-start gap-6 dark:bg-zinc-900">
