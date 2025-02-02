@@ -34,6 +34,7 @@ const Products: FC<IProductProps> = ({ data, title, grid }) => {
         />
       </div>
 
+
       <div className="absolute top-2 flex flex-col gap-2 max-sm:gap-1 right-[-50px] group-hover:right-2 duration-300 max-md:right-2">
         <Heart product={product} />
         <CartButton product={product} />

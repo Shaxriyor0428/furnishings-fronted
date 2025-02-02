@@ -47,6 +47,7 @@ const Heart = ({ product }: { product: IProduct }) => {
   return (
     <button
       onClick={handleLike}
+
       className="w-[40px] h-[40px] max-sm:h-[35px] max-sm:w-[35px] max-sm:text-lg rounded-full bg-white dark:bg-zinc-700 shadow-md flex items-center justify-center text-[22px] 
     transition-all duration-300 hover:bg-gray-200 dark:hover:bg-zinc-600"
     >
