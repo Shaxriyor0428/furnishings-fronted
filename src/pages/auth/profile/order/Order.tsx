@@ -1,9 +1,13 @@
 import React from "react";
 import { useCheckTokenQuery } from "@/redux/api/customer-api";
-import { useGetOrderByCustomerIdQuery } from "@/redux/api/order-api";
+import {
+  useDeleteOrderMutation,
+  useGetOrderByCustomerIdQuery,
+} from "@/redux/api/order-api";
 
 const Order = () => {
   const { data } = useCheckTokenQuery(null);
+  const [deleteOrder] = useDeleteOrderMutation();
   const { data: orderData, isLoading } = useGetOrderByCustomerIdQuery(
     data?.customer?.id,
     {
@@ -23,6 +27,11 @@ const Order = () => {
     );
   }
 
+  const handleDeleteOrder = (id: number) => {
+    console.log(id);
+    deleteOrder(8);
+  };
+
   return (
     <div className="container">
       <h2 className="text-3xl max-sm:text-[24px] font-semibold mb-6 dark:text-white">
@@ -34,7 +43,7 @@ const Order = () => {
           key={order.id}
           className="border rounded-md p-6 max-sm:p-2 mb-8 bg-white dark:bg-gray-800 dark:border-gray-700 transition-transform transform hover:scale-[1.02]"
         >
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center max-sm:w-full">
+          <div className="flex relative flex-col sm:flex-row justify-between items-start sm:items-center max-sm:w-full">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-200">
               Order ID: {order.id} - Status:{" "}
               <span className="text-blue-600 dark:text-blue-400">
@@ -53,6 +62,12 @@ const Order = () => {
                 hour12: false,
               })}
             </p>
+            <button
+              onClick={() => handleDeleteOrder(order?.id)}
+              className="text-white absolute max-sm:top-0 top-7 hover:bg-opacity-85 right-0 rounded-md py-1 px-4 font-semibold text-lg bg-red-400"
+            >
+              Delete
+            </button>
           </div>
 
           <p className="text-gray-700 dark:text-gray-300 mt-4">
