@@ -22,29 +22,24 @@ const categories = [
 
 const Browse = () => {
   return (
-    <section className="pt-10">
+    <section className="py-16 md:py-24">
       <div className="container mx-auto px-4">
-        {/* Title */}
-        <div className="text-center">
-          <h2 className="text-[32px] max-sm:text-[24px] font-semibold text-[#333333] dark:text-white">
+        <div className="text-center mb-13 md:mb-16">
+          <h2 className="text-3xl md:text-4xl font-semibold">
             Browse The Range
           </h2>
-          <p className="text-[#666666] dark:text-stone-400 text-[20px] max-sm:text-[16px] mt-2 max-w-2xl mx-auto">
-            Discover our collection of beautifully designed furniture to suit
-            any space.
-          </p>
-        </div>
+          <p className="text-[#666666] dark:text-stone-400 text-lg md:text-xl max-w-2xl mx-auto mt-4">
 
-        {/* Images Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 pt-6">
-          {categories.map((category, index) => (
-            <div key={index} className="relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {categories.map((category) => (
+            <div key={category.id} className="flex flex-col items-center">
               <img
-                className="w-full h-[480px] md:h-[500px] sm:h-[350px] max-sm:h-[80vh] object-cover rounded-lg"
-                src={category.img}
+                className="w-full aspect-[4/5] object-cover rounded-lg"
+                src={category.img || "/placeholder.svg"}
                 alt={category.title}
               />
-              <h3 className="text-[#333333] font-bold text-center text-xl md:text-2xl max-sm:text-lg dark:text-white pt-4 absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/75 dark:bg-black/50 px-4 py-2 rounded-lg">
+              <h3 className="text-[#333333] font-bold text-xl md:text-2xl dark:text-white mt-6 md:mt-8">
+
                 {category.title}
               </h3>
             </div>
