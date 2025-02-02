@@ -9,9 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { IoTrashOutline } from "react-icons/io5";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import empty_cart from "@/assets/images/image.png";
 const Cart = () => {
   const cart = useSelector((state: RootState) => state.cart.value);
+  const token = useSelector((state: RootState) => state.token.access_token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -29,13 +30,43 @@ const Cart = () => {
     0
   );
 
+  const handleCheckout = () => {
+    token ? navigate("/checkout") : navigate("/auth/sign-in?q=checkout");
+  };
+
+  if (cart.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-10 w-full">
+        <div className="w-full max-w-md flex flex-col items-center px-4 sm:px-0">
+          <img
+            src={empty_cart}
+            alt="Empty Cart"
+            className="w-40 h-40 sm:w-48 sm:h-48 object-contain opacity-80"
+          />
+          <h2 className="text-2xl sm:text-3xl font-semibold text-gray-700 dark:text-white mt-4 text-center">
+            Your cart is empty.
+          </h2>
+          <p className="text-gray-500 dark:text-gray-400 mt-2 text-center text-sm sm:text-base">
+            Looks like you haven’t added anything yet.
+          </p>
+          <button
+            onClick={() => navigate("/shop")}
+            className="mt-6 px-4 py-2 sm:px-6 sm:py-3 bg-[#B88E2F] text-white rounded-md shadow-md hover:bg-[#a07424] transition text-sm sm:text-base"
+          >
+            Start Shopping
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="container mx-auto p-4 flex  flex-col lg:flex-row gap-6 dark:bg-zinc-900">
+    <div className="container p-4 flex  flex-col lg:flex-row items-start gap-6 dark:bg-zinc-900">
       <div className="w-full lg:w-2/3">
-        <div className=" dark:bg-zinc-900 p-3 rounded-t-lg ">
+        <div className=" dark:bg-zinc-900 md:p-3 py-0 rounded-t-lg ">
           <table className="w-full table-auto text-left hidden md:table">
             <thead>
-              <tr className="font-semibold text-base bg-[#F9F1E7] dark:bg-zinc-800">
+              <tr className="font-semibold text-base bg-slate-50 dark:bg-zinc-800">
                 <th className="px-4 py-3 text-center">Product</th>
                 <th className="px-4 py-3 text-center">Price</th>
                 <th className="px-4 py-3 text-center">Quantity</th>
@@ -67,17 +98,24 @@ const Cart = () => {
                       Rs.{product.price.toFixed(2)}
                     </td>
                     <td className="px-3 py-4 text-center">
-                      <div className="flex items-center gap-2 justify-center">
+                      <div className="flex items-center justify-between shadow-sm py-2 px-2 rounded-md">
                         <button
                           disabled={product.amount <= 1}
                           onClick={() =>
                             dispatch(decrementAmountCart(product.id))
                           }
-                          className="text-xl px-2 py-1 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition"
+                          className="text-[18px] px-3 py-2 rounded-md transition-all duration-300 
+                            bg-gray-200 dark:bg-zinc-700 dark:text-white text-gray-700 
+                            hover:bg-gray-300 dark:hover:bg-zinc-600 
+                              disabled:opacity-50 "
                         >
                           −
                         </button>
-                        <span className="text-lg font-semibold w-10 dark:text-black text-center bg-white px-3 py-1 border rounded-md shadow">
+                        <span
+                          className="text-[18px] select-none font-semibold text-center 
+                          bg-white dark:bg-zinc-900 dark:text-white 
+                          px-3 py-2"
+                        >
                           {product.amount}
                         </span>
                         <button
@@ -85,7 +123,10 @@ const Cart = () => {
                           onClick={() =>
                             dispatch(incrementAmountCart(product.id))
                           }
-                          className="text-xl px-2 py-1 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition"
+                          className="text-[18px] px-3 py-2 rounded-lg transition-all duration-300 
+                                  bg-gray-200 dark:bg-zinc-700 dark:text-white text-gray-700 
+                                  hover:bg-gray-300 dark:hover:bg-zinc-600 
+                                  disabled:opacity-50"
                         >
                           +
                         </button>
@@ -117,12 +158,12 @@ const Cart = () => {
             </tbody>
           </table>
 
-          <div className="md:hidden p-4">
+          <div className="md:hidden md:p-4 py-4 sm:p-0">
             {cart.length > 0 ? (
               cart.map((product: ICartProduct) => (
                 <div
                   key={product.id}
-                  className="border border-[#F9F1E7] dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900 shadow-lg rounded-xl mb-4 flex flex-col gap-4 transition-transform "
+                  className="border border-[#F9F1E7] dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900 shadow-sm rounded-xl mb-4 flex flex-col gap-4 transition-transform max-sm:gap-1.5"
                 >
                   <div className="flex gap-6 items-center">
                     <img
@@ -146,13 +187,13 @@ const Cart = () => {
                     <p className="text-sm text-gray-600 dark:text-gray-300">
                       Quantity:
                     </p>
-                    <div className="flex items-center gap-3 bg-gray-100 dark:bg-zinc-800 px-3 py-2 rounded-lg shadow-sm">
+                    <div className="flex items-center dark:bg-zinc-800 px-3 py-2 rounded-md shadow-sm">
                       <button
                         disabled={product.amount <= 1}
                         onClick={() =>
                           dispatch(decrementAmountCart(product.id))
                         }
-                        className="text-xl px-3 py-1 rounded-lg bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-600 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                        className="text-xl px-3 py-1 rounded-md bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-600 disabled:opacity-50 transition"
                       >
                         −
                       </button>
@@ -164,14 +205,14 @@ const Cart = () => {
                         onClick={() =>
                           dispatch(incrementAmountCart(product.id))
                         }
-                        className="text-xl px-3 py-1 rounded-lg bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-600 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                        className="text-xl px-3 py-1 rounded-lg bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-600 disabled:opacity-50 transition"
                       >
                         +
                       </button>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between ">
                     <p className="text-sm text-gray-600 dark:text-gray-300">
                       Subtotal:
                     </p>
@@ -199,13 +240,13 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="w-full lg:w-1/3 bg-[#F9F1E7] dark:bg-zinc-800 p-4 rounded-lg shadow-md">
-        <h3 className="text-2xl font-bold mb-10 text-center text-black dark:text-white">
+      <div className="w-full lg:sticky lg:top-[90px] lg:w-1/3  dark:bg-zinc-800 p-4 rounded-md shadow-md max-sm:py-6">
+        <h3 className="text-2xl font-bold mb-10 max-sm:mb-6 text-center text-black dark:text-white">
           Cart Totals
         </h3>
 
-        <div className="flex justify-between mb-6">
-          <p className="text-lg font-bold text-black dark:text-white">
+        <div className="flex justify-between mb-6 max-sm:mb-4">
+          <p className="text-lg font-bold text-black dark:text-white ">
             Original Price:
           </p>
           <p className="text-lg text-[#9F9F9F] dark:text-[#B88E2F]">
@@ -213,7 +254,7 @@ const Cart = () => {
           </p>
         </div>
 
-        <div className="flex justify-between mb-6">
+        <div className="flex justify-between mb-6 max-sm:mb-4">
           <p className="text-lg font-bold text-black dark:text-white">
             Discounted Price (Total):
           </p>
@@ -223,12 +264,12 @@ const Cart = () => {
         </div>
 
         <div
-          onClick={() => navigate("/checkout")}
-          className="flex justify-center pt-10"
+          onClick={handleCheckout}
+          className="flex justify-center pt-10 max-sm:pt-4"
         >
           <button
             className="w-full py-3 text-lg font-semibold transition-all duration-300 border rounded-lg shadow-md text-white bg-bg-primary hover:opacity-85 active:scale-95 
-           dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-500 dark:text-gray-200"
+           dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-500 dark:text-gray-200 max-sm:text-[16px] max-sm:py-2"
           >
             Check Out
           </button>

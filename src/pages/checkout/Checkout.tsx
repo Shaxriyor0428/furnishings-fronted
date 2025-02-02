@@ -3,11 +3,12 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useCheckTokenQuery } from "@/redux/api/customer-api";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux";
 import { useCreateOrderMutation } from "../../redux/api/order-api";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { clearCart } from "../../redux/features/cart-slice";
 
 const schema = yup
   .object({
@@ -23,8 +24,10 @@ const schema = yup
   .required();
 
 const Checkout = () => {
+  const dispatch = useDispatch();
   const { data } = useCheckTokenQuery(null);
   const cart = useSelector((state: RootState) => state.cart.value);
+  const token = useSelector((state: RootState) => state.token.access_token);
   const [createOrder] = useCreateOrderMutation();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -64,13 +67,22 @@ const Checkout = () => {
       total_price,
     };
 
-    createOrder(order);
-    reset();
-    return navigate("/auth/profile/self");
+    createOrder(order)
+      .unwrap()
+      .then(() => {
+        dispatch(clearCart());
+        reset();
+        navigate("/auth/profile/order");
+      })
+      .catch((e) => console.log(e));
   };
 
+  if (!token || cart.length === 0) {
+    return <Navigate replace to="/cart" />;
+  }
+
   return (
-    <div className="container max-w-2xl mx-auto mt-10 p-4 dark:bg-gray-800 dark:text-white">
+    <div className="container max-w-2xl mx-auto mt-10 p-4 dark:bg-gray-800 dark:text-white rounded-lg">
       <h2 className="text-3xl font-semibold mb-6 text-center">Checkout</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>

@@ -70,7 +70,7 @@ const SignUp = () => {
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto min-h-screen lg:py-0 relative">
+      <div className="flex flex-col items-center justify-center p-4 mx-auto min-h-screen lg:py-0 relative">
         <Link to={"/"} className="absolute top-6 left-6 text-xl">
           <FaArrowLeft />
         </Link>

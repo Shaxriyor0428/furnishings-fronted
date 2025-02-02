@@ -29,10 +29,6 @@ const Browse = () => {
             Browse The Range
           </h2>
           <p className="text-[#666666] dark:text-stone-400 text-lg md:text-xl max-w-2xl mx-auto mt-4">
-            Discover our collection of beautifully designed furniture to suit
-            any space.
-          </p>
-        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category) => (
@@ -43,6 +39,7 @@ const Browse = () => {
                 alt={category.title}
               />
               <h3 className="text-[#333333] font-bold text-xl md:text-2xl dark:text-white mt-6 md:mt-8">
+
                 {category.title}
               </h3>
             </div>

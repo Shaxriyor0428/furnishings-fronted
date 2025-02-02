@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import "./Detail.scss";
 import { FaFacebook } from "react-icons/fa";
@@ -57,10 +57,10 @@ const ProductDetail = ({
   useEffect(() => {
     setSelectedImage(0);
     setQuantity(1);
-    window.scrollTo(0, 0);
+    window.scrollTo({ behavior: "smooth", top: 0, left: 0 });
   }, [id, product]);
 
-  const renderRating = (rating: number): JSX.Element => {
+  const renderRating = (rating: number): ReactNode => {
     const fullStars: number = Math.floor(rating);
     const hasHalfStar: boolean = rating % 1 >= 0.5;
     const emptyStars: number = 5 - fullStars - (hasHalfStar ? 1 : 0);
@@ -80,7 +80,7 @@ const ProductDetail = ({
 
   return (
     <>
-      <div className="container mx-auto my-10">
+      <div id="product__detail" className="container mx-auto my-10 ">
         <div className="grid grid-cols-2 gap-8 max-[990px]:grid-cols-1 pb-10">
           <div className="flex">
             <div className="product__detail flex flex-col space-y-4 mr-4 overflow-y-auto h-80 no-scrollbar">
@@ -334,18 +334,17 @@ const ProductDetail = ({
         <div className="mt-16 md:mt-32 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mb-14">
           {product.images.slice(0, 2).map((img, index) => (
             <img
-            key={index}
-            src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
-            alt={`Product Image ${index + 1}`}
-            className="
+              key={index}
+              src={`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`}
+              alt={`Product Image ${index + 1}`}
+              className="
               w-full h-auto object-cover rounded-lg cursor-pointer
               sm:max-h-48 md:max-h-64 lg:max-h-80 xl:max-h-96 aspect-video"
-            onClick={() => {
-              setModalImage(`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`);
-              setIsModalOpen(true);
-            }}
-          />
-          
+              onClick={() => {
+                setModalImage(`${import.meta.env.VITE_BASE_IMAGE_URL}${img}`);
+                setIsModalOpen(true);
+              }}
+            />
           ))}
         </div>
 

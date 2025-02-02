@@ -2,6 +2,7 @@ import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { IProduct } from "../../types";
 
+
 const Hero = ({ data: product }: { data: IProduct }) => {
   const navigate = useNavigate();
   return (

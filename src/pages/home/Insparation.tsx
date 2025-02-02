@@ -29,8 +29,8 @@ const Insparation = () => {
   ];
 
   return (
-    <div className="bg-[#FCF8F3] dark:bg-zinc-900 py-16">
-      <div className="container mx-auto flex flex-col items-center lg:flex-row lg:items-center lg:justify-between gap-12 px-4 sm:px-6 lg:px-8">
+    <div id="inspiration" className="bg-[#FCF8F3]  dark:bg-zinc-900 py-16">
+      <div className="container mx-auto flex flex-col items-center lg:flex-row  lg:items-center lg:justify-between gap-12 px-4 sm:px-6 lg:px-8">
         <div className="text-center lg:text-left lg:w-1/2">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl max-[620px]:text-xl font-bold text-gray-800 dark:text-white mb-4">
             50+ Beautiful Rooms Inspiration

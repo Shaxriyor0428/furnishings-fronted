@@ -14,10 +14,12 @@ import { clearOtp } from "@/redux/features/otp-slice";
 import OTP from "./OtpElement";
 import { useSetWishlistMutation } from "@/redux/api/wishlist-api";
 import { clearWishlist } from "@/redux/features/wishlist-slice";
+import { useParamsHook } from "../../../hooks/useParamsHook";
 
 export default function OTPInput() {
   const { email } = useSelector((state: RootState) => state.otp);
   const dispatch = useDispatch();
+  const { getParam } = useParamsHook();
 
   const wishlist = useSelector((state: RootState) => state.wishlist.value);
   const [setWishlist] = useSetWishlistMutation();
@@ -65,7 +67,9 @@ export default function OTPInput() {
                 dispatch(clearWishlist());
               });
           }
-          return navigate("/auth/profile/self");
+          getParam("q") === "checkout"
+            ? navigate("/checkout")
+            : navigate("/auth/profile/self");
         });
     }
   }, [otp]);

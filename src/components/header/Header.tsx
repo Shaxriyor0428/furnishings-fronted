@@ -126,42 +126,42 @@ const Header: FC = () => {
         </div>
       </div>
       <HeaderSearch setSearchOpen={setSearchOpen} searchOpen={searchOpen} />
-      {menuOpen && (
-        <div
-          ref={ref}
-          className="absolute w-full bg-white dark:bg-black shadow-md z-50"
-        >
-          <div className="flex flex-col justify-center items-center py-4 gap-4">
-            <div className="w-full border-b grid place-items-center pb-3">
-              <NavLink
-                to="/about"
-                onClick={() => setMenuOpen(false)}
-                className="text-lg font-medium hover:text-bg-primary duration-200"
-              >
-                About
-              </NavLink>
-            </div>
-            <div className="w-full border-b grid place-items-center pb-3">
-              <NavLink
-                to="/contact"
-                onClick={() => setMenuOpen(false)}
-                className="text-lg font-medium hover:text-bg-primary duration-200"
-              >
-                Contact
-              </NavLink>
-            </div>
-            <div className="w-full border-b grid place-items-center pb-3">
-              <NavLink
-                to="/auth/profile/self"
-                onClick={() => setMenuOpen(false)}
-                className="text-lg font-medium hover:text-bg-primary duration-200"
-              >
-                Profile
-              </NavLink>
-            </div>
+      <div
+        ref={ref}
+        className={`absolute w-full bg-white dark:bg-black shadow-md z-50 transition-all duration-500 ${
+          menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col justify-center items-center py-4 gap-4">
+          <div className="w-full border-b grid place-items-center pb-3">
+            <NavLink
+              to="/about"
+              onClick={() => setMenuOpen(false)}
+              className="text-lg font-medium hover:text-bg-primary duration-200"
+            >
+              About
+            </NavLink>
+          </div>
+          <div className="w-full border-b grid place-items-center pb-3">
+            <NavLink
+              to="/contact"
+              onClick={() => setMenuOpen(false)}
+              className="text-lg font-medium hover:text-bg-primary duration-200"
+            >
+              Contact
+            </NavLink>
+          </div>
+          <div className="w-full grid place-items-center">
+            <NavLink
+              to="/auth/profile/self"
+              onClick={() => setMenuOpen(false)}
+              className="text-lg font-medium hover:text-bg-primary duration-200"
+            >
+              Profile
+            </NavLink>
           </div>
         </div>
-      )}
+      </div>
       <div id="header" className="max-[986px]:block hidden font-poppins-light">
         <div className="fixed bottom-0 inset-x-0 bg-white dark:bg-black opacity-95 py-2 flex items-center justify-evenly z-50 max-[725px]:h-14 max-[767px]:h-16">
           <NavLink to={"/"}>

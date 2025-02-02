@@ -4,8 +4,8 @@ import { useRoutes } from "react-router-dom";
 import Self from "../pages/auth/profile/self/Self";
 import Order from "../pages/auth/profile/order/Order";
 
+const MainContactPage = lazy(() => import("@/pages/contact/MainContactPage"));
 const About = lazy(() => import("@/pages/about/About"));
-const Contact = lazy(() => import("@/pages/contact/Contact"));
 const MainCart = lazy(() => import("@/pages/cart/MainCart"));
 const Wishlist = lazy(() => import("@/pages/wishlist/Wishlits"));
 const Profile = lazy(() => import("@/pages/auth/profile/Profile"));
@@ -68,7 +68,7 @@ const Routers = () => {
               path: "/contact",
               element: (
                 <SuspenseContainer>
-                  <Contact />
+                  <MainContactPage/>
                 </SuspenseContainer>
               ),
             },
