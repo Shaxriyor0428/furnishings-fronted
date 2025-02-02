@@ -48,7 +48,6 @@ const Checkout = () => {
       region: "",
       street: "",
       additional_info: "",
-      // zip_code: '' ,
     },
   });
 
