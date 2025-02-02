@@ -20,7 +20,7 @@ const extendedApi = mainApi.injectEndpoints({
     }),
     deleteOrder: build.mutation<any, number>({
       query: (id) => ({
-        url: `http://localhost:3000/api/order/${id}`,
+        url: `order/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Order"],

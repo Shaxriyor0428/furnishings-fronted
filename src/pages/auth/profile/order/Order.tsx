@@ -7,7 +7,7 @@ import {
 
 const Order = () => {
   const { data } = useCheckTokenQuery(null);
-  const [deleteOrder] = useDeleteOrderMutation();
+  const [deleteOrder, { isLoading: deleteLoading }] = useDeleteOrderMutation();
   const { data: orderData, isLoading } = useGetOrderByCustomerIdQuery(
     data?.customer?.id,
     {
@@ -28,8 +28,7 @@ const Order = () => {
   }
 
   const handleDeleteOrder = (id: number) => {
-    console.log(id);
-    deleteOrder(8);
+    deleteOrder(id);
   };
 
   return (
@@ -68,6 +67,9 @@ const Order = () => {
             >
               Delete
             </button>
+            {
+              deleteLoading && <p className="text-red-500">Deleting ...</p>
+            }
           </div>
 
           <p className="text-gray-700 dark:text-gray-300 mt-4">
