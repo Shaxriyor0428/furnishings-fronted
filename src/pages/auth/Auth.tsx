@@ -4,7 +4,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 const Auth = () => {
   const token = useSelector((state: RootState) => state.token.access_token);
-  return token ? <Outlet /> : <Navigate replace to={"/auth/sign-in"} />;
+  return token ? <Outlet /> : <Navigate replace to={"/"} />;
 };
 
 export default Auth;
