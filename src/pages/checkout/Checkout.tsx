@@ -73,7 +73,7 @@ const Checkout = () => {
         setTimeout(() => {
           dispatch(clearCart());
           reset();
-        }, 120);
+        }, 250);
       })
       .catch((e) => console.log(e));
   };
