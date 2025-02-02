@@ -70,9 +70,11 @@ const Checkout = () => {
     createOrder(order)
       .unwrap()
       .then(() => {
-        dispatch(clearCart());
-        reset();
         navigate("/auth/profile/order");
+        setTimeout(() => {
+          dispatch(clearCart());
+          reset();
+        }, 120);
       })
       .catch((e) => console.log(e));
   };
