@@ -29,7 +29,11 @@ const Browse = () => {
             Browse The Range
           </h2>
           <p className="text-[#666666] dark:text-stone-400 text-lg md:text-xl max-w-2xl mx-auto mt-4">
-
+            Explore different categories of furniture for your home.
+          </p>{" "}
+          {/* <-- Bu yerda yopilmagan <p> ni yopdim */}
+        </div>{" "}
+        {/* <-- Bu yerda <div> tugashi kerak edi */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category) => (
             <div key={category.id} className="flex flex-col items-center">
@@ -39,9 +43,9 @@ const Browse = () => {
                 alt={category.title}
               />
               <h3 className="text-[#333333] font-bold text-xl md:text-2xl dark:text-white mt-6 md:mt-8">
-
                 {category.title}
-              </h3>
+              </h3>{" "}
+              {/* <-- <h3> ni to‘g‘ri joyda yopdim */}
             </div>
           ))}
         </div>
