@@ -18,8 +18,18 @@ const extendedApi = mainApi.injectEndpoints({
       }),
       providesTags: ["Order"],
     }),
+    deleteOrder: build.mutation<any, number>({
+      query: (id) => ({
+        url: `http://localhost:3000/api/order/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Order"],
+    }),
   }),
 });
 
-export const { useCreateOrderMutation, useGetOrderByCustomerIdQuery } =
-  extendedApi;
+export const {
+  useCreateOrderMutation,
+  useGetOrderByCustomerIdQuery,
+  useDeleteOrderMutation,
+} = extendedApi;
