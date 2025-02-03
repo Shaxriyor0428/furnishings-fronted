@@ -7,8 +7,8 @@ import {
 
 const Order = () => {
   const { data } = useCheckTokenQuery(null);
-  const [deleteOrder, { isLoading: deleteLoading }] = useDeleteOrderMutation();
-  const { data: orderData, isLoading } = useGetOrderByCustomerIdQuery(
+  const [deleteOrder] = useDeleteOrderMutation();
+  const { data: orderData, isLoading,isFetching } = useGetOrderByCustomerIdQuery(
     data?.customer?.id,
     {
       skip: Boolean(!data),
@@ -68,7 +68,7 @@ const Order = () => {
               Delete
             </button>
             {
-              deleteLoading && <p className="text-red-500">Deleting ...</p>
+              isFetching && <p className="text-red-500">Deleting ...</p>
             }
           </div>
 
