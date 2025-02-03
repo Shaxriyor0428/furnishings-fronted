@@ -7,8 +7,12 @@ import {
 
 const Order = () => {
   const { data } = useCheckTokenQuery(null);
-  const [deleteOrder] = useDeleteOrderMutation();
-  const { data: orderData, isLoading,isFetching } = useGetOrderByCustomerIdQuery(
+  const [deletingOrderId, setDeletingOrderId] = React.useState<number | null>(
+    null
+  );
+
+  const [deleteOrder, { isLoading: deleteLoading }] = useDeleteOrderMutation();
+  const { data: orderData, isLoading } = useGetOrderByCustomerIdQuery(
     data?.customer?.id,
     {
       skip: Boolean(!data),
@@ -27,8 +31,13 @@ const Order = () => {
     );
   }
 
-  const handleDeleteOrder = (id: number) => {
-    deleteOrder(id);
+  const handleDeleteOrder = async (id: number) => {
+    setDeletingOrderId(id);
+    try {
+      await deleteOrder(id).unwrap();
+    } finally {
+      setDeletingOrderId(null);
+    }
   };
 
   return (
@@ -67,9 +76,9 @@ const Order = () => {
             >
               Delete
             </button>
-            {
-              isFetching && <p className="text-red-500">Deleting ...</p>
-            }
+            {deleteLoading && order?.id === deletingOrderId && (
+              <p className="text-red-500">Deleting ...</p>
+            )}
           </div>
 
           <p className="text-gray-700 dark:text-gray-300 mt-4">
