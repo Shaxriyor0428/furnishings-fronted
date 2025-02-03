@@ -46,7 +46,7 @@ const About = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40 flex items-center justify-center">
           <div className="text-center text-white max-w-3xl px-4">
             <h1 className="text-6xl font-bold mb-6">
-              Crafting Comfort & Style
+              Crafting Comfort & Style with Furnishings
             </h1>
             <p className="text-xl font-light">
               Since 2025, we've been transforming houses into homes with our
