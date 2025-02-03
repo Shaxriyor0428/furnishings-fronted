@@ -40,7 +40,7 @@ const Order = () => {
       {orderData.data.order.map((order: any) => (
         <div
           key={order.id}
-          className="border rounded-md p-6 max-sm:p-2 mb-8 bg-white dark:bg-gray-800 dark:border-gray-700 transition-transform transform hover:scale-[1.02]"
+          className="border rounded-md p-6 max-sm:p-2 mb-8 bg-white dark:bg-zinc-900 dark:border-gray-700 transition-transform transform hover:scale-[1.02]"
         >
           <div className="flex relative flex-col sm:flex-row justify-between items-start sm:items-center max-sm:w-full">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-200">
@@ -84,7 +84,7 @@ const Order = () => {
             {order.order_details.map((detail: any, index: number) => (
               <div
                 key={index}
-                className="border p-4 max-sm:p-2 rounded-lg flex flex-col sm:flex-row items-center gap-6 max-sm:gap-2 bg-gray-100 dark:bg-gray-900 dark:border-gray-700 shadow-sm hover:shadow-lg transition-shadow"
+                className="border p-4 max-sm:p-2 rounded-lg flex flex-col sm:flex-row items-center gap-6 max-sm:gap-2 bg-gray-100 dark:bg-zinc-900 dark:border-gray-700 shadow-sm hover:shadow-lg transition-shadow"
               >
                 <img
                   src={
