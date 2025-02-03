@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import address from "@/assets/images/address.svg";
-import phone from "@/assets/images/phone.svg";
-import time from "@/assets/images/time.svg";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaPhoneAlt } from "react-icons/fa";
+import { BsClockFill } from "react-icons/bs";
 import toast from "react-hot-toast";
 
 const BOT_TOKEN = "7870707568:AAHnwCxMt8d-pAApzK4MGwIjxBsvo3JkOdM";
@@ -77,8 +77,8 @@ const Contact = () => {
 
       <div className="flex mt-14 flex-col md:flex-row items-start justify-between gap-10 p-8 rounded-lg max-w-4xl mx-auto">
         <div className="w-full md:w-1/2 space-y-8">
-          <p className="text-gray-600 dark:text-gray-400 flex items-start gap-4">
-            <img src={address} alt="address" className="w-8 h-8" />
+          <p className=" dark:text-gray-400 flex items-start gap-4">
+            <FaLocationDot className="w-8 h-8 dark:text-white" />
             <span>
               <strong className="text-lg md:text-xl dark:text-gray-300">
                 Address
@@ -88,8 +88,8 @@ const Contact = () => {
             </span>
           </p>
 
-          <p className="text-gray-600 dark:text-gray-400 flex items-start gap-4">
-            <img src={phone} alt="phone" className="w-8 h-8" />
+          <p className=" dark:text-gray-400 flex items-start gap-4">
+          <FaPhoneAlt className="w-8 h-8 dark:text-white"/>
             <span>
               <strong className="text-lg md:text-xl">Phone</strong>
               <br />
@@ -98,8 +98,8 @@ const Contact = () => {
             </span>
           </p>
 
-          <p className="text-gray-600 dark:text-gray-400 flex items-start gap-4">
-            <img src={time} alt="time" className="w-8 h-8" />
+          <p className=" dark:text-gray-400 flex items-start gap-4">
+          <BsClockFill  className="w-8 h-8 dark:text-white"/>
             <span>
               <strong className="text-lg md:text-xl">Working Hours</strong>
               <br />
@@ -127,7 +127,7 @@ const Contact = () => {
                 type="text"
                 id="name"
                 placeholder="Enter your name"
-                className="w-full p-3 h-14 border dark:text-black dark:bg-gray-300 border-gray-300 rounded-md focus:ring-2 focus:ring-[#cec1a3] focus:border-[#B88E2F] outline-none"
+                className="w-full p-3 h-14 border dark:text-black dark:bg-gray-100 border-gray-300 rounded-md focus:ring-2 focus:ring-[#cec1a3] focus:border-[#B88E2F] outline-none"
               />
             </div>
 
@@ -144,7 +144,7 @@ const Contact = () => {
                 type="email"
                 id="email"
                 placeholder="Enter your email"
-                className="w-full p-3 h-14 border dark:text-black dark:bg-gray-300 border-gray-300 rounded-md focus:ring-2 focus:ring-[#cec1a3] focus:border-[#B88E2F] outline-none"
+                className="w-full p-3 h-14 border dark:text-black dark:bg-gray-100 border-gray-300 rounded-md focus:ring-2 focus:ring-[#cec1a3] focus:border-[#B88E2F] outline-none"
               />
             </div>
 
@@ -161,7 +161,7 @@ const Contact = () => {
                 id="subject"
                 required
                 placeholder="Enter subject"
-                className="w-full p-3 h-14 border dark:text-black dark:bg-gray-300 border-gray-300 rounded-md focus:ring-2 focus:ring-[#cec1a3] focus:border-[#B88E2F] outline-none"
+                className="w-full p-3 h-14 border dark:text-black dark:bg-gray-100 border-gray-300 rounded-md focus:ring-2 focus:ring-[#cec1a3] focus:border-[#B88E2F] outline-none"
               />
             </div>
 
@@ -178,7 +178,7 @@ const Contact = () => {
                 required
                 placeholder="Enter your message"
                 rows={4}
-                className="w-full p-3 border dark:text-black dark:bg-gray-300 border-gray-300 rounded-md focus:ring-2 focus:ring-[#cec1a3] focus:border-[#B88E2F] outline-none"
+                className="w-full p-3 border dark:text-black dark:bg-gray-100 border-gray-300 rounded-md focus:ring-2 focus:ring-[#cec1a3] focus:border-[#B88E2F] outline-none"
               ></textarea>
             </div>
 
