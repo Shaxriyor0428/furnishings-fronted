@@ -49,7 +49,7 @@ const About = () => {
               Crafting Comfort & Style with Furnishings
             </h1>
             <p className="text-xl font-light">
-              Since 2025, we've been transforming houses into homes with our
+              Since 2025, we've been transforming captivating furnitures into homes with our
               commitment to exceptional craftsmanship and timeless design.
             </p>
           </div>
@@ -75,7 +75,7 @@ const About = () => {
             <div className="text-center transform hover:scale-105 transition-transform duration-300">
               <Building2 className="w-16 h-16 text-[#B8860B] mx-auto mb-6" />
               <h3 className="text-5xl font-bold text-gray-900 mb-3">50+</h3>
-              <p className="text-lg text-gray-600">Showrooms Worldwide</p>
+              <p className="text-lg text-gray-600">Furnitures Worldwide</p>
             </div>
             <div className="text-center transform hover:scale-105 transition-transform duration-300">
               <Users className="w-16 h-16 text-[#B8860B] mx-auto mb-6" />
