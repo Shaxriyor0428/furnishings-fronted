@@ -12,8 +12,8 @@ const Home = () => {
   return (
     <div>
       <Hero />
-      <Browse />!
-      {!data  ? (
+      <Browse />
+      {!data ? (
         <Skeleton count={8} />
       ) : (
         <Products data={data.data.products} title="Our products" />
