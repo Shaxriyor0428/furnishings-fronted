@@ -5,6 +5,9 @@ import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { IProduct, IReview } from "@/types";
+import { useDispatch, useSelector } from "react-redux";
+import { addCart } from "../../redux/features/cart-slice";
+import { RootState } from "../../redux";
 
 const ProductDetail = ({
   product,
@@ -16,11 +19,12 @@ const ProductDetail = ({
   id: number;
 }) => {
   const [selectedImage, setSelectedImage] = useState(0);
+  const cart = useSelector((state: RootState) => state.cart.value);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState("");
-
+  const dispatch = useDispatch();
   const Modal = ({
     imageUrl,
     onClose,
@@ -152,7 +156,7 @@ const ProductDetail = ({
               </div>
             </div>
             <div className="flex items-center space-x-3 mt-4">
-              <div className="flex items-center border border-gray-800 dark:border-gray-200 rounded-lg hover:border-bg-primary hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary duration-300">
+              {/* <div className="flex items-center border border-gray-800 dark:border-gray-200 rounded-lg hover:border-bg-primary hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary duration-300">
                 <button
                   className="px-[10px] py-1 rounded-lg text-sm font-bold hover:text-bg-primary dark:hover:bg-zinc-900 hover:bg-white duration-150"
                   onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
@@ -166,10 +170,15 @@ const ProductDetail = ({
                 >
                   +
                 </button>
-              </div>
+              </div> */}
 
-              <button className="py-1 px-4 border border-black dark:border-gray-200 text-sm text-black dark:text-gray-200 rounded-lg dark:hover:text-black hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
-                Add to Cart
+              <button
+                onClick={() => dispatch(addCart(product))}
+                className="py-1 px-4 border border-black dark:border-gray-200 text-sm text-black dark:text-gray-200 rounded-lg dark:hover:text-black hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300"
+              >
+                {cart?.some((c) => c.id === product.id)
+                  ? "Product added"
+                  : "Add to cart"}
               </button>
 
               <button className="py-1 px-4 border border-black dark:border-gray-200 text-sm text-black dark:text-gray-200 rounded-lg dark:hover:text-black hover:text-white hover:bg-bg-primary dark:hover:border-bg-primary hover:border-bg-primary duration-300">
