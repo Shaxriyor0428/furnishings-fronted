@@ -20,7 +20,6 @@ const ProductDetail = ({
 }) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const cart = useSelector((state: RootState) => state.cart.value);
-  const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState("");
@@ -60,7 +59,6 @@ const ProductDetail = ({
 
   useEffect(() => {
     setSelectedImage(0);
-    setQuantity(1);
     window.scrollTo({ behavior: "smooth", top: 0, left: 0 });
   }, [id, product]);
 
