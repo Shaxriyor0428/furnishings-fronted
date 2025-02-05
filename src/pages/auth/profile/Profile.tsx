@@ -12,7 +12,7 @@ const Profile = () => {
 
   return (
     <div className="container mx-auto flex flex-col md:flex-row min-h-[600px] gap-6 p-4">
-      <div className="w-full md:w-[280px] bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4">
+      <div className="w-full md:w-[280px] bg-white dark:bg-zinc-900 rounded-lg shadow-sm p-4">
         <h2 className="text-lg font-bold mb-4 text-gray-700 dark:text-white">
           My Account
         </h2>
@@ -41,7 +41,7 @@ const Profile = () => {
         </nav>
       </div>
 
-      <div className="flex-1 bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm">
+      <div className="flex-1 bg-white dark:bg-zinc-900 p-6 rounded-lg shadow-sm">
         <Outlet />
       </div>
     </div>

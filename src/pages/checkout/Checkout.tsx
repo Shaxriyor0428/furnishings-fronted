@@ -5,10 +5,11 @@ import * as yup from "yup";
 import { useCheckTokenQuery } from "@/redux/api/customer-api";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux";
-import { useCreateOrderMutation } from "../../redux/api/order-api";
+import { useCreateOrderMutation } from "@/redux/api/order-api";
 import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { clearCart } from "../../redux/features/cart-slice";
+import { clearCart } from "@/redux/features/cart-slice";
+// import { useGetAddressQuery } from "@/redux/api/order-address-api";
 
 const schema = yup
   .object({
@@ -28,6 +29,9 @@ const Checkout = () => {
   const { data } = useCheckTokenQuery(null);
   const cart = useSelector((state: RootState) => state.cart.value);
   const token = useSelector((state: RootState) => state.token.access_token);
+  // const { data: orderAddressData } = useGetAddressQuery(data?.customer?.id);
+  // console.log(orderAddressData);
+  
   const [createOrder] = useCreateOrderMutation();
   useEffect(() => {
     window.scrollTo(0, 0);
