@@ -21,7 +21,7 @@ const Cart = () => {
   const subtotal = cart.reduce(
     (acc, product) =>
       acc +
-      (product.price * product.amount) / (1 - product.discount.percent / 100),
+      (product.price * product.amount) / (1 - product?.discount?.percent / 100),
     0
   );
 
