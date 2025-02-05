@@ -153,7 +153,7 @@ const Header: FC = () => {
           </div>
           <div className="w-full grid place-items-center">
             <NavLink
-              to="/auth/profile/self"
+              to={token ? "/auth/profile/self" : "/auth/sign-in"}
               onClick={() => setMenuOpen(false)}
               className="text-lg font-medium hover:text-bg-primary duration-200"
             >
