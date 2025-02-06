@@ -18,12 +18,12 @@ const Cart = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const subtotal = cart.reduce(
-    (acc, product) =>
-      acc +
-      (product.price * product.amount) / (1 - product?.discount?.percent / 100),
-    0
-  );
+  
+  const subtotal = cart.reduce((acc, product) => {
+    const discountPercent = product?.discount?.percent ?? 0; 
+    const discountedPrice = product.price / (1 - discountPercent / 100); 
+    return acc + discountedPrice * product.amount;
+  }, 0);
 
   const total = cart.reduce(
     (sum, product) => sum + product.price * product.amount,
